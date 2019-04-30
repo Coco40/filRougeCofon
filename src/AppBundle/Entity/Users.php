@@ -49,6 +49,12 @@ class Users
     private $dateUsers;
 
     /**
+     * @ORM\OneToMany(targetEntity="Reading", mappedBy="users")
+     */
+    private $read;
+
+
+    /**
      * @return mixed
      */
     public function getId()

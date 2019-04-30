@@ -30,6 +30,12 @@ class BookType
     private $bookType;
 
     /**
+     * @ORM\OneToMany(targetEntity="Book", mappedBy="type")
+     */
+    private $books;
+
+
+    /**
      * @return mixed
      */
     public function getId()

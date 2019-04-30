@@ -45,6 +45,16 @@ class Reading
     private $dateComment;
 
     /**
+     * @ORM\ManyToOne(targetEntity="Users", inversedBy="read")
+     */
+    private $users;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Book", inversedBy="comment")
+     */
+    private $book;
+
+    /**
      * @return mixed
      */
     public function getId()

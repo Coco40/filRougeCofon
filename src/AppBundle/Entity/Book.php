@@ -57,6 +57,16 @@ class Book
     private $author;
 
     /**
+     * @ORM\ManyToOne(targetEntity="BookType", inversedBy="books")
+     */
+    private $type;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Reading", mappedBy="book")
+     */
+    private $comment;
+
+    /**
      * @return mixed
      */
     public function getId()
