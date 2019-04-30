@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    {#<!-- Bootstrap CSS -->#}
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+    {#<!--Reset style CSS--!>#}
+    <link rel="stylesheet" href="{{ asset('assets/css/reset.css')}}">
+
+    {#<!--  style css -->#}
+    <link rel="stylesheet" href="{{ asset('assets/css/styleCofon.css')}}">
+    <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.7.0/css/all.css' integrity='sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ' crossorigin='anonymous'>
+
+    <script language="JavaScript" type="text/javascript">
+        var b_nom=false; var b_prenom=false; var b_mail=false; var b_mp=false;
+
+        function send()
+        {
+            if(b_nom==true && b_prenom==true && b_mail==true && b_mp==true)
+            {
+            document.getElementById("message").innerText = "envoi serveur";
+            // document.getElementById("inscription").submit();
+            }
+
+            else
+            {
+            document.getElementById("message").innerText = "Le formulaire n'est pas complet";
+            }
+
+            document.getElementById("message").innerText += "-" + b_nom + "-" + b_prenom + "-" + b_mail + "-" + b_mp;
+        }
+
+    </script>
+    <script language="JavaScript" src="{{ asset('assets/js/v.inscript.js') }}"></script>
+
+</head>
+<body>
+
+{% block header %}
+
+    <nav class="navbar">
+        <div class="brand col-md-2">
+            <img src="{{ asset('assets/images/logofilrouge.png') }}" alt="logo" class="logo">
+        </div>
+        <div class="search col-md-4">
+            <input placeholder="Rechercher" class="look">
+        </div>
+        <div class="button col-md-6">
+            <a href="{{ path('cofon') }}" class="home">Accueil</a>
+            <a href="" class="books">Mes livres</a>
+            <a href="" class="addBooks">Ajouter des livres</a>
+            <a href="{{ path('cofonCnx') }}" class="connection">Connexion</a>
+        </div>
+
+    </nav>
+
+{% endblock %}
+
+
+{% block main %}
+{% endblock %}
+
+
+{% block footer %}
+    <div class="footer">
+        <div class="icones text-center center-block">
+            <p>Suivez-nous sur :
+                <a href=""><i class="fab fa-facebook"></i></a>
+                <a href=""><i class="fab fa-twitter-square"></i></a>
+                <a href=""><i class="fab fa-instagram"></i></a>
+            </p>
+        </div>
+        <div class="info">
+            <p><a href="">Mentions Légales</a> | </p>
+            <p><a href="">Contact</a></p>
+        </div>
+    </div>
+{% endblock %}
+
+</body>
+</html>

@@ -1,0 +1,42 @@
+{% extends'base.html.twig' %}
+
+
+
+{% block main %}
+    <article class="central">
+        <div class="inscription col-md-6 container">
+            <div class="slogan">
+                <h2>Enregistrez vos livres sur Cofon</h2>
+                <h3>& partagez vos lectures avec la communauté</h3>
+            </div>
+            <div>
+                 <a href="{{ path('cofonCnx') }}" class="inscrip"><button>Inscrivez-vous</button></a>
+            </div>
+        </div>
+        <div class="list col-md-6 container">
+            <h1 class="bookType">roman policier fantastique biographique thriller amour science-fiction philosophie</h1>
+        </div>
+    </article>
+
+    <div class="propositions">
+        <div class="plusLus">
+            <h3>Les + lus</h3>
+        </div>
+        <div class="propoLivres">
+            <p>Livre1</p>
+            <p>Livre2</p>
+            <p>Livre3</p>
+            <p>Livre4</p>
+            <p>Livre5</p>
+            <p>Livre6</p>
+        </div>
+
+
+
+    </div>
+
+
+{% endblock %}
+
+
+

@@ -1,0 +1,38 @@
+{% extends'base.html.twig' %}
+
+
+
+{% block main %}
+
+    <div id="message">
+        Tous les champs sont obligatoires
+    </div>
+
+    <form action="cnx.html.twig" method="post" id="inscription">
+        <div>
+            <input type="text" name="nom" value="Votre Nom" onclick="">
+        </div>
+        <div>
+            <input type="text" name="prenom" value="Votre Prénom">
+        </div>
+        <div>
+            <input type="text" name="mail" value="Votre Email">
+        </div>
+        <div>
+            <input type="text" name="confMail" value="Confirmer votre Email">
+        </div>
+        <div>
+            <input type="password" name="mdp" value="Votre mot de passe">
+        </div>
+        <div>
+            <input type="password" name="confmdp" value="Confirmer votre mot de passe">
+        </div>
+        <div>
+            <input type="button" name="validInscript" id="validInscript" value="Valider" onclick="send()">
+        </div>
+
+
+
+    </form>
+
+{% endblock %}
