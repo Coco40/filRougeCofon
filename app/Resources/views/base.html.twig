@@ -17,27 +17,6 @@
     <link rel="stylesheet" href="{{ asset('assets/css/styleCofon.css')}}">
     <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.7.0/css/all.css' integrity='sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ' crossorigin='anonymous'>
 
-    <script language="JavaScript" type="text/javascript">
-        var b_nom=false; var b_prenom=false; var b_mail=false; var b_mp=false;
-
-        function send()
-        {
-            if(b_nom==true && b_prenom==true && b_mail==true && b_mp==true)
-            {
-            document.getElementById("message").innerText = "envoi serveur";
-            // document.getElementById("inscription").submit();
-            }
-
-            else
-            {
-            document.getElementById("message").innerText = "Le formulaire n'est pas complet";
-            }
-
-            document.getElementById("message").innerText += "-" + b_nom + "-" + b_prenom + "-" + b_mail + "-" + b_mp;
-        }
-
-    </script>
-    <script language="JavaScript" src="{{ asset('assets/js/v.inscript.js') }}"></script>
 
 </head>
 <body>
@@ -55,7 +34,7 @@
             <a href="{{ path('cofon') }}" class="home">Accueil</a>
             <a href="" class="books">Mes livres</a>
             <a href="" class="addBooks">Ajouter des livres</a>
-            <a href="{{ path('cofonCnx') }}" class="connection">Connexion</a>
+            <a href="{{ path('fos_user_registration_register') }}" class="connection">Connexion</a>
         </div>
 
     </nav>
