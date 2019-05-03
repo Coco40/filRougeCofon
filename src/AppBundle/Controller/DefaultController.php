@@ -17,15 +17,15 @@ class DefaultController extends Controller
         return $this->render('cofon/home.html.twig');
     }
 
-//    /**
-//     * @Route("/cofon/connexion", name="cofonCnx")
-//     */
-//
-//    public function cofonConnexion()
-//    {
-//        return $this->render('../FOSUserBundle/views/layout.html.twig');
-//
-//    }
+    /**
+     * @Route("/cofon/connexion", name="cofonCnx")
+     */
+
+    public function cofonConnexion()
+    {
+        return $this->render('cofon/cnx.html.twig');
+
+    }
 
 
 }

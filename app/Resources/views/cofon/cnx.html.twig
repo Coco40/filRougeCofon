@@ -1,69 +1,45 @@
+{% trans_default_domain 'FOSUserBundle' %}
 {% extends'base.html.twig' %}
 
 
 
-{% block main %}
+{#{% block main %}#}
 
-    <h1>Inscription<h1>
-        <form method="post">
-            <label>Pseudo: <input type="text" name="pseudo"/></label><br/>
-            <label>Mot de passe: <input type="password" name="password"/></label><br/>
-            <label>Confirmation du mot de passe: <input type="password" name="repeatPassword"/></label><br/>
-            <label>Adresse e-mail: <input type="email" name="email"/></label><br/>
-            <input type="submit" name="submit" value="M'inscrire"/>
-        </form>
+    {#<h1>Inscription<h1>#}
+        {#<form method="post">#}
+            {#<label>Pseudo: <input type="text" name="pseudo"/></label><br/>#}
+            {#<label>Mot de passe: <input type="password" name="password"/></label><br/>#}
+            {#<label>Confirmation du mot de passe: <input type="password" name="repeatPassword"/></label><br/>#}
+            {#<label>Adresse e-mail: <input type="email" name="email"/></label><br/>#}
+            {#<input type="submit" name="submit" value="M'inscrire"/>#}
+        {#</form>#}
+
+
+{#{% endblock %}#}
 
 
 
-            {#<form method="post" action="">#}
-                {#<p>Nom</p>#}
-                {#<input type="text" name="Nom">#}
-                {#<p>Prenom</p>#}
-                {#<input type="text" name="Prenom">#}
-                {#<p>email</p>#}
-                {#<input type="email" name="email">#}
-                {#<p>Password</p>#}
-                {#<input type="password" name="password">#}
-                {#<p>Répetez votre password</p>#}
-                {#<input type="password" name="repeatpassword"><br><br>#}
-             {##}
+                {% block fos_user_content %}
+                    {% if error %}
+                        <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                    {% endif %}
 
-            {#</form>#}
+                    <form action="{{ path("fos_user_security_check") }}" method="post">
+                        {% if csrf_token %}
+                            <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+                        {% endif %}
 
-            <?php
+                        <label for="username">{{ 'security.login.username'|trans }}</label>
+                        <input type="text" id="username" name="_username" value="{{ last_username }}" required="required" autocomplete="username" />
 
-if (isset($_POST['submit']))
-{
-   {#/* on test si les champ sont bien remplis */#}
-    if(!empty($_POST['pseudo']) and !empty($_POST['password']) and !empty($_POST['repeatPassword']) and !empty($_POST['email']))
-    {
-        {#/* on test si le mdp contient bien au moins 6 caractère */#}
-        if (strlen($_POST['password'])>=6)
-            {
-            {#/* on test si les deux mdp sont bien identique */#}
-            if ($_POST['password']==$_POST['repeatpassword'])
-            {
-            {#// On crypte le mot de passe#}
-            $_POST['password']= md5($_POST['password']);
-            {#// on se connecte à MySQL et on sélectionne la base#}
-            $c = new mysqli("127.0.0.1","root","","root");
-            {#//On créé la requête#}
-            $sql = "INSERT INTO newclient VALUES ('".$_POST['id']."','".$_POST['pseudo']."','".$_POST['password']."','".$_POST['email']."')";
+                        <label for="password">{{ 'security.login.password'|trans }}</label>
+                        <input type="password" id="password" name="_password" required="required" autocomplete="current-password" />
 
-            {#/* execute et affiche l'erreur mysql si elle se produit */#}
-            if(!$c->query($sql))
-            {
-            printf("Message d'erreur : %s\n", $c->error);
-            }
-            {#// on ferme la connexion#}
-            mysqli_close($c);
-            }
-            else echo "Les mots de passe ne sont pas identiques";
-            }
-            else echo "Le mot de passe est trop court !";
-            }
-            else echo "Veuillez saisir tous les champs !";
-            }
-            ?>
+                        <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
+                        <label for="remember_me">{{ 'security.login.remember_me'|trans }}</label>
 
-{% endblock %}
+                        <input type="submit" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans }}" />
+                    </form>
+                {% endblock %}
+
+

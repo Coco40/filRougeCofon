@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -34,7 +34,7 @@
             <a href="{{ path('cofon') }}" class="home">Accueil</a>
             <a href="" class="books">Mes livres</a>
             <a href="" class="addBooks">Ajouter des livres</a>
-            <a href="{{ path('fos_user_registration_register') }}" class="connection">Connexion</a>
+            <a href="{{ path('fos_user_security_login') }}" class="connection">Connexion</a>
         </div>
 
     </nav>
@@ -44,6 +44,8 @@
 
 {% block main %}
 {% endblock %}
+
+{% block fos_user_content %} {% endblock %}
 
 
 {% block footer %}

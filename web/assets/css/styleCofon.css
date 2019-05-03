@@ -89,6 +89,8 @@
     justify-content: space-around;
 }
 
+/* END form for home*/
+
 
 /* BEGGINING form for FOOTER*/
 
@@ -112,4 +114,51 @@
     width: 2%;
 }
 
+/* END form for FOOTER*/
+
+
+/* BEGGINNING form for FORMULAR*/
+
+.wrapper{
+    margin-top: 80px;
+    margin-bottom: 80px;
+}
+
+.form-signin{
+    max-width: 380px;
+    padding: 15px 35px 45px;
+    margin: 0 auto;
+    background-color: #5eb5e0;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.form-signin-heading,
+.checkbox{
+    margin-bottom: 30px;
+}
+
+.checkbox{
+    font-weight: normal;
+}
+
+.form-control{
+    position: relative;
+    font-size: 16px;
+    height: auto;
+    padding: 10px;
+}
+
+input[type="text"] {
+    margin-bottom: -1px;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+input[type="password"] {
+    margin-bottom: 20px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+/* END form for FORMULAR*/
 
