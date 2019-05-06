@@ -1,3 +1,7 @@
+body{
+    background-color: linen;
+}
+
 /* BEGGINNING form for header*/
 .navbar{
     width: 100%;
@@ -161,4 +165,71 @@ input[type="password"] {
 }
 
 /* END form for FORMULAR*/
+
+
+/* BEGGINNING form for FIRST CNX*/
+
+.firstCnx{
+    width: 100%;
+    height: 80px;
+    font-family: fantasy;
+}
+
+.advise{
+    width: 50%;
+    float: left;
+    text-align: center;
+    background-color: lightsalmon;
+    font-size: 20px;
+    padding-bottom: 15px;
+    padding-top: 15px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+.personalPage{
+    width: 50%;
+    float: left;
+    text-align: center;
+    background: darkseagreen;
+    font-size: 20px;
+    padding-bottom: 25px;
+    padding-top: 25px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+.bottomFirstCnx{
+    width: 100%;
+    font-family: monospace;
+}
+
+.exampleBook{
+    width: 80%;
+    float: left;
+}
+
+.search{
+    width: 20%;
+    float: left;
+}
+
+.detailBook{
+    width: 25%;
+    float: left;
+    text-align: center;
+}
+
+.oneImg{
+    width: 100%;
+    height: 100%;
+}
+
+.imgCover{
+    max-width: 90%;
+    max-height: 90%;
+}
+
+
+
 

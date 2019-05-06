@@ -1,0 +1,12 @@
+{% extends'::base.html.twig' %}
+
+{% block main %}
+
+    {% for category in allCategory %}
+
+        <p>{{ category.id}}</p>
+        <p>{{ category.bookType }}</p>
+
+    {% endfor %}
+
+{% endblock %}

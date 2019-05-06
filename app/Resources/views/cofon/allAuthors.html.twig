@@ -1,0 +1,15 @@
+{% extends'::base.html.twig' %}
+
+{% block main %}
+
+    {% for author in allAuthors%}
+
+        <p>{{ author.id }}</p>
+        <p>{{ author.firstName }}</p>
+        <p>{{ author.lastName }}</p>
+        <p>{{ author.bio }}</p>
+        <p>{{ author.birtDate}}</p>
+
+    {% endfor %}
+
+{% endblock %}

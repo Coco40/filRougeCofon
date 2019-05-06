@@ -1,6 +1,7 @@
 {% trans_default_domain 'FOSUserBundle' %}
 {% extends'::base.html.twig' %}
 
+
 {% block stylesheets %}
 {{ parent() }}
 {% endblock %}
@@ -29,6 +30,7 @@
 
         <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
         <label for="remember_me">{{ 'security.login.remember_me'|trans }}</label>
+
 
         <input type="submit" id="_submit" class="btn btn-primary btn-lg btn-block" name="_submit"
                value="{{ 'security.login.submit'|trans }}" />
