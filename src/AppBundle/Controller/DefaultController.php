@@ -142,4 +142,13 @@ class DefaultController extends Controller
         );
     }
 
+//*****   ROUTE POUR LA POPUP   *****//
+
+    /**
+     * @Route("/cofon/popup", name="popup")
+     */
+    public function cofonPopup()
+    {
+        return $this->render('cofon/popup.html.twig');
+    }
 }

@@ -23,8 +23,68 @@
                 <div class="oneImg">
                     <img src="{{ asset('assets/imgcover/'~book.cover) }}" class="imgCover" alt="Photo de la couverture du livre">
                 </div>
-                    <p>{{ book.title }}</p>
+                <p>{{ book.title }}</p>
+                    <button id="reading">J'ai lu ce livre</button>
+
+                <!-- The Modal -->
+                <div id="myModal" class="modal">
+
+                    <!-- Modal content -->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h2>Ce livre va être ajouté dans votre espace, complétez les informations</h2>
+                            <span class="close">&times;</span>
+                        </div>
+                        <div class="modal-body">
+                            <div class="bookMain">
+                                <p>{{ book.title }}</p>
+                                <img src="{{ asset('assets/imgcover/'~book.cover) }}" class="imgCover" alt="Photo de la couverture du livre">
+                            </div>
+                            <div class="bookResume">
+                                <p>{{ book.synopsis }}</p>
+                            </div>
+                            <div class="comment">
+                                <h3>Commentaires</h3>
+                                <p>Texte de l'utilisateur</p>
+
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button>VALIDER</button>
+                        </div>
+                    </div>
+
+                </div>
+
+                <script>
+                    // Get the modal
+                    var modal = document.getElementById('myModal');
+
+                    // Get the button that opens the modal
+                    var btn = document.getElementById("reading");
+
+                    // Get the <span> element that closes the modal
+                    var span = document.getElementsByClassName("close")[0];
+
+                    // When the user clicks the button, open the modal
+                    btn.onclick = function() {
+                        modal.style.display = "block";
+                    }
+
+                    // When the user clicks on <span> (x), close the modal
+                    span.onclick = function() {
+                        modal.style.display = "none";
+                    }
+
+                    // When the user clicks anywhere outside of the modal, close it
+                    window.onclick = function(event) {
+                        if (event.target == modal) {
+                            modal.style.display = "none";
+                        }
+                    }
+                </script>
             </div>
+
             {% endfor %}
         </div>
 
@@ -34,7 +94,7 @@
             </div>
             <div class="category">
                 {% for category in viewAllCategory %}
-                    <p>{{ category.bookType }}</p>
+                <button class="category">{{ category.bookType }}</button></br>
                 {% endfor %}
 
             </div>
