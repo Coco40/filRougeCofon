@@ -150,4 +150,20 @@ class Users
         $this->dateUsers = $dateUsers;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getRead()
+    {
+        return $this->read;
+    }
+
+    /**
+     * @param mixed $read
+     */
+    public function setRead($read)
+    {
+        $this->read = $read;
+    }
+
 }

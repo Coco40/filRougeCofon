@@ -79,5 +79,8 @@ fos_user:
     from_email:
         address: corinnefontagne@yahoo.fr
         sender_name: corinne
+    registration:
+        form:
+            type: AppBundle\Form\RegistrationType
 
 

@@ -2,8 +2,8 @@
 /**
  * Created by PhpStorm.
  * User: lapiscine
- * Date: 2019-04-26
- * Time: 11:03
+ * Date: 2019-05-07
+ * Time: 15:32
  */
 
 namespace AppBundle\Entity;
@@ -11,11 +11,10 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="bookType")
+ * @ORM\Table(name="statusType")
  */
 
-
-class BookType
+class StatusType
 {
     /**
      * @ORM\Column(type="integer")
@@ -27,13 +26,7 @@ class BookType
     /**
      * @ORM\Column(type="string")
      */
-    private $bookType;
-
-    /**
-     * @ORM\OneToMany(targetEntity="Book", mappedBy="type")
-     */
-    private $books;
-
+    private $name;
 
     /**
      * @return mixed
@@ -54,32 +47,18 @@ class BookType
     /**
      * @return mixed
      */
-    public function getBookType()
+    public function getName()
     {
-        return $this->bookType;
+        return $this->name;
     }
 
     /**
-     * @return mixed
+     * @param mixed $name
      */
-    public function getBooks()
+    public function setName($name)
     {
-        return $this->books;
+        $this->name = $name;
     }
 
-    /**
-     * @param mixed $books
-     */
-    public function setBooks($books)
-    {
-        $this->books = $books;
-    }
 
-    /**
-     * @param mixed $bookType
-     */
-    public function setBookType($bookType)
-    {
-        $this->bookType = $bookType;
-    }
 }

@@ -1,0 +1,12 @@
+{% extends'::base.html.twig' %}
+
+{% block main %}
+
+    {% for status in allStatus %}
+
+        <p>{{ status.id}}</p>
+        <p>{{ status.name }}</p>
+
+    {% endfor %}
+
+{% endblock %}

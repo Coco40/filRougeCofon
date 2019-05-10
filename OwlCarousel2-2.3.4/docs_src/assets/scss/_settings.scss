@@ -494,19 +494,19 @@ $anchor-font-color: #1ccacd;
 
 // Forms
 
-// $include-html-form-classes: $include-html-classes;
+// $include-html-Form-classes: $include-html-classes;
 
-// We use this to set the base for lots of form spacing and positioning styles
-// $form-spacing: rem-calc(16);
+// We use this to set the base for lots of Form spacing and positioning styles
+// $Form-spacing: rem-calc(16);
 
 // We use these to style the labels in different ways
-// $form-label-pointer: pointer;
-// $form-label-font-size: rem-calc(14);
-// $form-label-font-weight: normal;
-// $form-label-line-height: 1.5;
-// $form-label-font-color: scale-color(#000, $lightness: 30%);
-// $form-label-small-transform: capitalize;
-// $form-label-bottom-margin: 0;
+// $Form-label-pointer: pointer;
+// $Form-label-font-size: rem-calc(14);
+// $Form-label-font-weight: normal;
+// $Form-label-line-height: 1.5;
+// $Form-label-font-color: scale-color(#000, $lightness: 30%);
+// $Form-label-small-transform: capitalize;
+// $Form-label-bottom-margin: 0;
 // $input-font-family: inherit;
 // $input-font-color: rgba(0,0,0,0.75);
 // $input-font-size: rem-calc(14);
@@ -1032,7 +1032,7 @@ $side-nav-font-size: rem-calc(16);
 // SWITCH
 //
 
-// $include-html-form-classes: $include-html-classes;
+// $include-html-Form-classes: $include-html-classes;
 
 // Controlling border styles and background colors for the switch container
 // $switch-border-color: scale-color(#fff, $lightness: -20%);

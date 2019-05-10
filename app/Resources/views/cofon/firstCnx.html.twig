@@ -24,6 +24,9 @@
                     <img src="{{ asset('assets/imgcover/'~book.cover) }}" class="imgCover" alt="Photo de la couverture du livre">
                 </div>
                 <p>{{ book.title }}</p>
+                {% if book.author %}
+                    <p>{{ book.author.firstName }} {{ book.author.lastName }}</p>
+                {% endif %}
                     <button id="reading">J'ai lu ce livre</button>
 
                 <!-- The Modal -->
@@ -32,25 +35,33 @@
                     <!-- Modal content -->
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h2>Ce livre va être ajouté dans votre espace, complétez les informations</h2>
+                            <h2>Ce livre va être ajouté dans votre espace, vous pouvez rajouter des informations</h2>
                             <span class="close">&times;</span>
                         </div>
                         <div class="modal-body">
-                            <div class="bookMain">
-                                <p>{{ book.title }}</p>
-                                <img src="{{ asset('assets/imgcover/'~book.cover) }}" class="imgCover" alt="Photo de la couverture du livre">
-                            </div>
-                            <div class="bookResume">
-                                <p>{{ book.synopsis }}</p>
-                            </div>
-                            <div class="comment">
-                                <h3>Commentaires</h3>
-                                <p>Texte de l'utilisateur</p>
-
+                            <div class="bookInfo">
+                                <div class="bookMain">
+                                    <p>Titre : {{ book.title }}</p>
+                                    {% if book.author %}
+                                        <p>Auteur : {{ book.author.firstName }} {{ book.author.lastName }}</p>
+                                    {% endif %}
+                                    <img src="{{ asset('assets/imgcover/'~book.cover) }}" id="imgModal" alt="Photo de la couverture du livre">
+                                </div>
+                                <div class="bookResume">
+                                    <p>Résumé : </p>
+                                        <p class="synopsis">{{ book.synopsis }}</p>
+                                </div>
+                                <div class="note">
+                                    <p></p>
+                                </div>
+                                <div class="comment">
+                                    <h3>Commentaires</h3>
+                                    <p>Texte de l'utilisateur</p>
+                                </div>
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button>VALIDER</button>
+                            <button>AJOUTER</button>
                         </div>
                     </div>
 

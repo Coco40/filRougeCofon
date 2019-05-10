@@ -5,6 +5,8 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\Author;
 use AppBundle\Entity\Book;
 use AppBundle\Entity\BookType;
+use AppBundle\Entity\Reading;
+use AppBundle\Entity\StatusType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -45,16 +47,42 @@ class DefaultController extends Controller
         $allAuthors = $this->getDoctrine()
             ->getRepository(Author::class)
             ->findAll();
+        $allStatus = $this->getDoctrine()
+            ->getRepository(StatusType::class)
+            ->findAll();
+        $allReading = $this->getDoctrine()
+            ->getRepository(Reading::class)
+            ->findAll();
 
-        return $this->render('cofon/firstCnx.html.twig',
-            [
-                'viewAllCategory' => $viewAllCategory,
-                'allBooks' => $allBooks,
-                'allAuthor' => $allAuthors,
-            ]
-        );
+        dump($allBooks, $allReading); die;
+
+//        return $this->render('cofon/firstCnx.html.twig',
+//            [
+//                'viewAllCategory' => $viewAllCategory,
+//                'allBooks' => $allBooks,
+//                'allAuthor' => $allAuthors,
+//                'allStatus' => $allStatus,
+//                'allReading' => $allReading,
+//            ]
+//        );
     }
 
+    //*****   ROUTE POUR TOUS LES STATUS  *****//
+//    /**
+//     * @Route("/cofon/status", name="status")
+//     */
+//    public function cofonStatus()
+//    {
+//        $allStatus = $this->getDoctrine()
+//        ->getRepository(StatusType::class)
+//        ->findAll();
+//
+//        return $this->render('cofon/allStatus.html.twig',
+//       [
+//           'allStatus' => $allStatus,
+//        ]
+//            );
+//    }
 
 //*****   ROUTE POUR TOUTES LES CATEGORIES   *****//
 //    /**
@@ -89,6 +117,7 @@ class DefaultController extends Controller
 //        ]
 //             );
 //    }
+
 //*****   ROUTE POUR TOUS LES AUTEURS   *****//
 //    /**
 //     * @Route("/cofon/authors", name="authors")
@@ -105,6 +134,26 @@ class DefaultController extends Controller
 //        ]
 //             );
 //    }
+
+//*****   ROUTE POUR TOUS LES COMMENTAIRES NOTES (READING)  *****//
+    /**
+     * @Route("/cofon/reading", name="reading")
+     */
+    public function cofonReading()
+    {
+        $allReading = $this->getDoctrine()
+            ->getRepository(Reading::class)
+            ->findAll();
+
+//        dump($allReading); die;
+
+        return $this->render('cofon/allReading.html.twig',
+        [
+            'allReading' => $allReading,
+        ]
+             );
+    }
+
 
 //*****   ROUTE POUR UN LIVRE   *****//
     /**

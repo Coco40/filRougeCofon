@@ -1,0 +1,12 @@
+{% extends'::base.html.twig' %}
+
+{% block main %}
+
+    {% for reading in allReading %}
+
+        <p>{{ reading.id}}</p>
+        <p>{{ reading.name }}</p>
+
+    {% endfor %}
+
+{% endblock %}

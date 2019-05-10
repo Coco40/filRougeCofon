@@ -175,5 +175,21 @@ class Author
         $this->dateAuthor = $dateAuthor;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getBooks()
+    {
+        return $this->books;
+    }
+
+    /**
+     * @param mixed $books
+     */
+    public function setBooks($books)
+    {
+        $this->books = $books;
+    }
+
 
  }

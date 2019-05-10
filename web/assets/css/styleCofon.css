@@ -2,7 +2,7 @@ body{
     background-color: linen;
 }
 
-/* BEGGINNING form for header*/
+/* BEGGINNING Form for header*/
 .navbar{
     width: 100%;
     background-color: teal;
@@ -40,10 +40,10 @@ body{
     width: 75%;
 }
 
-/*ENDED form for header*/
+/*ENDED Form for header*/
 
 
-/* BEGGINNING form for home*/
+/* BEGGINNING Form for home*/
 
 .central{
     width: 100%;
@@ -93,10 +93,10 @@ body{
     justify-content: space-around;
 }
 
-/* END form for home*/
+/* END Form for home*/
 
 
-/* BEGGINING form for FOOTER*/
+/* BEGGINING Form for FOOTER*/
 
 .footer{
     width: 100%;
@@ -118,10 +118,10 @@ body{
     width: 2%;
 }
 
-/* END form for FOOTER*/
+/* END Form for FOOTER*/
 
 
-/* BEGGINNING form for FORMULAR*/
+/* BEGGINNING Form for FORMULAR*/
 
 .wrapper{
     margin-top: 80px;
@@ -164,10 +164,10 @@ input[type="password"] {
     border-top-right-radius: 0;
 }
 
-/* END form for FORMULAR*/
+/* END Form for FORMULAR*/
 
 
-/* BEGGINNING form for FIRST CNX*/
+/* BEGGINNING Form for FIRST CNX*/
 
 .firstCnx{
     width: 100%;
@@ -232,7 +232,7 @@ input[type="password"] {
     object-fit: cover;
 }
 
-.reading{
+#reading{
     background-color: teal;
     border: 1px solid;
 }
@@ -305,8 +305,8 @@ input[type="password"] {
 
 .modal-header {
     padding: 2px 16px;
-    background-color: #5cb85c;
-    color: white;
+    background-color: darkseagreen;
+    color: black;
 }
 
 .modal-body {
@@ -317,13 +317,34 @@ input[type="password"] {
 
 .modal-footer {
     padding: 2px 16px;
-    background-color: #5cb85c;
-    color: white;
+    background-color: darkseagreen;
+    color: black;
+}
+
+.bookInfo{
+    width: 100%;
+    float: left;
 }
 
 .bookMain{
+    width: 30%;
     float: left;
 }
+
+.bookResume{
+    width: 70%;
+    float: right;
+}
+
+#imgModal{
+    object-fit: cover;
+    width: 70%;
+}
+
+.synopsis{
+    text-align: justify;
+}
+
 
 
 
