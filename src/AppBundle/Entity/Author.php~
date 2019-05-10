@@ -192,28 +192,4 @@ class Author
     }
 
 
- 
-    /**
-     * Add book
-     *
-     * @param \AppBundle\Entity\Book $book
-     *
-     * @return Author
-     */
-    public function addBook(\AppBundle\Entity\Book $book)
-    {
-        $this->books[] = $book;
-
-        return $this;
-    }
-
-    /**
-     * Remove book
-     *
-     * @param \AppBundle\Entity\Book $book
-     */
-    public function removeBook(\AppBundle\Entity\Book $book)
-    {
-        $this->books->removeElement($book);
-    }
-}
+ }

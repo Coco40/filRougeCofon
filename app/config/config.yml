@@ -33,10 +33,12 @@ framework:
     templating:
         engines: ['twig']
 
+
 # Twig Configuration
 twig:
     debug: '%kernel.debug%'
     strict_variables: '%kernel.debug%'
+#    form_themes: ['boostrap_4_layout.html.twig']
 
 # Doctrine Configuration
 doctrine:
@@ -77,10 +79,10 @@ fos_user:
     firewall_name: main
     user_class: AppBundle\Entity\User
     from_email:
-        address: corinnefontagne@yahoo.fr
-        sender_name: corinne
+        address: '%mailer_user%'
+        sender_name: '%mailer_user%'
     registration:
         form:
-            type: AppBundle\Form\RegistrationType
+            type: AppBundle\Form\RegistrationFormType
 
 

@@ -34,13 +34,80 @@ class User extends BaseUser
      */
     private $dateUsers;
 
-    /**
-     * @ORM\OneToMany(targetEntity="Reading", mappedBy="users")
-     */
-    private $read;
+
+    public function __construct()
+    {
+        parent::__construct();
+        // your own logic
+    }
+
 
     /**
-     * @return mixed
+     * Set firstName
+     *
+     * @param string $firstName
+     *
+     * @return User
+     */
+    public function setFirstName($firstName)
+    {
+        $this->first_name = $firstName;
+
+        return $this;
+    }
+
+    /**
+     * Get firstName
+     *
+     * @return string
+     */
+    public function getFirstName()
+    {
+        return $this->first_name;
+    }
+
+    /**
+     * Set lastName
+     *
+     * @param string $lastName
+     *
+     * @return User
+     */
+    public function setLastName($lastName)
+    {
+        $this->last_name = $lastName;
+
+        return $this;
+    }
+
+    /**
+     * Get lastName
+     *
+     * @return string
+     */
+    public function getLastName()
+    {
+        return $this->last_name;
+    }
+
+    /**
+     * Set dateUsers
+     *
+     * @param \DateTime $dateUsers
+     *
+     * @return User
+     */
+    public function setDateUsers($dateUsers)
+    {
+        $this->dateUsers = $dateUsers;
+
+        return $this;
+    }
+
+    /**
+     * Get dateUsers
+     *
+     * @return \DateTime
      */
     public function getDateUsers()
     {
@@ -48,12 +115,9 @@ class User extends BaseUser
     }
 
     /**
-     * @param mixed $dateUsers
+     * @ORM\OneToMany(targetEntity="Reading", mappedBy="users")
      */
-    public function setDateUsers($dateUsers)
-    {
-        $this->dateUsers = $dateUsers;
-    }
+    private $read;
 
     /**
      * @return mixed
@@ -71,68 +135,7 @@ class User extends BaseUser
         $this->read = $read;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getFirstName()
-    {
-        return $this->first_name;
-    }
-
-    /**
-     * @param mixed $first_name
-     */
-    public function setFirstName($first_name)
-    {
-        $this->first_name = $first_name;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getLastName()
-    {
-        return $this->last_name;
-    }
-
-    /**
-     * @param mixed $last_name
-     */
-    public function setLastName($last_name)
-    {
-        $this->last_name = $last_name;
-    }
 
 
-
-    public function __construct()
-    {
-        parent::__construct();
-        // your own logic
-    }
-
-
-    /**
-     * Add read
-     *
-     * @param \AppBundle\Entity\Reading $read
-     *
-     * @return User
-     */
-    public function addRead(\AppBundle\Entity\Reading $read)
-    {
-        $this->read[] = $read;
-
-        return $this;
-    }
-
-    /**
-     * Remove read
-     *
-     * @param \AppBundle\Entity\Reading $read
-     */
-    public function removeRead(\AppBundle\Entity\Reading $read)
-    {
-        $this->read->removeElement($read);
-    }
 }
+

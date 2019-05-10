@@ -54,17 +54,17 @@ class DefaultController extends Controller
             ->getRepository(Reading::class)
             ->findAll();
 
-        dump($allBooks, $allReading); die;
+//        dump($allBooks, $allReading); die;
 
-//        return $this->render('cofon/firstCnx.html.twig',
-//            [
-//                'viewAllCategory' => $viewAllCategory,
-//                'allBooks' => $allBooks,
-//                'allAuthor' => $allAuthors,
-//                'allStatus' => $allStatus,
-//                'allReading' => $allReading,
-//            ]
-//        );
+        return $this->render('cofon/firstCnx.html.twig',
+            [
+                'viewAllCategory' => $viewAllCategory,
+                'allBooks' => $allBooks,
+                'allAuthor' => $allAuthors,
+                'allStatus' => $allStatus,
+                'allReading' => $allReading,
+            ]
+        );
     }
 
     //*****   ROUTE POUR TOUS LES STATUS  *****//

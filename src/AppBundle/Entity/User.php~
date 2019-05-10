@@ -22,87 +22,17 @@ class User extends BaseUser
     /**
      * @ORM\Column(type="string")
      */
-    private $firstNameUsers;
+    protected $first_name;
 
     /**
      * @ORM\Column(type="string")
      */
-    private $lastNameUsers;
+    protected $last_name;
 
     /**
      * @ORM\Column(type="datetime")
      */
     private $dateUsers;
-
-    /**
-     * @ORM\OneToMany(targetEntity="Reading", mappedBy="users")
-     */
-    private $read;
-
-    /**
-     * @return mixed
-     */
-    public function getDateUsers()
-    {
-        return $this->dateUsers;
-    }
-
-    /**
-     * @param mixed $dateUsers
-     */
-    public function setDateUsers($dateUsers)
-    {
-        $this->dateUsers = $dateUsers;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getFirstNameUsers()
-    {
-        return $this->firstNameUsers;
-    }
-
-    /**
-     * @param mixed $firstNameUsers
-     */
-    public function setFirstNameUsers($firstNameUsers)
-    {
-        $this->firstNameUsers = $firstNameUsers;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getLastNameUsers()
-    {
-        return $this->lastNameUsers;
-    }
-
-    /**
-     * @param mixed $lastNameUsers
-     */
-    public function setLastNameUsers($lastNameUsers)
-    {
-        $this->lastNameUsers = $lastNameUsers;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getRead()
-    {
-        return $this->read;
-    }
-
-    /**
-     * @param mixed $read
-     */
-    public function setRead($read)
-    {
-        $this->read = $read;
-    }
-
 
 
     public function __construct()
@@ -112,4 +42,3 @@ class User extends BaseUser
     }
 
 }
-
