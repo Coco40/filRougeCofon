@@ -18,84 +18,19 @@
     <div class="bottomFirstCnx">
         <div class="exampleBook">
             {% for book in allBooks %}
-            <div class="detailBook">
-                <a href="{{ path('oneBook',{'id':book.id}) }}"></a>
-                <div class="oneImg">
-                    <img src="{{ asset('assets/imgcover/'~book.cover) }}" class="imgCover" alt="Photo de la couverture du livre">
-                </div>
-                <p>{{ book.title }}</p>
-                {% if book.author %}
-                    <p>{{ book.author.firstName }} {{ book.author.lastName }}</p>
-                {% endif %}
-                    <button id="reading">J'ai lu ce livre</button>
-
-                <!-- The Modal -->
-                <div id="myModal" class="modal">
-
-                    <!-- Modal content -->
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h2>Ce livre va être ajouté dans votre espace, vous pouvez rajouter des informations</h2>
-                            <span class="close">&times;</span>
-                        </div>
-                        <div class="modal-body">
-                            <div class="bookInfo">
-                                <div class="bookMain">
-                                    <p>Titre : {{ book.title }}</p>
-                                    {% if book.author %}
-                                        <p>Auteur : {{ book.author.firstName }} {{ book.author.lastName }}</p>
-                                    {% endif %}
-                                    <img src="{{ asset('assets/imgcover/'~book.cover) }}" id="imgModal" alt="Photo de la couverture du livre">
-                                </div>
-                                <div class="bookResume">
-                                    <p>Résumé : </p>
-                                        <p class="synopsis">{{ book.synopsis }}</p>
-                                </div>
-                                <div class="note">
-                                    <p></p>
-                                </div>
-                                <div class="comment">
-                                    <h3>Commentaires</h3>
-                                    <p>Texte de l'utilisateur</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button>AJOUTER</button>
-                        </div>
+                <div class="detailBook">
+                    <a href="{{ path('oneBook',{'id':book.id}) }}"></a>
+                    <div class="oneImg">
+                        <img src="{{ asset('assets/imgcover/' ~ book.cover) }}" data-image="{{ book.cover }}" class="imgCover" alt="Photo de la couverture du livre">
                     </div>
 
+                    <p class="title-bk">{{ book.title }}</p>
+                    <p class="author-bk-firstName">{{ book.author.firstName }}</p>
+                    <p class="author-bk-lastName">{{ book.author.lastName }}</p>
+                    <p class="synopsis-bk">{{ book.synopsis }}</p>
+
+                    <button class="btnModal">J'ai lu ce livre</button>
                 </div>
-
-                <script>
-                    // Get the modal
-                    var modal = document.getElementById('myModal');
-
-                    // Get the button that opens the modal
-                    var btn = document.getElementById("reading");
-
-                    // Get the <span> element that closes the modal
-                    var span = document.getElementsByClassName("close")[0];
-
-                    // When the user clicks the button, open the modal
-                    btn.onclick = function() {
-                        modal.style.display = "block";
-                    }
-
-                    // When the user clicks on <span> (x), close the modal
-                    span.onclick = function() {
-                        modal.style.display = "none";
-                    }
-
-                    // When the user clicks anywhere outside of the modal, close it
-                    window.onclick = function(event) {
-                        if (event.target == modal) {
-                            modal.style.display = "none";
-                        }
-                    }
-                </script>
-            </div>
-
             {% endfor %}
         </div>
 
@@ -107,10 +42,89 @@
                 {% for category in viewAllCategory %}
                 <button class="category">{{ category.bookType }}</button></br>
                 {% endfor %}
-
             </div>
         </div>
 
     </div>
 
+
+
+<!-- The Modal -->
+<div id="myModal" class="modal">
+
+    <!-- Modal content -->
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2>Ce livre va être ajouté dans votre espace, vous pouvez rajouter des informations</h2>
+            <span id="close">&times;</span>
+        </div>
+        <div class="modal-body">
+            <div class="bookInfo">
+                <div class="bookMain">
+                    <p>Titre : <span class="title-js"></span></p>
+                    <p>Auteur : <span class="author-js-firstName"></span></p>
+                    <p><span class="author-js-lastName"></span></p>
+                    <img class="img-js" src="" id="imgModal" alt="Photo de la couverture du livre">
+                </div>
+                <div class="bookResume">
+                    <p>Résumé : <span class="synopsis-js"></span></p>
+                </div>
+                <ol class="status">
+                    {% for status in allStatus %}
+                        <li class="btnStatus">{{ status.name }}</li>
+                    {% endfor %}
+                </ol>
+                <div class="note">
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button>AJOUTER</button>
+        </div>
+    </div>
+</div>
+
+
 {% endblock %}
+
+{% block script %}
+
+    <script>
+
+        // on déclenche la fonction lorsque le doument est pret, donc que tout a chargé
+        $( document ).ready(function() {
+
+        // on lui dit qu'au clic sur le bouton avec la classe btnModal, il doit récupérer les éléments de la classe title-bk
+        //     depuis le parent de btnModal donc de la div à laquelle il appartient, et l'on stocke les infos dans la variable title
+            $('.btnModal').on('click', function (e) {
+                e.preventDefault()
+
+                var title = $(this).parent().find('.title-bk').html()
+                var authorFirtsName = $(this).parent().find('.author-bk-firstName').html()
+                var authorLastName = $(this).parent().find('.author-bk-lastName').html()
+                var synopsis = $(this).parent().find('.synopsis-bk').html()
+                var image = $(this).parent().find('.imgCover').attr('src')
+        // console.log pour vérifier ce qui est transmis dans une variable (falcutatif)
+                console.log(title)
+        // on lui demande de donner ce qui est dans la variable title, à la class title-js depuis l'élément qui a l'id myModal
+                $('#myModal').find('.title-js').html(title)
+                $('#myModal').find('.author-js-firstName').html(authorFirtsName)
+                $('#myModal').find('.author-js-lastName').html(authorLastName)
+                $('#myModal').find('.synopsis-js').html(synopsis)
+                $('#myModal').find('.img-js').attr('src', image)
+        // et on lui demande de l'afficher
+                $('#myModal').show()
+            })
+
+        // on lui dit qu'au clic sur le bouton avec l'id close, il doit masquer tout ce qui est dans l'id myModal
+            $('#close').on('click', function (e) {
+                e.preventDefault()
+
+                $('#myModal').hide()
+            })
+        });
+
+    </script>
+
+{% endblock %}
+

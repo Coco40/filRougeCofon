@@ -61,8 +61,16 @@ body{
     float: left;
     background-image: url("../images/livre3.jpeg");
     background-size: cover;
-    color: teal;
+    background-position: center;
+    color: black;
     font-family: fantasy;
+    font-size: medium;
+}
+
+.slogan{
+    width: 100%;
+    height: 50%;
+    font-size: x-large;
 }
 
 .list{
@@ -121,24 +129,27 @@ body{
 /* END Form for FOOTER*/
 
 
-/* BEGGINNING Form for FORMULAR*/
+/* BEGGINNING Form for LOGIN */
 
 .wrapper{
     margin-top: 80px;
     margin-bottom: 80px;
+    font-family: fantasy;
 }
 
 .form-signin{
     max-width: 380px;
     padding: 15px 35px 45px;
     margin: 0 auto;
-    background-color: #5eb5e0;
+    background-color: tan;
     border: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 .form-signin-heading,
 .checkbox{
-    margin-bottom: 30px;
+    text-align: center;
+    margin-bottom: 6%;
+    margin-top: 6%;
 }
 
 .checkbox{
@@ -162,6 +173,16 @@ input[type="password"] {
     margin-bottom: 20px;
     border-top-left-radius: 0;
     border-top-right-radius: 0;
+}
+
+#_submit{
+    margin-top: 4%;
+    margin-bottom: 6%;
+}
+
+.linkTochange{
+    display: flex;
+    justify-content: space-between;
 }
 
 /* END Form for FORMULAR*/
@@ -202,6 +223,10 @@ input[type="password"] {
 .bottomFirstCnx{
     width: 100%;
     font-family: monospace;
+}
+
+.synopsis-bk{
+    display: none;
 }
 
 .exampleBook{
@@ -246,10 +271,10 @@ input[type="password"] {
 }
 
 
-/**MODAL**/
+/**BEGGINNING Form for MODAL**/
 /* The Modal (background) */
 .modal {
-    display: none; /* Hidden by default */
+    /*display: none; !* Hidden by default *!*/
     position: fixed; /* Stay in place */
     z-index: 1; /* Sit on top */
     padding-top: 100px; /* Location of the box */
@@ -289,15 +314,15 @@ input[type="password"] {
 }
 
 /* The Close Button */
-.close {
+#close {
     color: white;
     float: right;
     font-size: 28px;
     font-weight: bold;
 }
 
-.close:hover,
-.close:focus {
+#close:hover,
+#close:focus {
     color: #000;
     text-decoration: none;
     cursor: pointer;
@@ -345,6 +370,33 @@ input[type="password"] {
     text-align: justify;
 }
 
+/* BEGGINNING Form for REGISTRATIONS*/
+
+#fos_user_registration_form{
+    width: 100%;
+}
+
+.form-group{
+    width: 50%;
+}
 
 
 
+/* BEGGINNING Form for MYBOOKS*/
+
+.user{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-around;
+    background-color: #ce636d;
+    padding-top: 2%;
+    padding-bottom: 2%;
+}
+
+
+
+.globalView{
+    width: 100%;
+    float: left;
+}

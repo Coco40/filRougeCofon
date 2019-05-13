@@ -29,10 +29,6 @@ class User extends BaseUser
      */
     protected $last_name;
 
-    /**
-     * @ORM\Column(type="datetime")
-     */
-    private $dateUsers;
 
 
     public function __construct()
@@ -90,29 +86,6 @@ class User extends BaseUser
         return $this->last_name;
     }
 
-    /**
-     * Set dateUsers
-     *
-     * @param \DateTime $dateUsers
-     *
-     * @return User
-     */
-    public function setDateUsers($dateUsers)
-    {
-        $this->dateUsers = $dateUsers;
-
-        return $this;
-    }
-
-    /**
-     * Get dateUsers
-     *
-     * @return \DateTime
-     */
-    public function getDateUsers()
-    {
-        return $this->dateUsers;
-    }
 
     /**
      * @ORM\OneToMany(targetEntity="Reading", mappedBy="users")

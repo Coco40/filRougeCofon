@@ -1,0 +1,26 @@
+{% extends'base.html.twig' %}
+
+
+
+{% block main %}
+
+<main>
+    <div class="user">
+        <p class="pseudo">Pseudo username</p>
+            <li>Accueil</li>
+            <li>Profil</li>
+            <li>Mes lectures</li>
+            <li>Recommandations</li>
+
+    </div>
+
+</main>
+
+    <div class="globalView">
+        <div class="read">Dernier livre lu : </div>
+        <div class="inProgress">Dernier livre en cours de lecture : </div>
+        <div class="toRead">Dernier livre à lire : </div>
+        <div class="recommendation">Livres qui pourraient vous plaire : </div>
+    </div>
+
+{% endblock %}

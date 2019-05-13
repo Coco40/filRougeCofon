@@ -191,13 +191,15 @@ class DefaultController extends Controller
         );
     }
 
-//*****   ROUTE POUR LA POPUP   *****//
+//*****   ROUTE MES LIVRES POUR UN UTILISATEUR CONNECTE  *****//
 
     /**
-     * @Route("/cofon/popup", name="popup")
+     * @Route("/cofon/myBooks", name="myBooks")
      */
-    public function cofonPopup()
+
+    public function cofonMyBooks()
     {
-        return $this->render('cofon/popup.html.twig');
+        return $this->render('cofon/myBooks.html.twig');
     }
+
 }
