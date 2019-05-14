@@ -25,32 +25,28 @@ class Reading
     private $id;
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", nullable=true)
      */
     private $note;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", nullable=true)
      */
     private $status;
 
     /**
-     * @ORM\Column(type="text")
+     * @ORM\Column(type="text", nullable=true)
      */
     private $comment;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime", nullable=true)
      */
     private $dateComment;
 
     /**
-     * @ORM\OneToOne(targetEntity="StatusType")
-     */
-    private $statusReading;
-
-    /**
      * @ORM\ManyToOne(targetEntity="User", inversedBy="read")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
     private $users;
 
@@ -59,13 +55,22 @@ class Reading
      */
     private $book;
 
-    /**
-     * ORM\OneToOne(targetEntity="StatusType")
-     */
-    private $statusType;
+
+//    /**
+//     * @ORM\OneToOne(targetEntity="StatusType")
+//     */
+//    private $statusReading;
+
+//    /**
+//     * ORM\OneToOne(targetEntity="StatusType")
+//     */
+//    private $statusType;
+
 
     /**
-     * @return mixed
+     * Get id
+     *
+     * @return integer
      */
     public function getId()
     {
@@ -73,15 +78,23 @@ class Reading
     }
 
     /**
-     * @param mixed $id
+     * Set note
+     *
+     * @param string $note
+     *
+     * @return Reading
      */
-    public function setId($id)
+    public function setNote($note)
     {
-        $this->id = $id;
+        $this->note = $note;
+
+        return $this;
     }
 
     /**
-     * @return mixed
+     * Get note
+     *
+     * @return string
      */
     public function getNote()
     {
@@ -89,15 +102,23 @@ class Reading
     }
 
     /**
-     * @param mixed $note
+     * Set status
+     *
+     * @param integer $status
+     *
+     * @return Reading
      */
-    public function setNote($note)
+    public function setStatus($status)
     {
-        $this->note = $note;
+        $this->status = $status;
+
+        return $this;
     }
 
     /**
-     * @return mixed
+     * Get status
+     *
+     * @return integer
      */
     public function getStatus()
     {
@@ -105,15 +126,23 @@ class Reading
     }
 
     /**
-     * @param mixed $status
+     * Set comment
+     *
+     * @param string $comment
+     *
+     * @return Reading
      */
-    public function setStatus($status)
+    public function setComment($comment)
     {
-        $this->status = $status;
+        $this->comment = $comment;
+
+        return $this;
     }
 
     /**
-     * @return mixed
+     * Get comment
+     *
+     * @return string
      */
     public function getComment()
     {
@@ -121,15 +150,23 @@ class Reading
     }
 
     /**
-     * @param mixed $comment
+     * Set dateComment
+     *
+     * @param \DateTime $dateComment
+     *
+     * @return Reading
      */
-    public function setComment($comment)
+    public function setDateComment($dateComment)
     {
-        $this->comment = $comment;
+        $this->dateComment = $dateComment;
+
+        return $this;
     }
 
     /**
-     * @return mixed
+     * Get dateComment
+     *
+     * @return \DateTime
      */
     public function getDateComment()
     {
@@ -137,31 +174,23 @@ class Reading
     }
 
     /**
-     * @param mixed $dateComment
+     * Set users
+     *
+     * @param \AppBundle\Entity\User $users
+     *
+     * @return Reading
      */
-    public function setDateComment($dateComment)
+    public function setUsers(\AppBundle\Entity\User $users = null)
     {
-        $this->dateComment = $dateComment;
+        $this->users = $users;
+
+        return $this;
     }
 
     /**
-     * @return mixed
-     */
-    public function getStatusReading()
-    {
-        return $this->statusReading;
-    }
-
-    /**
-     * @param mixed $statusReading
-     */
-    public function setStatusReading($statusReading)
-    {
-        $this->statusReading = $statusReading;
-    }
-
-    /**
-     * @return mixed
+     * Get users
+     *
+     * @return \AppBundle\Entity\User
      */
     public function getUsers()
     {
@@ -169,45 +198,26 @@ class Reading
     }
 
     /**
-     * @param mixed $users
+     * Set book
+     *
+     * @param \AppBundle\Entity\Book $book
+     *
+     * @return Reading
      */
-    public function setUsers($users)
+    public function setBook(\AppBundle\Entity\Book $book = null)
     {
-        $this->users = $users;
+        $this->book = $book;
+
+        return $this;
     }
 
     /**
-     * @return mixed
+     * Get book
+     *
+     * @return \AppBundle\Entity\Book
      */
     public function getBook()
     {
         return $this->book;
     }
-
-    /**
-     * @param mixed $book
-     */
-    public function setBook($book)
-    {
-        $this->book = $book;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getStatusType()
-    {
-        return $this->statusType;
-    }
-
-    /**
-     * @param mixed $statusType
-     */
-    public function setStatusType($statusType)
-    {
-        $this->statusType = $statusType;
-    }
-
-
-
 }

@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block main %}
+    {{ form_start(formCreateReading) }}
+
+    <div class="users">
+        {{ form_label(formCreateReading.users) }}
+        {{ form_errors(formCreateReading.users) }}
+        {{ form_widget(formCreateReading.users, { 'attr' :{'class':'form-control'}}) }}
+    </div>
+    <div class="book">
+        {{ form_label(formCreateReading.book) }}
+        {{ form_errors(formCreateReading.book) }}
+        {{ form_widget(formCreateReading.book, { 'attr' :{'class':'form-control'}}) }}
+    </div>
+    <div class="statusReading">
+        {{ form_label(formCreateReading.statusReading) }}
+        {{ form_errors(formCreateReading.statusReading) }}
+        {{ form_widget(formCreateReading.statusReading, { 'attr' :{'class':'form-control'}}) }}
+    </div>
+    <div class="note">
+        {{ form_label(formCreateReading.note) }}
+        {{ form_errors(formCreateReading.note) }}
+        {{ form_widget(formCreateReading.note, { 'attr' :{'class':'form-control'}}) }}
+    </div>
+    <div class="comment">
+        {{ form_label(formCreateReading.comment) }}
+        {{ form_errors(formCreateReading.comment) }}
+        {{ form_widget(formCreateReading.comment, { 'attr' :{'class':'form-control'}}) }}
+    </div>
+    <div class="dateComment">
+        {{ form_label(formCreateReading.dateComment) }}
+        {{ form_errors(formCreateReading.dateComment) }}
+        {{ form_widget(formCreateReading.dateComment) }}
+    </div>
+    <div class="submit">
+        {{ form_widget(formCreateReading.submit, { 'attr' :{'class':'form-control'}}) }}
+    </div>
+
+    {{ form_end(formCreateReading) }}
+
+{% endblock %}

@@ -7,7 +7,6 @@
  */
 
 namespace AppBundle\Entity;
-
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -17,16 +16,6 @@ use Doctrine\ORM\Mapping as ORM;
 
 class StatusType
 {
-    const AS_READ = 1;
-    const READING = 2;
-    const TO_READ = 3;
-    const READ_STATUS =
-        [
-            self::AS_READ => 'Lu',
-            self::READING => 'En cours',
-            self::TO_READ => 'A lire'
-        ];
-
     /**
      * @ORM\Column(type="integer")
      * @ORM\Id

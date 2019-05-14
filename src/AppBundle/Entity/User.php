@@ -30,6 +30,12 @@ class User extends BaseUser
     protected $last_name;
 
 
+    /**
+     * @ORM\OneToMany(targetEntity="Reading", mappedBy="users")
+     */
+    private $read;
+
+
 
     public function __construct()
     {
@@ -88,11 +94,6 @@ class User extends BaseUser
 
 
     /**
-     * @ORM\OneToMany(targetEntity="Reading", mappedBy="users")
-     */
-    private $read;
-
-    /**
      * @return mixed
      */
     public function getRead()
@@ -110,5 +111,28 @@ class User extends BaseUser
 
 
 
-}
 
+    /**
+     * Add read
+     *
+     * @param \AppBundle\Entity\Reading $read
+     *
+     * @return User
+     */
+    public function addRead(\AppBundle\Entity\Reading $read)
+    {
+        $this->read[] = $read;
+
+        return $this;
+    }
+
+    /**
+     * Remove read
+     *
+     * @param \AppBundle\Entity\Reading $read
+     */
+    public function removeRead(\AppBundle\Entity\Reading $read)
+    {
+        $this->read->removeElement($read);
+    }
+}

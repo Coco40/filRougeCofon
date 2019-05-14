@@ -29,10 +29,12 @@ class User extends BaseUser
      */
     protected $last_name;
 
+
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\OneToMany(targetEntity="Reading", mappedBy="users")
      */
-    private $dateUsers;
+    private $read;
+
 
 
     public function __construct()
@@ -41,4 +43,73 @@ class User extends BaseUser
         // your own logic
     }
 
+
+    /**
+     * Set firstName
+     *
+     * @param string $firstName
+     *
+     * @return User
+     */
+    public function setFirstName($firstName)
+    {
+        $this->first_name = $firstName;
+
+        return $this;
+    }
+
+    /**
+     * Get firstName
+     *
+     * @return string
+     */
+    public function getFirstName()
+    {
+        return $this->first_name;
+    }
+
+    /**
+     * Set lastName
+     *
+     * @param string $lastName
+     *
+     * @return User
+     */
+    public function setLastName($lastName)
+    {
+        $this->last_name = $lastName;
+
+        return $this;
+    }
+
+    /**
+     * Get lastName
+     *
+     * @return string
+     */
+    public function getLastName()
+    {
+        return $this->last_name;
+    }
+
+
+    /**
+     * @return mixed
+     */
+    public function getRead()
+    {
+        return $this->read;
+    }
+
+    /**
+     * @param mixed $read
+     */
+    public function setRead($read)
+    {
+        $this->read = $read;
+    }
+
+
+
 }
+

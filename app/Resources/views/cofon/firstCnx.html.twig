@@ -54,33 +54,36 @@
 
     <!-- Modal content -->
     <div class="modal-content">
-        <div class="modal-header">
-            <h2>Ce livre va être ajouté dans votre espace, vous pouvez rajouter des informations</h2>
-            <span id="close">&times;</span>
-        </div>
-        <div class="modal-body">
-            <div class="bookInfo">
-                <div class="bookMain">
-                    <p>Titre : <span class="title-js"></span></p>
-                    <p>Auteur : <span class="author-js-firstName"></span></p>
-                    <p><span class="author-js-lastName"></span></p>
-                    <img class="img-js" src="" id="imgModal" alt="Photo de la couverture du livre">
-                </div>
-                <div class="bookResume">
-                    <p>Résumé : <span class="synopsis-js"></span></p>
-                </div>
-                <ol class="status">
-                    {% for status in allStatus %}
-                        <li class="btnStatus">{{ status.name }}</li>
-                    {% endfor %}
-                </ol>
-                <div class="note">
+        <form action="" method="post" class="status">
+            <div class="modal-header">
+                <h2>Ce livre va être ajouté dans votre espace, vous pouvez rajouter des informations</h2>
+                <span id="close">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="bookInfo">
+                    <div class="bookMain">
+                        <p>Titre : <span class="title-js"></span></p>
+                        <p>Auteur : <span class="author-js-firstName"></span></p>
+                        <p><span class="author-js-lastName"></span></p>
+                        <img class="img-js" src="" id="imgModal" alt="Photo de la couverture du livre">
+                    </div>
+                    <div class="bookResume">
+                        <p>Résumé : <span class="synopsis-js"></span></p>
+                    </div>
+                        {% for status in allStatus %}
+                            <input type="radio" name="statusChoice" class="btnStatus">{{ status.name }}
+                        {% endfor %}
+
+                    <div class="note">
+                    </div>
+                    <input type="hidden" name="user" value="">
+                    <input type="hidden" name="book" value="">
                 </div>
             </div>
-        </div>
-        <div class="modal-footer">
-            <button>AJOUTER</button>
-        </div>
+            <div class="modal-footer">
+                <input type="submit" value="AJOUTER" name="add_book">
+            </div>
+        </form>
     </div>
 </div>
 
@@ -94,6 +97,18 @@
         // on déclenche la fonction lorsque le doument est pret, donc que tout a chargé
         $( document ).ready(function() {
 
+            $(document).mouseup(function(e)
+            {
+                // création d'une variable qui indique la zone de délimitation pour le clic
+                var container = $('#myModal');
+
+                // on indique que s'il l'on est hors de cette délimitation
+                // alors on cache le contenu de cette délimitation
+                if (container.is(e.target))
+                {
+                    container.hide();
+                }
+            });
         // on lui dit qu'au clic sur le bouton avec la classe btnModal, il doit récupérer les éléments de la classe title-bk
         //     depuis le parent de btnModal donc de la div à laquelle il appartient, et l'on stocke les infos dans la variable title
             $('.btnModal').on('click', function (e) {

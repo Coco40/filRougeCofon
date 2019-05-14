@@ -202,4 +202,7 @@ class DefaultController extends Controller
         return $this->render('cofon/myBooks.html.twig');
     }
 
+
+//*****   RECUPERATION DES LIVRES /STATUS / USER POUR LA BDD  *****//
+
 }
