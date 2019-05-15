@@ -2,9 +2,11 @@
 
 namespace AppBundle\Form;
 
+
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+
 
 class ReadingType extends AbstractType
 {
@@ -18,7 +20,6 @@ class ReadingType extends AbstractType
             ->add('status')
             ->add('comment')
             ->add('dateComment')
-            ->add('statusReading')
             ->add('users')
             ->add('book');
     }/**

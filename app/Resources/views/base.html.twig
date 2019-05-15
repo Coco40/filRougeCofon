@@ -36,7 +36,11 @@
             <a href="{{ path('cofon') }}" class="home">Accueil</a>
             <a href="{{ path('myBooks') }}" class="books">Mes livres</a>
             <a href="{{ path('personal') }}" class="addBooks">Ajouter des livres</a>
-            <a href="{{ path('fos_user_security_login') }}" class="connection">Connexion</a>
+            {% if app.user is not null %}
+                <a href="{{ path('fos_user_security_logout') }}" class="connection">{{ app.user.username }}</a>
+            {% else %}
+                <a href="{{ path('fos_user_security_login') }}" class="connection">Connexion</a>
+            {% endif %}
         </div>
 
     </nav>
@@ -60,8 +64,8 @@
             </p>
         </div>
         <div class="info">
-            <p><a href="">Mentions Légales</a> | </p>
-            <p><a href="">Contact</a></p>
+            <p><a href="{{ path('mentionsLegales') }}">Mentions Légales</a> | </p>
+            <p><a href="{{ path('contact') }}">Contact</a></p>
         </div>
     </div>
 {% endblock %}

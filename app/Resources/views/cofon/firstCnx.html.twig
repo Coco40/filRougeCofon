@@ -18,7 +18,8 @@
     <div class="bottomFirstCnx">
         <div class="exampleBook">
             {% for book in allBooks %}
-                <div class="detailBook">
+        {#je rajoute un data pour récupérer l'id du livre qui me servira pour l'envoi en BDD des lectures#}
+                <div class="detailBook" data-id-book="{{ book.id }}">
                     <a href="{{ path('oneBook',{'id':book.id}) }}"></a>
                     <div class="oneImg">
                         <img src="{{ asset('assets/imgcover/' ~ book.cover) }}" data-image="{{ book.cover }}" class="imgCover" alt="Photo de la couverture du livre">
@@ -54,7 +55,9 @@
 
     <!-- Modal content -->
     <div class="modal-content">
-        <form action="" method="post" class="status">
+    {#je créais un formulaire pour récupérer toutes les informations qui serviront à créer une ligne dans Reading#}
+    {#lorsque le formulaire sera submitt, cela nous dirigera vers la route cofon_status_reading, j'utilise la méthode POST#}
+        <form action="{{ path('cofon_status_reading') }}" method="POST" class="status">
             <div class="modal-header">
                 <h2>Ce livre va être ajouté dans votre espace, vous pouvez rajouter des informations</h2>
                 <span id="close">&times;</span>
@@ -70,18 +73,16 @@
                     <div class="bookResume">
                         <p>Résumé : <span class="synopsis-js"></span></p>
                     </div>
-                        {% for status in allStatus %}
-                            <input type="radio" name="statusChoice" class="btnStatus">{{ status.name }}
+                        {% for key, status in allStatus %}
+                            <input type="radio" name="statusChoice" class="btnStatus" required value="{{ key }}"><label>{{ status }}</label>
                         {% endfor %}
 
                     <div class="note">
                     </div>
-                    <input type="hidden" name="user" value="">
-                    <input type="hidden" name="book" value="">
                 </div>
             </div>
             <div class="modal-footer">
-                <input type="submit" value="AJOUTER" name="add_book">
+                <button id="submit" type="submit" name="submit" value="">AJOUTER</button>
             </div>
         </form>
     </div>
@@ -119,6 +120,7 @@
                 var authorLastName = $(this).parent().find('.author-bk-lastName').html()
                 var synopsis = $(this).parent().find('.synopsis-bk').html()
                 var image = $(this).parent().find('.imgCover').attr('src')
+                var book_id = $(this).parent().data('id-book')
         // console.log pour vérifier ce qui est transmis dans une variable (falcutatif)
                 console.log(title)
         // on lui demande de donner ce qui est dans la variable title, à la class title-js depuis l'élément qui a l'id myModal
@@ -127,6 +129,7 @@
                 $('#myModal').find('.author-js-lastName').html(authorLastName)
                 $('#myModal').find('.synopsis-js').html(synopsis)
                 $('#myModal').find('.img-js').attr('src', image)
+                $('#myModal').find('#submit').val(book_id)
         // et on lui demande de l'afficher
                 $('#myModal').show()
             })

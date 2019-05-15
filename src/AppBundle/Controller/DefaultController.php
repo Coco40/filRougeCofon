@@ -7,9 +7,13 @@ use AppBundle\Entity\Book;
 use AppBundle\Entity\BookType;
 use AppBundle\Entity\Reading;
 use AppBundle\Entity\StatusType;
+use AppBundle\Form\ContactType;
+use AppBundle\Form\ReadingType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use OC\PlatformBundle\Form\AdvertType;
+use Symfony\Component\HttpFoundation\Response;
 
 class DefaultController extends Controller
 
@@ -32,27 +36,27 @@ class DefaultController extends Controller
 
     }
 
-//*****   ROUTE POUR LA PAGE LORSQUE L'ON VIENT DE SE CONNECTER  *****//
+//*****   ROUTE POUR LA PAGE LORSQUE L'ON VIENT DE SE CONNECTER SUR SON ESPACE PERSONNEL (MES LVRES) *****//
     /**
      * @Route("/cofon/personal", name="personal")
      */
-    public function cofonPersonal()
+    public function cofonPersonal(Request $request)
     {
         $viewAllCategory = $this->getDoctrine()
             ->getRepository(BookType::class)
             ->findAll();
+
         $allBooks = $this->getDoctrine()
             ->getRepository(Book::class)
             ->findAll();
+
         $allAuthors = $this->getDoctrine()
             ->getRepository(Author::class)
             ->findAll();
-        $allStatus = $this->getDoctrine()
-            ->getRepository(StatusType::class)
-            ->findAll();
-        $allReading = $this->getDoctrine()
-            ->getRepository(Reading::class)
-            ->findAll();
+
+//        $allReading = $this->getDoctrine()
+//            ->getRepository(Reading::class)
+//            ->findAll();
 
 //        dump($allBooks, $allReading); die;
 
@@ -61,11 +65,48 @@ class DefaultController extends Controller
                 'viewAllCategory' => $viewAllCategory,
                 'allBooks' => $allBooks,
                 'allAuthor' => $allAuthors,
-                'allStatus' => $allStatus,
-                'allReading' => $allReading,
+                'allStatus' => StatusType::READ_STATUS,
+//                'allReading' => $allReading,
             ]
         );
     }
+
+
+    /**
+     * @Route("/cofon/status/reading", name="cofon_status_reading")
+     */
+    public function cofonStatusReadingAction(Request $request)
+    {
+
+//        $post = $request->request;
+//
+//        dump($post); die;
+
+        $reading = new Reading();
+
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->persist($reading);
+        $entityManager->flush();
+
+        if(!empty($_POST['statusChoice']))
+        {
+            if($this->getUser())
+            {
+                $user = $this->getUser();
+                $bookId = $request->request->get('submit');
+                $statusChoice = $request->request->get('statusChoice');
+
+            }
+
+            $reading->getId();
+            $user->getId();
+
+            return new Response('livre enregistré ');
+
+        }
+
+    }
+
 
     //*****   ROUTE POUR TOUS LES STATUS  *****//
 //    /**
@@ -134,6 +175,8 @@ class DefaultController extends Controller
 //        ]
 //             );
 //    }
+
+
 
 //*****   ROUTE POUR TOUS LES COMMENTAIRES NOTES (READING)  *****//
     /**
@@ -204,5 +247,79 @@ class DefaultController extends Controller
 
 
 //*****   RECUPERATION DES LIVRES /STATUS / USER POUR LA BDD  *****//
+
+
+
+//*****   ROUTE POUR LES MENTIONS LEGALES  *****//
+
+    /**
+     * @Route("/cofon/mentionsLegales", name="mentionsLegales")
+     */
+
+    public function cofonMentionsLegales()
+    {
+        return $this->render('cofon/mentionsLegales.html.twig');
+    }
+
+    //*****   ROUTE POUR CONTACT *****//
+    /**
+     * @Route("/cofon/contact", name="contact")
+     */
+
+    public function contactAction(Request $request)
+    {
+        // Create the form according to the FormType created previously.
+        // And give the proper parameters
+        $form = $this->createForm(ContactType::class,null,array(
+            // To set the action use $this->generateUrl('route_identifier')
+            'action' => $this->generateUrl('myapplication_contact'),
+            'method' => 'POST'
+        ));
+
+        if ($request->isMethod('POST')) {
+            // Refill the fields in case the form is not valid.
+            $form->handleRequest($request);
+
+            if($form->isValid()){
+                // Send mail
+                if($this->sendEmail($form->getData())){
+
+                    // Everything OK, redirect to wherever you want ! :
+
+                    return $this->redirectToRoute('redirect_to_somewhere_now');
+                }else{
+                    // An error ocurred, handle
+                    var_dump("Errooooor :(");
+                }
+            }
+        }
+
+        return $this->render('cofon/contact.html.twig', array(
+            'form' => $form->createView()
+        ));
+    }
+
+    private function sendEmail($data){
+        $myappContactMail = 'mycontactmail@mymail.com';
+        $myappContactPassword = 'yourmailpassword';
+
+        // In this case we'll use the ZOHO mail services.
+        // If your service is another, then read the following article to know which smpt code to use and which port
+        // http://ourcodeworld.com/articles/read/14/swiftmailer-send-mails-from-php-easily-and-effortlessly
+        $transport = \Swift_SmtpTransport::newInstance('smtp.zoho.com', 465,'ssl')
+            ->setUsername($myappContactMail)
+            ->setPassword($myappContactPassword);
+
+        $mailer = \Swift_Mailer::newInstance($transport);
+
+        $message = \Swift_Message::newInstance("Our Code World Contact Form ". $data["subject"])
+            ->setFrom(array($myappContactMail => "Message by ".$data["name"]))
+            ->setTo(array(
+                $myappContactMail => $myappContactMail
+            ))
+            ->setBody($data["message"]."<br>ContactMail :".$data["email"]);
+
+        return $mailer->send($message);
+    }
 
 }
