@@ -41,7 +41,7 @@
             </div>
             <div class="category">
                 {% for category in viewAllCategory %}
-                <button class="category">{{ category.bookType }}</button></br>
+                <a href="{{ path('category',{'id':category.id}) }}" class="category">{{ category.bookType }}</a></br>
                 {% endfor %}
             </div>
         </div>

@@ -322,4 +322,39 @@ class DefaultController extends Controller
         return $mailer->send($message);
     }
 
+
+//*****   ROUTE POUR UNE CATEGORIES  *****//
+    /**
+     * @Route("/cofon/category/{id}", name="category")
+     */
+    public function cofonCategory($id)
+    {
+        $oneCategory = $this->getDoctrine()
+        ->getRepository(BookType::class)
+        ->find($id);
+
+        $allBooks = $this->getDoctrine()
+            ->getRepository(Book::class)
+            ->findBy(array('id'));
+
+
+        $viewAllCategory = $this->getDoctrine()
+            ->getRepository(BookType::class)
+            ->findAll();
+
+
+
+        dump($allBooks); die;
+
+//        return $this->render('cofon/oneCategory.html.twig',
+//       [
+//           'oneCategory' => $oneCategory,
+//           'viewAllCategory' => $viewAllCategory,
+//           'booksByCategory' => $booksByCategory,
+//           'id' => $id,
+//        ]
+//            );
+    }
+
+
 }

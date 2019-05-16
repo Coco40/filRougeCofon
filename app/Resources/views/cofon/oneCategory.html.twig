@@ -1,0 +1,45 @@
+{% extends'::base.html.twig' %}
+
+
+{% block main %}
+
+    <div class="firstCnx">
+        <div class="advise">
+            <h3>Ajouter des livres que vous avez lu ! </br>
+                Et decouvrez ensuite vos recommandations de lectures personnalisées</h3>
+        </div>
+
+        <div class="personalPage">
+            <h3>Ignorez cette étape et accéder à VOTRE ACCUEIL</h3>
+        </div>
+
+    </div>
+
+    <div class="allBookByCategory">
+        {% for book in allBooks %}
+            <div class="allBooksCategory">
+                <div class="oneImg">
+                    <img src="{{ asset('assets/imgcover/' ~ book.cover) }}" data-image="{{ book.cover }}" class="imgCover" alt="Photo de la couverture du livre">
+                </div>
+
+                <p class="title-bk">{{ book.title }}</p>
+                <p class="author-bk-firstName">{{ book.author.firstName }}</p>
+                <p class="author-bk-lastName">{{ book.author.lastName }}</p>
+                <p class="synopsis-bk">{{ book.synopsis }}</p>
+            </div>
+        {% endfor %}
+    </div>
+
+    <div class="search">
+        <div class="personalSearch">
+            <input placeholder="Rechercher" class="look">
+        </div>
+        <div class="category">
+            {% for category in viewAllCategory %}
+                <a href="{{ path('category',{'id':category.id}) }}" class="category">{{ category.bookType }}</a></br>
+            {% endfor %}
+        </div>
+    </div>
+
+
+{% endblock %}
