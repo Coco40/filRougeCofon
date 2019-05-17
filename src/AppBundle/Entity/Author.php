@@ -9,6 +9,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * @ORM\Entity
@@ -61,6 +62,7 @@ class Author
 
     public function __construct() {
         $this->books = new ArrayCollection();
+        $this->dateAuthor = new \DateTime('now');
     }
 
     /**

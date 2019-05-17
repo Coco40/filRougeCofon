@@ -7,14 +7,15 @@ use AppBundle\Entity\Book;
 use AppBundle\Entity\BookType;
 use AppBundle\Entity\Reading;
 use AppBundle\Entity\StatusType;
+use AppBundle\Form\AuthorType;
+use AppBundle\Form\BookCategoryType;
 use AppBundle\Form\ContactType;
-use AppBundle\Form\ReadingType;
-use AppBundle\Repository\BookRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use OC\PlatformBundle\Form\AdvertType;
 use Symfony\Component\HttpFoundation\Response;
+
 
 class DefaultController extends Controller
 
@@ -133,7 +134,7 @@ class DefaultController extends Controller
 //    public function cofonCategory()
 //    {
 //        $allCategory = $this->getDoctrine()
-//        ->getRepository(BookType::class)
+//        ->getRepository(BookCategoryType::class)
 //        ->findAll();
 //
 //        return $this->render('cofon/allCategory.html.twig',
@@ -324,7 +325,7 @@ class DefaultController extends Controller
     }
 
 
-//*****   ROUTE POUR UNE CATEGORIES  *****//
+//*****   ROUTE POUR UNE CATEGORIE  *****//
     /**
      * @Route("/cofon/category/{id}", name="category")
      */
@@ -346,6 +347,72 @@ class DefaultController extends Controller
            'id' => $id,
         ]
             );
+    }
+
+//*****   ROUTE POUR RAJOUTER UN AUTEUR  *****//
+    /**
+     * @Route("/admin/addAuthor", name="addAuthor")
+     */
+    public function formAddAuthor(Request $request)
+    {
+        $author = new Author();
+
+//        méthode createForm pour prendre les informations de notre entity Author
+        $authorform = $this->createForm(AuthorType::class, $author);
+
+//        j'utilise la méthode creatView pour faire le gabarit du formulaire HTML
+        $formAddAuthor = $authorform->createView();
+
+        $authorform->handleRequest($request);
+
+//        dump('coucou'); die;
+
+        if ($authorform->isSubmitted() && $authorform->isValid()){
+
+            $author = $authorform->getData();
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($author);
+            $entityManager->flush();
+
+            var_dump('auteur enregistré');
+        }
+
+//      je renvoi dans le fichier formulaire les éléments ainsi
+        return $this->render('cofon/form_add_author.html.twig',
+            [
+                'formAddAuthor' => $formAddAuthor
+            ]
+        );
+    }
+
+//*****   ROUTE POUR RAJOUTER UN LIVRE *****//
+    /**
+     * @Route("/admin/addBook", name="addBook")
+     */
+    public function formAddBook(Request $request)
+    {
+        $book = new Book();
+        $bookForm = $this->createForm(BookCategoryType::class, $book);
+        $formAddBook = $bookForm->createView();
+        $bookForm->handleRequest($request);
+
+
+        if ($bookForm->isSubmitted() && $bookForm->isValid()){
+
+            $book = $bookForm->getData();
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($book);
+            $entityManager->flush();
+
+            var_dump('livre enregistré');
+        }
+
+//      je renvoi dans le fichier formulaire les éléments ainsi
+        return $this->render('cofon/form_add_book.html.twig',
+            [
+                'formAddBook' => $formAddBook
+            ]
+        );
     }
 
 

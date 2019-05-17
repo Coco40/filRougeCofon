@@ -9,6 +9,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * @ORM\Entity
@@ -50,6 +51,12 @@ class Book
      * @ORM\Column(type="string")
      */
     private $cover;
+
+    public function __construct()
+    {
+        $this->author = new ArrayCollection();
+        $this->dateBook = new \DateTime('now');
+    }
 
     /**
      * @ORM\ManyToOne(targetEntity="Author", inversedBy="books")

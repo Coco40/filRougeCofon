@@ -1,0 +1,52 @@
+{% extends'::base.html.twig' %}
+
+
+{% block main %}
+    {{ form_start(formAddBook) }}
+
+    <div class="title">
+        {{ form_label(formAddBook.title) }}
+        {{ form_errors(formAddBook.title) }}
+        {{ form_widget(formAddBook.title, { 'attr' :{'class':'form-control'}}) }}
+    </div>
+    <div class="year">
+        {{ form_label(formAddBook.year) }}
+        {{ form_errors(formAddBook.year) }}
+        {{ form_widget(formAddBook.year, { 'attr' :{'class':'form-control'}}) }}
+    </div>
+    <div class="synopsis">
+        {{ form_label(formAddBook.synopsis) }}
+        {{ form_errors(formAddBook.synopsis) }}
+        {{ form_widget(formAddBook.synopsis, { 'attr' :{'class':'form-control'}}) }}
+    </div>
+    <div class="dateBook">
+        {{ form_label(formAddBook.dateBook) }}
+        {{ form_errors(formAddBook.dateBook) }}
+        {{ form_widget(formAddBook.dateBook, { 'attr' :{'class':'form-control'}}) }}
+    </div>
+    <div class="cover">
+        {{ form_label(formAddBook.cover) }}
+        {{ form_errors(formAddBook.cover) }}
+        {{ form_widget(formAddBook.cover, { 'attr' :{'class':'form-control-file'}}) }}
+    </div>
+    <div class="author">
+        {{ form_label(formAddBook.author) }}
+        {{ form_errors(formAddBook.author) }}
+        {{ form_widget(formAddBook.author, { 'attr' :{'class':'form-control'}}) }}
+    </div>
+    <div class="type">
+        {{ form_label(formAddBook.type) }}
+        {{ form_errors(formAddBook.type) }}
+        {{ form_widget(formAddBook.type, { 'attr' :{'class':'form-control'}}) }}
+    </div>
+
+    <div class="submit">
+        <p>{{ form_label(formAddBook.submit) }}</p>
+        <p>{{ form_widget(formAddBook.submit, { 'attr' :{'class':'form-control'}}) }}</p>
+    </div>
+
+    {{ form_end(formAddBook) }}
+
+
+
+{% endblock %}

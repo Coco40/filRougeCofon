@@ -38,6 +38,7 @@
             {% for category in viewAllCategory %}
                 <a href="{{ path('category',{'id':category.id}) }}" class="category">{{ category.bookType }}</a></br>
             {% endfor %}
+            <a href="{{ path('personal') }}">Toutes les livres</a>
         </div>
     </div>
 
