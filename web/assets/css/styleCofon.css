@@ -450,3 +450,16 @@ input[type="password"] {
     margin-bottom: 1%;
 }
 
+/* BEGGINNING Form BOOKS CATEGORY*/
+
+.booksByCategory{
+    width: 80%;
+    float: left;
+}
+
+.booksCategory{
+    width: 25%;
+    float: left;
+    text-align: center;
+    margin-bottom: 5%;
+}

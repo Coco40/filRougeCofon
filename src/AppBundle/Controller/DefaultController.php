@@ -9,6 +9,7 @@ use AppBundle\Entity\Reading;
 use AppBundle\Entity\StatusType;
 use AppBundle\Form\ContactType;
 use AppBundle\Form\ReadingType;
+use AppBundle\Repository\BookRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -329,31 +330,22 @@ class DefaultController extends Controller
      */
     public function cofonCategory($id)
     {
-        $oneCategory = $this->getDoctrine()
-        ->getRepository(BookType::class)
-        ->find($id);
-
-        $allBooks = $this->getDoctrine()
+        $booksByCategory = $this->getDoctrine()
             ->getRepository(Book::class)
-            ->findBy(array('id'));
-
+            ->findBy(array('type' => $id));
 
         $viewAllCategory = $this->getDoctrine()
             ->getRepository(BookType::class)
             ->findAll();
 
 
-
-        dump($allBooks); die;
-
-//        return $this->render('cofon/oneCategory.html.twig',
-//       [
-//           'oneCategory' => $oneCategory,
-//           'viewAllCategory' => $viewAllCategory,
-//           'booksByCategory' => $booksByCategory,
-//           'id' => $id,
-//        ]
-//            );
+        return $this->render('cofon/oneCategory.html.twig',
+       [
+           'viewAllCategory' => $viewAllCategory,
+           'booksByCategory' => $booksByCategory,
+           'id' => $id,
+        ]
+            );
     }
 
 

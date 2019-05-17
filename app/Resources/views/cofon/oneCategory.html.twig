@@ -15,9 +15,9 @@
 
     </div>
 
-    <div class="allBookByCategory">
-        {% for book in allBooks %}
-            <div class="allBooksCategory">
+    <div class="booksByCategory">
+        {% for book in booksByCategory %}
+            <div class="booksCategory">
                 <div class="oneImg">
                     <img src="{{ asset('assets/imgcover/' ~ book.cover) }}" data-image="{{ book.cover }}" class="imgCover" alt="Photo de la couverture du livre">
                 </div>
