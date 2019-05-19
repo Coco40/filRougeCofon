@@ -23,7 +23,7 @@ class BookRepository extends \Doctrine\ORM\EntityRepository
     $query = $this->getEntityManager()
         ->createQuery(
             'SELECT b, t FROM AppBundle:Book b
-            JOIN b.BookCategoryType t
+            JOIN b.BookFormType t
             WHERE b.id = :id'
         ) ->setParameter('id', $type_id);
 

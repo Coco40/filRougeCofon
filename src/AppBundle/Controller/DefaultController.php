@@ -8,7 +8,7 @@ use AppBundle\Entity\BookType;
 use AppBundle\Entity\Reading;
 use AppBundle\Entity\StatusType;
 use AppBundle\Form\AuthorType;
-use AppBundle\Form\BookCategoryType;
+use AppBundle\Form\BookFormType;
 use AppBundle\Form\ContactType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -134,7 +134,7 @@ class DefaultController extends Controller
 //    public function cofonCategory()
 //    {
 //        $allCategory = $this->getDoctrine()
-//        ->getRepository(BookCategoryType::class)
+//        ->getRepository(BookFormType::class)
 //        ->findAll();
 //
 //        return $this->render('cofon/allCategory.html.twig',
@@ -244,7 +244,19 @@ class DefaultController extends Controller
 
     public function cofonMyBooks()
     {
-        return $this->render('cofon/myBooks.html.twig');
+        $allReading = $this->getDoctrine()
+            ->getRepository(Reading::class)
+            ->findAll();
+
+        $user = $this->getUser();
+
+        dump($allReading); die;
+
+        return $this->render('cofon/myBooks.html.twig',
+            [
+                'allReading' => $allReading,
+                'user' => $user
+            ]);
     }
 
 
@@ -392,9 +404,12 @@ class DefaultController extends Controller
     public function formAddBook(Request $request)
     {
         $book = new Book();
-        $bookForm = $this->createForm(BookCategoryType::class, $book);
+        $bookForm = $this->createForm(BookFormType::class, $book);
         $formAddBook = $bookForm->createView();
         $bookForm->handleRequest($request);
+        $allAuthors = $this->getDoctrine()
+            ->getRepository(Author::class)
+            ->findAll();
 
 
         if ($bookForm->isSubmitted() && $bookForm->isValid()){
@@ -410,7 +425,8 @@ class DefaultController extends Controller
 //      je renvoi dans le fichier formulaire les éléments ainsi
         return $this->render('cofon/form_add_book.html.twig',
             [
-                'formAddBook' => $formAddBook
+                'formAddBook' => $formAddBook,
+                'allAuthors' => $allAuthors
             ]
         );
     }

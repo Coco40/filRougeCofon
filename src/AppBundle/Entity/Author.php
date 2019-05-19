@@ -218,4 +218,17 @@ class Author
     {
         $this->books->removeElement($book);
     }
+
+    /**
+     * Set book
+     *
+     * @param Book $book
+     *
+     * @return Author
+     */
+    public function setUser(Book $book)
+    {
+        $this->books = $book;
+        return $this;
+    }
 }

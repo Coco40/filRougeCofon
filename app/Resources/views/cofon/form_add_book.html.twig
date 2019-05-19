@@ -9,11 +9,17 @@
         {{ form_errors(formAddBook.title) }}
         {{ form_widget(formAddBook.title, { 'attr' :{'class':'form-control'}}) }}
     </div>
-    <div class="year">
-        {{ form_label(formAddBook.year) }}
-        {{ form_errors(formAddBook.year) }}
-        {{ form_widget(formAddBook.year, { 'attr' :{'class':'form-control'}}) }}
-    </div>
+    {#<div class="year">#}
+        {#{{ form_label(formAddBook.year) }}#}
+        {#{{ form_errors(formAddBook.year) }}#}
+        {#{{ form_widget(formAddBook.year, { 'attr' :{'class':'form-control'}}) }}#}
+    {#</div>#}
+    <tr><td>{{ form_label(formAddBook.year) }}</td></tr>
+    {{ form_widget(formAddBook.year['day'],{'attr':{'style':'display:none'}}) }}
+    {{ form_widget(formAddBook.year['month'],{'attr':{'style':'display:none'}}) }}
+    <tr><td>{{ form_widget(formAddBook.year) }}
+            {{ form_label(formAddBook.year) }}{{ form_widget(formAddBook.year['year']) }}</td></tr>
+
     <div class="synopsis">
         {{ form_label(formAddBook.synopsis) }}
         {{ form_errors(formAddBook.synopsis) }}
@@ -33,6 +39,14 @@
         {{ form_label(formAddBook.author) }}
         {{ form_errors(formAddBook.author) }}
         {{ form_widget(formAddBook.author, { 'attr' :{'class':'form-control'}}) }}
+        {#<ul>#}
+            {#{% for author in allAuthors %}#}
+                {#<li>#}
+                    {#{{ form_errors(author.lastName) }}#}
+                    {#{{ form_widget(author.lastName) }}#}
+                {#</li>#}
+            {#{% endfor %}#}
+        {#</ul>#}
     </div>
     <div class="type">
         {{ form_label(formAddBook.type) }}

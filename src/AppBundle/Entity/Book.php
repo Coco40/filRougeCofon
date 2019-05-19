@@ -217,4 +217,14 @@ class Book
         $this->cover = $cover;
     }
 
+    /**
+     * Get authors
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getAuthors()
+    {
+        return $this->authors;
+    }
+
 }
