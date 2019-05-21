@@ -1,0 +1,77 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: lapiscine
+ * Date: 2019-04-26
+ * Time: 10:47
+ */
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="book")
+ */
+
+class Book
+{
+
+    /**
+     * @ORM\Column(type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @ORM\Column(type="string")
+     */
+    private $title;
+
+    /**
+     * @ORM\Column(type="string")
+     */
+    private $year;
+
+    /**
+     * @ORM\Column(type="text")
+     */
+    private $synopsis;
+
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $dateBook;
+
+    /**
+     * @ORM\Column(type="string")
+     */
+    private $cover;
+
+    public function __construct()
+    {
+        $this->author = new ArrayCollection();
+        $this->dateBook = new \DateTime('now');
+    }
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Author", inversedBy="books")
+     */
+    private $author;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="BookType", inversedBy="books")
+     */
+    private $type;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Reading", mappedBy="book")
+     */
+    private $comment;
+
+
+}

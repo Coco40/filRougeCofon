@@ -25,15 +25,11 @@ class Author
      */
     private $id;
 
-    /**
-     * @ORM\Column(type="string")
-     */
-    private $firstName;
 
     /**
      * @ORM\Column(type="string")
      */
-    private $lastName;
+    private $name;
 
     /**
      * @ORM\Column(type="text")
@@ -65,8 +61,12 @@ class Author
         $this->dateAuthor = new \DateTime('now');
     }
 
+
+
     /**
-     * @return mixed
+     * Get id.
+     *
+     * @return int
      */
     public function getId()
     {
@@ -74,47 +74,47 @@ class Author
     }
 
     /**
-     * @param mixed $id
+     * Set name.
+     *
+     * @param string $name
+     *
+     * @return Author
      */
-    public function setId($id)
+    public function setName($name)
     {
-        $this->id = $id;
+        $this->name = $name;
+
+        return $this;
     }
 
     /**
-     * @return mixed
+     * Get name.
+     *
+     * @return string
      */
-    public function getFirstName()
+    public function getName()
     {
-        return $this->firstName;
+        return $this->name;
     }
 
     /**
-     * @param mixed $firstName
+     * Set bio.
+     *
+     * @param string $bio
+     *
+     * @return Author
      */
-    public function setFirstName($firstName)
+    public function setBio($bio)
     {
-        $this->firstName = $firstName;
+        $this->bio = $bio;
+
+        return $this;
     }
 
     /**
-     * @return mixed
-     */
-    public function getLastName()
-    {
-        return $this->lastName;
-    }
-
-    /**
-     * @param mixed $lastName
-     */
-    public function setLastName($lastName)
-    {
-        $this->lastName = $lastName;
-    }
-
-    /**
-     * @return mixed
+     * Get bio.
+     *
+     * @return string
      */
     public function getBio()
     {
@@ -122,15 +122,23 @@ class Author
     }
 
     /**
-     * @param mixed $bio
+     * Set birthDate.
+     *
+     * @param \DateTime $birthDate
+     *
+     * @return Author
      */
-    public function setBio($bio)
+    public function setBirthDate($birthDate)
     {
-        $this->bio = $bio;
+        $this->birthDate = $birthDate;
+
+        return $this;
     }
 
     /**
-     * @return mixed
+     * Get birthDate.
+     *
+     * @return \DateTime
      */
     public function getBirthDate()
     {
@@ -138,15 +146,23 @@ class Author
     }
 
     /**
-     * @param mixed $birthDate
+     * Set deathDate.
+     *
+     * @param \DateTime|null $deathDate
+     *
+     * @return Author
      */
-    public function setBirthDate($birthDate)
+    public function setDeathDate($deathDate = null)
     {
-        $this->birthDate = $birthDate;
+        $this->deathDate = $deathDate;
+
+        return $this;
     }
 
     /**
-     * @return mixed
+     * Get deathDate.
+     *
+     * @return \DateTime|null
      */
     public function getDeathDate()
     {
@@ -154,15 +170,23 @@ class Author
     }
 
     /**
-     * @param mixed $deathDate
+     * Set dateAuthor.
+     *
+     * @param \DateTime $dateAuthor
+     *
+     * @return Author
      */
-    public function setDeathDate($deathDate)
+    public function setDateAuthor($dateAuthor)
     {
-        $this->deathDate = $deathDate;
+        $this->dateAuthor = $dateAuthor;
+
+        return $this;
     }
 
     /**
-     * @return mixed
+     * Get dateAuthor.
+     *
+     * @return \DateTime
      */
     public function getDateAuthor()
     {
@@ -170,33 +194,7 @@ class Author
     }
 
     /**
-     * @param mixed $dateAuthor
-     */
-    public function setDateAuthor($dateAuthor)
-    {
-        $this->dateAuthor = $dateAuthor;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getBooks()
-    {
-        return $this->books;
-    }
-
-    /**
-     * @param mixed $books
-     */
-    public function setBooks($books)
-    {
-        $this->books = $books;
-    }
-
-
- 
-    /**
-     * Add book
+     * Add book.
      *
      * @param \AppBundle\Entity\Book $book
      *
@@ -210,25 +208,24 @@ class Author
     }
 
     /**
-     * Remove book
+     * Remove book.
      *
      * @param \AppBundle\Entity\Book $book
+     *
+     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
      */
     public function removeBook(\AppBundle\Entity\Book $book)
     {
-        $this->books->removeElement($book);
+        return $this->books->removeElement($book);
     }
 
     /**
-     * Set book
+     * Get books.
      *
-     * @param Book $book
-     *
-     * @return Author
+     * @return \Doctrine\Common\Collections\Collection
      */
-    public function setUser(Book $book)
+    public function getBooks()
     {
-        $this->books = $book;
-        return $this;
+        return $this->books;
     }
 }

@@ -18,16 +18,51 @@
 
     <div class="globalView">
         <div class="read">Dernier livre lu :
-        {% for reading in allReading.users.id %}
-                {% if reading.status == '1' %}
-                <p>coucou</p>coucou
+        {% for reading in allReadingUser %}
+            {% for book in allBookForUser %}
+                {% if reading.status == '1'%}
+                    {% if book.id == reading.book.id  %}
+                        <p>{{ reading.book.id }}</p>
+                        <p>{{ book.title }}</p>
+                        <div class="oneImg">
+                            <img src="{{ asset('assets/imgcover/' ~ book.cover) }}" data-image="{{ book.cover }}" class="imgCover" alt="Photo de la couverture du livre">
+                        </div>
+                    {% endif %}
                 {% endif %}
             {% endfor %}
-
-
+        {% endfor %}
         </div>
-        <div class="inProgress">Dernier livre en cours de lecture : </div>
-        <div class="toRead">Dernier livre à lire : </div>
+
+        <div class="inProgress">Dernier livre en cours de lecture :
+            {% for reading in allReadingUser %}
+                {% for book in allBookForUser %}
+                    {% if reading.status == '2'%}
+                        {% if book.id == reading.book.id  %}
+                            <p>{{ reading.book.id }}</p>
+                            <p>{{ book.title }}</p>
+                            <div class="oneImg">
+                                <img src="{{ asset('assets/imgcover/' ~ book.cover) }}" data-image="{{ book.cover }}" class="imgCover" alt="Photo de la couverture du livre">
+                            </div>
+                        {% endif %}
+                    {% endif %}
+                {% endfor %}
+            {% endfor %}</div>
+
+        <div class="toRead">Dernier livre à lire :
+            {% for reading in allReadingUser %}
+                {% for book in allBookForUser %}
+                    {% if reading.status == '3'%}
+                        {% if book.id == reading.book.id  %}
+                            <p>{{ reading.book.id }}</p>
+                            <p>{{ book.title }}</p>
+                            <div class="oneImg">
+                                <img src="{{ asset('assets/imgcover/' ~ book.cover) }}" data-image="{{ book.cover }}" class="imgCover" alt="Photo de la couverture du livre">
+                            </div>
+                        {% endif %}
+                    {% endif %}
+                {% endfor %}
+            {% endfor %}</div>
+
         <div class="recommendation">Livres qui pourraient vous plaire : </div>
     </div>
 

@@ -32,7 +32,7 @@ class Book
     private $title;
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="date")
      */
     private $year;
 
@@ -43,6 +43,8 @@ class Book
 
 
     /**
+     * @var \DateTime
+     *
      * @ORM\Column(type="datetime")
      */
     private $dateBook;
@@ -55,7 +57,7 @@ class Book
     public function __construct()
     {
         $this->author = new ArrayCollection();
-        $this->dateBook = new \DateTime('now');
+        $this->dateBook = new \DateTime();
     }
 
     /**
@@ -73,56 +75,12 @@ class Book
      */
     private $comment;
 
-    /**
-     * @return mixed
-     */
-    public function getAuthor()
-    {
-        return $this->author;
-    }
+
 
     /**
-     * @param mixed $author
-     */
-    public function setAuthor($author)
-    {
-        $this->author = $author;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getType()
-    {
-        return $this->type;
-    }
-
-    /**
-     * @param mixed $type
-     */
-    public function setType($type)
-    {
-        $this->type = $type;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getComment()
-    {
-        return $this->comment;
-    }
-
-    /**
-     * @param mixed $comment
-     */
-    public function setComment($comment)
-    {
-        $this->comment = $comment;
-    }
-
-    /**
-     * @return mixed
+     * Get id.
+     *
+     * @return int
      */
     public function getId()
     {
@@ -130,15 +88,23 @@ class Book
     }
 
     /**
-     * @param mixed $id
+     * Set title.
+     *
+     * @param string $title
+     *
+     * @return Book
      */
-    public function setId($id)
+    public function setTitle($title)
     {
-        $this->id = $id;
+        $this->title = $title;
+
+        return $this;
     }
 
     /**
-     * @return mixed
+     * Get title.
+     *
+     * @return string
      */
     public function getTitle()
     {
@@ -146,15 +112,23 @@ class Book
     }
 
     /**
-     * @param mixed $title
+     * Set year.
+     *
+     * @param string $year
+     *
+     * @return Book
      */
-    public function setTitle($title)
+    public function setYear($year)
     {
-        $this->title = $title;
+        $this->year = $year;
+
+        return $this;
     }
 
     /**
-     * @return mixed
+     * Get year.
+     *
+     * @return string
      */
     public function getYear()
     {
@@ -162,15 +136,23 @@ class Book
     }
 
     /**
-     * @param mixed $year
+     * Set synopsis.
+     *
+     * @param string $synopsis
+     *
+     * @return Book
      */
-    public function setYear($year)
+    public function setSynopsis($synopsis)
     {
-        $this->year = $year;
+        $this->synopsis = $synopsis;
+
+        return $this;
     }
 
     /**
-     * @return mixed
+     * Get synopsis.
+     *
+     * @return string
      */
     public function getSynopsis()
     {
@@ -178,15 +160,23 @@ class Book
     }
 
     /**
-     * @param mixed $synopsis
+     * Set dateBook.
+     *
+     * @param \DateTime $dateBook
+     *
+     * @return Book
      */
-    public function setSynopsis($synopsis)
+    public function setDateBook($dateBook)
     {
-        $this->synopsis = $synopsis;
+        $this->dateBook = $dateBook;
+
+        return $this;
     }
 
     /**
-     * @return mixed
+     * Get dateBook.
+     *
+     * @return \DateTime
      */
     public function getDateBook()
     {
@@ -194,15 +184,23 @@ class Book
     }
 
     /**
-     * @param mixed $dateBook
+     * Set cover.
+     *
+     * @param string $cover
+     *
+     * @return Book
      */
-    public function setDateBook($dateBook)
+    public function setCover($cover)
     {
-        $this->dateBook = $dateBook;
+        $this->cover = $cover;
+
+        return $this;
     }
 
     /**
-     * @return mixed
+     * Get cover.
+     *
+     * @return string
      */
     public function getCover()
     {
@@ -210,21 +208,86 @@ class Book
     }
 
     /**
-     * @param mixed $cover
+     * Set author.
+     *
+     * @param \AppBundle\Entity\Author|null $author
+     *
+     * @return Book
      */
-    public function setCover($cover)
+    public function setAuthor(\AppBundle\Entity\Author $author = null)
     {
-        $this->cover = $cover;
+        $this->author = $author;
+
+        return $this;
     }
 
     /**
-     * Get authors
+     * Get author.
+     *
+     * @return \AppBundle\Entity\Author|null
+     */
+    public function getAuthor()
+    {
+        return $this->author;
+    }
+
+    /**
+     * Set type.
+     *
+     * @param \AppBundle\Entity\BookType|null $type
+     *
+     * @return Book
+     */
+    public function setType(\AppBundle\Entity\BookType $type = null)
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    /**
+     * Get type.
+     *
+     * @return \AppBundle\Entity\BookType|null
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
+
+    /**
+     * Add comment.
+     *
+     * @param \AppBundle\Entity\Reading $comment
+     *
+     * @return Book
+     */
+    public function addComment(\AppBundle\Entity\Reading $comment)
+    {
+        $this->comment[] = $comment;
+
+        return $this;
+    }
+
+    /**
+     * Remove comment.
+     *
+     * @param \AppBundle\Entity\Reading $comment
+     *
+     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
+     */
+    public function removeComment(\AppBundle\Entity\Reading $comment)
+    {
+        return $this->comment->removeElement($comment);
+    }
+
+    /**
+     * Get comment.
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getAuthors()
+    public function getComment()
     {
-        return $this->authors;
+        return $this->comment;
     }
-
 }

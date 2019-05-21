@@ -4,15 +4,10 @@
 {% block main %}
     {{ form_start(formAddAuthor) }}
 
-    <div class="lastName">
-        {{ form_label(formAddAuthor.lastName) }}
-        {{ form_errors(formAddAuthor.lastName) }}
-        {{ form_widget(formAddAuthor.lastName, { 'attr' :{'class':'form-control'}}) }}
-    </div>
     <div class="firstName">
-        {{ form_label(formAddAuthor.firstName) }}
-        {{ form_errors(formAddAuthor.firstName) }}
-        {{ form_widget(formAddAuthor.firstName, { 'attr' :{'class':'form-control'}}) }}
+        {{ form_label(formAddAuthor.name) }}
+        {{ form_errors(formAddAuthor.name) }}
+        {{ form_widget(formAddAuthor.name, { 'attr' :{'class':'form-control'}}) }}
     </div>
     <div class="birthDate">
         {{ form_label(formAddAuthor.birthDate) }}
@@ -29,11 +24,11 @@
         {{ form_errors(formAddAuthor.bio) }}
         {{ form_widget(formAddAuthor.bio, { 'attr' :{'class':'form-control'}}) }}
     </div>
-    <div class="dateAuthor">
-        {{ form_label(formAddAuthor.dateAuthor) }}
-        {{ form_errors(formAddAuthor.dateAuthor) }}
-        {{ form_widget(formAddAuthor.dateAuthor) }}
-    </div>
+    {#<div class="dateAuthor">#}
+        {#{{ form_label(formAddAuthor.dateAuthor) }}#}
+        {#{{ form_errors(formAddAuthor.dateAuthor) }}#}
+        {#{{ form_widget(formAddAuthor.dateAuthor) }}#}
+    {#</div>#}
     <div class="submit">
         {{ form_widget(formAddAuthor.submit, { 'attr' :{'class':'form-control'}}) }}
     </div>

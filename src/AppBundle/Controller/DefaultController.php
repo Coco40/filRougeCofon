@@ -22,7 +22,7 @@ class DefaultController extends Controller
 {
 //*****   ROUTE POUR LA PAGE D'ACCUEIL   *****//
     /**
-     * @Route("/cofon", name="cofon")
+     * @Route("/", name="cofon")
      */
     public function cofonAction()
     {
@@ -85,6 +85,18 @@ class DefaultController extends Controller
 //        dump($post); die;
 
         $reading = new Reading();
+
+        $user = $this->getUser();
+
+        $bookId = $request->request->get('submit');
+
+        $bookRepository = $this->getDoctrine()->getRepository(Book::class);
+        $book = $bookRepository->find($bookId);
+
+
+        $reading->setUsers($user);
+        $reading->setStatus(1);
+        $reading->setBook($book);
 
         $entityManager = $this->getDoctrine()->getManager();
         $entityManager->persist($reading);
@@ -244,18 +256,28 @@ class DefaultController extends Controller
 
     public function cofonMyBooks()
     {
-        $allReading = $this->getDoctrine()
-            ->getRepository(Reading::class)
-            ->findAll();
-
         $user = $this->getUser();
 
-        dump($allReading); die;
+        $allReadingUser = $this->getDoctrine()
+            ->getRepository(Reading::class)
+//            ->findAll();
+            ->findBy(array('users' => $user));
+
+        $allBookForUser = $this->getDoctrine()
+            ->getRepository(Book::class)
+            ->findAll();
+
+//        $allBookReadingUser = $this->getDoctrine()
+//            ->getRepository(Book::class)
+//            ->findBy(array('id' => $allReadingUser, array('book_id' => '$bookId')));
+
+//        dump($allReadingUser); die;
 
         return $this->render('cofon/myBooks.html.twig',
             [
-                'allReading' => $allReading,
-                'user' => $user
+                'allReadingUser' => $allReadingUser,
+                'user' => $user,
+                'allBookForUser' => $allBookForUser
             ]);
     }
 
@@ -414,7 +436,26 @@ class DefaultController extends Controller
 
         if ($bookForm->isSubmitted() && $bookForm->isValid()){
 
-            $book = $bookForm->getData();
+//            je récupère l'image uploader par l'utilisateur
+            $image = $book->getCover();
+//             je génère un nom unique suivi de l'extension
+            $imageName = md5(uniqid()).'.'.$image->guessExtension();
+//            je deplace mon image dans un dossier en lui donnant le nom unique que j'ai créé
+            try {
+                $image->move(
+//                    Autre méthode
+//                    $request->getUriForPath('web/upload/images/book')
+                    $this->getParameter('upload_images_book'),
+                    $imageName
+                );
+//                si y'a une erreur dans l'upload, j'affiche l'erreur
+            } catch (FileException $e) {
+//                 ... handle exception if something happens during file upload
+                throw new \Exception($e->getMessage());
+            }
+//            je remet dans mon entite (qui sera sauvegardée en BDD le nom de l'image
+            $book->setCover($imageName);
+//            $book = $bookForm->getData();
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($book);
             $entityManager->flush();

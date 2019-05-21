@@ -22,7 +22,9 @@ class ReadingType extends AbstractType
             ->add('dateComment')
             ->add('users')
             ->add('book');
-    }/**
+    }
+
+    /**
      * {@inheritdoc}
      */
     public function configureOptions(OptionsResolver $resolver)

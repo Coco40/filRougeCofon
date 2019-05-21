@@ -2,6 +2,9 @@
 
 namespace AppBundle\Form;
 
+use AppBundle\Entity\Author;
+use AppBundle\Entity\BookType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
@@ -31,25 +34,20 @@ class BookFormType extends AbstractType
                 'years' => range(2019,1800, 1)
             ])
             ->add('synopsis', TextType::class)
-            ->add('dateBook', DateType::class, [
-                'widget' => 'single_text',
-                'label' => 'date d\'enregistrement du livre'
-            ])
             ->add('cover', FileType::class, [
                 'label' => 'photo de couverture'
             ])
-//            ->add('author', TextType::class, [
-//                'label' => 'Auteur'
-//            ])
-            ->add('type', TextType::class, [
-                'label' => 'categorie'
+
+            ->add('type', EntityType::class, [
+                'class' => BookType::class,
+                'choice_label' => 'bookType'
             ])
             ->add('submit', SubmitType::class, [
             'label' => 'Envoyer'
             ])
-            ->add('author', CollectionType::class, array(
-                'by_reference' => AuthorType::class,
-                    'label' => 'Auteur :',
+            ->add('author', EntityType::class, array(
+                    'class' => Author::class,
+                    'choice_label' => 'name',
                 )
 
             );
