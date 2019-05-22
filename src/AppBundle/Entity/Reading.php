@@ -26,20 +26,6 @@ class Reading
      */
     private $id;
 
-    /**
-     * @ORM\Column(type="string", nullable=true)
-     */
-    private $note;
-
-    /**
-     * @ORM\Column(type="integer", nullable=true)
-     */
-    private $status;
-
-    /**
-     * @ORM\Column(type="text", nullable=true)
-     */
-    private $comment;
 
     /**
      * @ORM\Column(type="datetime", nullable=true)
@@ -57,22 +43,30 @@ class Reading
      */
     private $book;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="StatusType", inversedBy="status")
+     */
+    private $statusRead;
 
 //    /**
 //     * @ORM\OneToOne(targetEntity="StatusType")
 //     */
 //    private $statusReading;
 
-//    /**
-//     * ORM\OneToOne(targetEntity="StatusType")
-//     */
-//    private $statusType;
+
+    public function __construct()
+    {
+        $this->reading = new ArrayCollection();
+        $this->dateComment = new \DateTime();
+    }
+
+
 
 
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer
+     * @return int
      */
     public function getId()
     {
@@ -80,85 +74,13 @@ class Reading
     }
 
     /**
-     * Set note
+     * Set dateComment.
      *
-     * @param string $note
-     *
-     * @return Reading
-     */
-    public function setNote($note)
-    {
-        $this->note = $note;
-
-        return $this;
-    }
-
-    /**
-     * Get note
-     *
-     * @return string
-     */
-    public function getNote()
-    {
-        return $this->note;
-    }
-
-    /**
-     * Set status
-     *
-     * @param integer $status
+     * @param \DateTime|null $dateComment
      *
      * @return Reading
      */
-    public function setStatus($status)
-    {
-        $this->status = $status;
-
-        return $this;
-    }
-
-    /**
-     * Get status
-     *
-     * @return integer
-     */
-    public function getStatus()
-    {
-        return $this->status;
-    }
-
-    /**
-     * Set comment
-     *
-     * @param string $comment
-     *
-     * @return Reading
-     */
-    public function setComment($comment)
-    {
-        $this->comment = $comment;
-
-        return $this;
-    }
-
-    /**
-     * Get comment
-     *
-     * @return string
-     */
-    public function getComment()
-    {
-        return $this->comment;
-    }
-
-    /**
-     * Set dateComment
-     *
-     * @param \DateTime $dateComment
-     *
-     * @return Reading
-     */
-    public function setDateComment($dateComment)
+    public function setDateComment($dateComment = null)
     {
         $this->dateComment = $dateComment;
 
@@ -166,9 +88,9 @@ class Reading
     }
 
     /**
-     * Get dateComment
+     * Get dateComment.
      *
-     * @return \DateTime
+     * @return \DateTime|null
      */
     public function getDateComment()
     {
@@ -176,9 +98,9 @@ class Reading
     }
 
     /**
-     * Set users
+     * Set users.
      *
-     * @param \AppBundle\Entity\User $users
+     * @param \AppBundle\Entity\User|null $users
      *
      * @return Reading
      */
@@ -190,9 +112,9 @@ class Reading
     }
 
     /**
-     * Get users
+     * Get users.
      *
-     * @return \AppBundle\Entity\User
+     * @return \AppBundle\Entity\User|null
      */
     public function getUsers()
     {
@@ -200,9 +122,9 @@ class Reading
     }
 
     /**
-     * Set book
+     * Set book.
      *
-     * @param \AppBundle\Entity\Book $book
+     * @param \AppBundle\Entity\Book|null $book
      *
      * @return Reading
      */
@@ -214,12 +136,36 @@ class Reading
     }
 
     /**
-     * Get book
+     * Get book.
      *
-     * @return \AppBundle\Entity\Book
+     * @return \AppBundle\Entity\Book|null
      */
     public function getBook()
     {
         return $this->book;
+    }
+
+    /**
+     * Set statusRead.
+     *
+     * @param \AppBundle\Entity\StatusType|null $statusRead
+     *
+     * @return Reading
+     */
+    public function setStatusRead(\AppBundle\Entity\StatusType $statusRead = null)
+    {
+        $this->statusRead = $statusRead;
+
+        return $this;
+    }
+
+    /**
+     * Get statusRead.
+     *
+     * @return \AppBundle\Entity\StatusType|null
+     */
+    public function getStatusRead()
+    {
+        return $this->statusRead;
     }
 }

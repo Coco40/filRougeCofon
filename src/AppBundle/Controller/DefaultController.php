@@ -80,44 +80,45 @@ class DefaultController extends Controller
     public function cofonStatusReadingAction(Request $request)
     {
 
-//        $post = $request->request;
-//
-//        dump($post); die;
-
-        $reading = new Reading();
+        $bookId = $request->request->get('submit');
 
         $user = $this->getUser();
+        $userId = $user->getId();
 
-        $bookId = $request->request->get('submit');
+        $readingRepository = $this->getDoctrine()->getRepository(Reading::class);
+        $reading = $readingRepository->findBy(['book' => $bookId, 'users' => $userId]);
+
+        if(empty($reading))
+        {
+            $reading = new Reading();
+
+        }
+        else{
+            $reading = $reading['0'];
+        }
+
+
+        $statusChoice = $request->request->get('statusChoice');
 
         $bookRepository = $this->getDoctrine()->getRepository(Book::class);
         $book = $bookRepository->find($bookId);
 
+        $statusRepository = $this->getDoctrine()->getRepository(StatusType::class);
+        $status = $statusRepository->find($statusChoice);
+
+//        dump($status);die;
 
         $reading->setUsers($user);
-        $reading->setStatus(1);
+        $reading->setStatusRead($status);
         $reading->setBook($book);
 
         $entityManager = $this->getDoctrine()->getManager();
         $entityManager->persist($reading);
         $entityManager->flush();
 
-        if(!empty($_POST['statusChoice']))
-        {
-            if($this->getUser())
-            {
-                $user = $this->getUser();
-                $bookId = $request->request->get('submit');
-                $statusChoice = $request->request->get('statusChoice');
 
-            }
+        return new Response('livre enregistré ');
 
-            $reading->getId();
-            $user->getId();
-
-            return new Response('livre enregistré ');
-
-        }
 
     }
 
@@ -260,18 +261,22 @@ class DefaultController extends Controller
 
         $allReadingUser = $this->getDoctrine()
             ->getRepository(Reading::class)
-//            ->findAll();
-            ->findBy(array('users' => $user));
-
-        $allBookForUser = $this->getDoctrine()
-            ->getRepository(Book::class)
             ->findAll();
+//            ->findBy(array('users' => $user));
 
-//        $allBookReadingUser = $this->getDoctrine()
-//            ->getRepository(Book::class)
-//            ->findBy(array('id' => $allReadingUser, array('book_id' => '$bookId')));
+////        $allBookForUser = $this->getDoctrine()
+////            ->getRepository(Book::class)
+////            ->findAll();
 
-//        dump($allReadingUser); die;
+//        $allBookReadingUser = $allReadingUser
+//            ->findBy(
+//                array('statusRead' => 'Lu'),
+//                array('date' => 'desc'),
+//                1,
+//                0
+//            );
+
+        dump($allReadingUser); die;
 
         return $this->render('cofon/myBooks.html.twig',
             [

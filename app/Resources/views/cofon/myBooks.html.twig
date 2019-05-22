@@ -6,64 +6,54 @@
 
 <main>
     <div class="user">
-        <p class="pseudo">Pseudo username</p>
-            <li>Accueil</li>
-            <li>Profil</li>
-            <li>Mes lectures</li>
-            <li>Recommandations</li>
+        <p class="pseudo">Tableau de Bord</p>
+            <li>Livres lus</li>
+            <li>Livres en cours de lecture</li>
+            <li>Livres à lire</li>
+
 
     </div>
 
 </main>
 
     <div class="globalView">
-        <div class="read">Dernier livre lu :
+        <div class="read">
         {% for reading in allReadingUser %}
-            {% for book in allBookForUser %}
-                {% if reading.status == '1'%}
-                    {% if book.id == reading.book.id  %}
-                        <p>{{ reading.book.id }}</p>
-                        <p>{{ book.title }}</p>
+                {% if reading.statusRead.id == '1'%}
+                    <p>Dernier livre lu :</p>
+
+                    <p>{{ reading.book.title }}</p>
                         <div class="oneImg">
-                            <img src="{{ asset('assets/imgcover/' ~ book.cover) }}" data-image="{{ book.cover }}" class="imgCover" alt="Photo de la couverture du livre">
+                            <img src="{{ asset('assets/imgcover/' ~ reading.book.cover) }}" data-image="{{ reading.book.cover }}" class="imgCover" alt="Photo de la couverture du livre">
                         </div>
-                    {% endif %}
                 {% endif %}
-            {% endfor %}
         {% endfor %}
         </div>
 
         <div class="inProgress">Dernier livre en cours de lecture :
             {% for reading in allReadingUser %}
-                {% for book in allBookForUser %}
-                    {% if reading.status == '2'%}
-                        {% if book.id == reading.book.id  %}
-                            <p>{{ reading.book.id }}</p>
-                            <p>{{ book.title }}</p>
-                            <div class="oneImg">
-                                <img src="{{ asset('assets/imgcover/' ~ book.cover) }}" data-image="{{ book.cover }}" class="imgCover" alt="Photo de la couverture du livre">
-                            </div>
-                        {% endif %}
-                    {% endif %}
-                {% endfor %}
-            {% endfor %}</div>
+                {% if reading.statusRead.id == '2'%}
+                    <p>{{ reading.book.title }}</p>
+                    <div class="oneImg">
+                        <img src="{{ asset('assets/imgcover/' ~ reading.book.cover) }}" data-image="{{ reading.book.cover }}" class="imgCover" alt="Photo de la couverture du livre">
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
 
-        <div class="toRead">Dernier livre à lire :
+        <div class="toRead">
             {% for reading in allReadingUser %}
-                {% for book in allBookForUser %}
-                    {% if reading.status == '3'%}
-                        {% if book.id == reading.book.id  %}
-                            <p>{{ reading.book.id }}</p>
-                            <p>{{ book.title }}</p>
-                            <div class="oneImg">
-                                <img src="{{ asset('assets/imgcover/' ~ book.cover) }}" data-image="{{ book.cover }}" class="imgCover" alt="Photo de la couverture du livre">
-                            </div>
-                        {% endif %}
-                    {% endif %}
-                {% endfor %}
-            {% endfor %}</div>
+                {% if reading.statusRead.id == '3'%}
+                    <p>Dernier livre à lire :</p>
+                    <p>{{ reading.book.title }}</p>
+                    <div class="oneImg">
+                        <img src="{{ asset('assets/imgcover/' ~ reading.book.cover) }}" data-image="{{ reading.book.cover }}" class="imgCover" alt="Photo de la couverture du livre">
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
 
-        <div class="recommendation">Livres qui pourraient vous plaire : </div>
+
     </div>
 
 {% endblock %}

@@ -40,7 +40,27 @@ class StatusType
     private $name;
 
     /**
-     * @return mixed
+     * @ORM\OneToMany(targetEntity="Reading", mappedBy="statusRead")
+     */
+    private $status;
+
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->status = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+
+
+
+
+    /**
+     * Get id.
+     *
+     * @return int
      */
     public function getId()
     {
@@ -48,15 +68,23 @@ class StatusType
     }
 
     /**
-     * @param mixed $id
+     * Set name.
+     *
+     * @param string $name
+     *
+     * @return StatusType
      */
-    public function setId($id)
+    public function setName($name)
     {
-        $this->id = $id;
+        $this->name = $name;
+
+        return $this;
     }
 
     /**
-     * @return mixed
+     * Get name.
+     *
+     * @return string
      */
     public function getName()
     {
@@ -64,12 +92,26 @@ class StatusType
     }
 
     /**
-     * @param mixed $name
+     * Set status.
+     *
+     * @param \AppBundle\Entity\Reading|null $status
+     *
+     * @return StatusType
      */
-    public function setName($name)
+    public function setStatus(\AppBundle\Entity\Reading $status = null)
     {
-        $this->name = $name;
+        $this->status = $status;
+
+        return $this;
     }
 
-
+    /**
+     * Get status.
+     *
+     * @return \AppBundle\Entity\Reading|null
+     */
+    public function getStatus()
+    {
+        return $this->status;
+    }
 }
