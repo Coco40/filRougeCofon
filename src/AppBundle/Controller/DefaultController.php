@@ -123,75 +123,6 @@ class DefaultController extends Controller
     }
 
 
-    //*****   ROUTE POUR TOUS LES STATUS  *****//
-//    /**
-//     * @Route("/cofon/status", name="status")
-//     */
-//    public function cofonStatus()
-//    {
-//        $allStatus = $this->getDoctrine()
-//        ->getRepository(StatusType::class)
-//        ->findAll();
-//
-//        return $this->render('cofon/allStatus.html.twig',
-//       [
-//           'allStatus' => $allStatus,
-//        ]
-//            );
-//    }
-
-//*****   ROUTE POUR TOUTES LES CATEGORIES   *****//
-//    /**
-//     * @Route("/cofon/category", name="category")
-//     */
-//    public function cofonCategory()
-//    {
-//        $allCategory = $this->getDoctrine()
-//        ->getRepository(BookFormType::class)
-//        ->findAll();
-//
-//        return $this->render('cofon/allCategory.html.twig',
-//       [
-//           'allCategory' => $allCategory,
-//        ]
-//            );
-//    }
-//
-//*****   ROUTE POUR TOUS LES LIVRES   *****//
-//    /**
-//     * @Route("/cofon/books", name="books")
-//     */
-//    public function cofonBooks()
-//    {
-//        $allBooks = $this->getDoctrine()
-//            ->getRepository(Book::class)
-//            ->findAll();
-//
-//        return $this->render('cofon/allBooks.html.twig',
-//        [
-//            'allBooks' => $allBooks,
-//        ]
-//             );
-//    }
-
-//*****   ROUTE POUR TOUS LES AUTEURS   *****//
-//    /**
-//     * @Route("/cofon/authors", name="authors")
-//     */
-//    public function cofonAuthors()
-//    {
-//        $allBooks = $this->getDoctrine()
-//            ->getRepository(Author::class)
-//            ->findAll();
-//
-//        return $this->render('cofon/allAuthors.html.twig',
-//        [
-//            'allAuthors' => $allAuthors,
-//        ]
-//             );
-//    }
-
-
 
 //*****   ROUTE POUR TOUS LES COMMENTAIRES NOTES (READING)  *****//
     /**
@@ -227,7 +158,6 @@ class DefaultController extends Controller
             [
                 'oneBook' => $oneBook,
                 'id' => $id,
-
             ]);
     }
 
@@ -259,37 +189,66 @@ class DefaultController extends Controller
     {
         $user = $this->getUser();
 
-        $allReadingUser = $this->getDoctrine()
+        $lastASReadUser = $this->getDoctrine()
             ->getRepository(Reading::class)
-            ->findAll();
-//            ->findBy(array('users' => $user));
+            ->findBy(
+                array('statusRead' => '1'),
+                array('dateComment' => 'desc'),
+                1,
+                0
+            );
 
-////        $allBookForUser = $this->getDoctrine()
-////            ->getRepository(Book::class)
-////            ->findAll();
+        $lastReadingUser = $this->getDoctrine()
+            ->getRepository(Reading::class)
+            ->findBy(
+                array('statusRead' => '2'),
+                array('dateComment' => 'desc'),
+                1,
+                0
+            );
 
-//        $allBookReadingUser = $allReadingUser
-//            ->findBy(
-//                array('statusRead' => 'Lu'),
-//                array('date' => 'desc'),
-//                1,
-//                0
-//            );
+        $lastToReadUser = $this->getDoctrine()
+            ->getRepository(Reading::class)
+            ->findBy(
+                array('statusRead' => '3'),
+                array('dateComment' => 'desc'),
+                1,
+                0
+            );
 
-        dump($allReadingUser); die;
+//        dump($lastASReadUser); die;
 
         return $this->render('cofon/myBooks.html.twig',
             [
-                'allReadingUser' => $allReadingUser,
+                'lastASReadUser' => $lastASReadUser,
+                'lastReadingUser' => $lastReadingUser,
+                'lastToReadUser' => $lastToReadUser,
                 'user' => $user,
-                'allBookForUser' => $allBookForUser
+
             ]);
     }
 
+//*****   ROUTE MES LIVRES LU POUR UN UTILISATEUR CONNECTE  *****//
 
-//*****   RECUPERATION DES LIVRES /STATUS / USER POUR LA BDD  *****//
+    /**
+     * @Route("/cofon/myBooksAsRead", name="myBooksAsRead")
+     */
 
+    public function cofonMyBooksAsRead(){
+        $lastASReadUser = $this->getDoctrine()
+            ->getRepository(Reading::class)
+            ->findBy(
+                array('statusRead' => '1'),
+                array('dateComment' => 'desc')
+            );
 
+//        dump($lastASReadUser);die;
+
+        return $this->render('cofon/myBooksAsRead.html.twig',
+            [
+                'lastASReadUser' => $lastASReadUser,
+            ]);
+    }
 
 //*****   ROUTE POUR LES MENTIONS LEGALES  *****//
 

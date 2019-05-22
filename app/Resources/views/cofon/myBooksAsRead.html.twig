@@ -1,0 +1,32 @@
+{% extends'base.html.twig' %}
+
+
+
+{% block main %}
+
+    <main>
+        <div class="user">
+            <p class="pseudo">Tableau de Bord</p>
+            <p>Tous mes livres lus</p>
+            <li>Tous mes livres en cours de lecture</li>
+            <li>Tous mes livres à lire</li>
+        </div>
+
+    </main>
+
+    <div class="globalView">
+            {% for reading in lastASReadUser %}
+        <div class="allRead">
+            <p>{{ reading.book.title }}</p>
+            <p>Date de lecture : {{ reading.dateComment.date|date("d/m/Y") }}</p>
+            <div class="oneImg">
+                <img src="{{ asset('assets/imgcover/' ~ reading.book.cover) }}" data-image="{{ reading.book.cover }}" class="imgCover" alt="Photo de la couverture du livre">
+            </div>
+        </div>
+            {% endfor %}
+
+
+
+    </div>
+
+{% endblock %}

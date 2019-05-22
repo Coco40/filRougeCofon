@@ -394,13 +394,35 @@ input[type="password"] {
     padding-bottom: 2%;
 }
 
-
-
 .globalView{
     width: 100%;
-    float: left;
 }
 
+.read{
+    width: 33%;
+    float: left;
+    text-align: center;
+}
+
+.inProgress{
+    width: 33%;
+    float: left;
+    text-align: center;
+}
+
+.toRead{
+    width: 33%;
+    float: left;
+    text-align: center;
+}
+
+/* BEGGINNING Form for MYBOOKS AS READ*/
+
+.allRead{
+    width: 25%;
+    float: left;
+    text-align: center;
+}
 
 /* BEGGINNING Form for MENTIONS LEGALES*/
 
@@ -463,3 +485,6 @@ input[type="password"] {
     text-align: center;
     margin-bottom: 5%;
 }
+
+
+
