@@ -26,7 +26,53 @@ class DefaultController extends Controller
      */
     public function cofonAction()
     {
-        return $this->render('cofon/home.html.twig');
+        $allReading = $this->getDoctrine()
+            ->getRepository(Reading::class)
+            ->findBy(
+                array('statusRead' => '1'),
+                array('dateComment' => 'desc'),
+                6,
+                0
+            );
+
+        $maxReading = $this->getDoctrine()
+            ->getRepository(Reading::class)
+            ->searchMaxReading(
+                [],
+                [],
+                6,
+                0
+            );
+
+        $idLivreMax1 = $maxReading[0][1];
+        $idLivreMax2 = $maxReading[1][1];
+        $idLivreMax3 = $maxReading[2][1];
+        $idLivreMax4 = $maxReading[3][1];
+        $idLivreMax5 = $maxReading[4][1];
+        $idLivreMax6 = $maxReading[5][1];
+
+        $bookRepository = $this->getDoctrine()->getRepository(Book::class);
+
+        $maxBook1 = $bookRepository->find($idLivreMax1);
+        $maxBook2 = $bookRepository->find($idLivreMax2);
+        $maxBook3 = $bookRepository->find($idLivreMax3);
+        $maxBook4 = $bookRepository->find($idLivreMax4);
+        $maxBook5 = $bookRepository->find($idLivreMax5);
+        $maxBook6 = $bookRepository->find($idLivreMax6);
+
+
+        return $this->render('cofon/home.html.twig',
+            [
+                'maxBook1' => $maxBook1,
+                'maxBook2' => $maxBook2,
+                'maxBook3' => $maxBook3,
+                'maxBook4' => $maxBook4,
+                'maxBook5' => $maxBook5,
+                'maxBook6' => $maxBook6,
+//                'maxReadind' => $maxReading,
+                'allReading' => $allReading,
+            ]
+        );
     }
 
     /**
@@ -117,7 +163,9 @@ class DefaultController extends Controller
         $entityManager->flush();
 
 
-        return new Response('livre enregistré ');
+//        return new Response('livre enregistré ');
+
+        return $this->redirectToRoute('myBooks');
 
 
     }
@@ -188,11 +236,12 @@ class DefaultController extends Controller
     public function cofonMyBooks()
     {
         $user = $this->getUser();
+        $userId = $user->getId();
 
         $lastASReadUser = $this->getDoctrine()
             ->getRepository(Reading::class)
             ->findBy(
-                array('statusRead' => '1'),
+                array('statusRead' => '1', 'users' => $userId),
                 array('dateComment' => 'desc'),
                 1,
                 0
@@ -201,7 +250,7 @@ class DefaultController extends Controller
         $lastReadingUser = $this->getDoctrine()
             ->getRepository(Reading::class)
             ->findBy(
-                array('statusRead' => '2'),
+                array('statusRead' => '2' , 'users' => $userId),
                 array('dateComment' => 'desc'),
                 1,
                 0
@@ -210,7 +259,7 @@ class DefaultController extends Controller
         $lastToReadUser = $this->getDoctrine()
             ->getRepository(Reading::class)
             ->findBy(
-                array('statusRead' => '3'),
+                array('statusRead' => '3', 'users' => $userId),
                 array('dateComment' => 'desc'),
                 1,
                 0
@@ -228,27 +277,82 @@ class DefaultController extends Controller
             ]);
     }
 
-//*****   ROUTE MES LIVRES LU POUR UN UTILISATEUR CONNECTE  *****//
+//*****   ROUTE MES LIVRES LUS POUR UN UTILISATEUR CONNECTE  *****//
 
     /**
      * @Route("/cofon/myBooksAsRead", name="myBooksAsRead")
      */
 
     public function cofonMyBooksAsRead(){
-        $lastASReadUser = $this->getDoctrine()
+
+        $user = $this->getUser();
+        $userId = $user->getId();
+
+        $allASReadUser = $this->getDoctrine()
             ->getRepository(Reading::class)
             ->findBy(
-                array('statusRead' => '1'),
+                array('statusRead' => '1', 'users' => $userId),
                 array('dateComment' => 'desc')
             );
 
-//        dump($lastASReadUser);die;
+//        dump($allASReadUser);die;
 
         return $this->render('cofon/myBooksAsRead.html.twig',
             [
-                'lastASReadUser' => $lastASReadUser,
+                'allASReadUser' => $allASReadUser,
             ]);
     }
+
+//*****   ROUTE MES LIVRES EN COURS POUR UN UTILISATEUR CONNECTE  *****//
+
+    /**
+     * @Route("/cofon/myBooksReading", name="myBooksReading")
+     */
+
+    public function cofonMyBooksReading(){
+
+        $user = $this->getUser();
+        $userId = $user->getId();
+
+        $allReadingUser = $this->getDoctrine()
+            ->getRepository(Reading::class)
+            ->findBy(
+                array('statusRead' => '2', 'users' => $userId),
+                array('dateComment' => 'desc')
+            );
+
+        return $this->render('cofon/myBooksReading.html.twig',
+            [
+                'allReadingUser' => $allReadingUser,
+            ]);
+    }
+
+
+//*****   ROUTE MES LIVRES A LIVRE POUR UN UTILISATEUR CONNECTE  *****//
+
+    /**
+     * @Route("/cofon/myBooksToRead", name="myBooksToRead")
+     */
+
+    public function cofonMyBooksToRead(){
+
+        $user = $this->getUser();
+        $userId = $user->getId();
+
+        $allToReadUser = $this->getDoctrine()
+            ->getRepository(Reading::class)
+            ->findBy(
+                array('statusRead' => '3', 'users' => $userId),
+                array('dateComment' => 'desc')
+            );
+
+
+        return $this->render('cofon/myBooksToRead.html.twig',
+            [
+                'allToReadUser' => $allToReadUser,
+            ]);
+    }
+
 
 //*****   ROUTE POUR LES MENTIONS LEGALES  *****//
 

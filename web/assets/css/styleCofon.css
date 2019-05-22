@@ -101,6 +101,15 @@ body{
     justify-content: space-around;
 }
 
+.bookPropo{
+    width: 15%;
+    text-align: center;
+}
+
+.imgPropo{
+    width: 80%;
+}
+
 /* END Form for home*/
 
 

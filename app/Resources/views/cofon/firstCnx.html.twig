@@ -5,14 +5,14 @@
 
     <div class="firstCnx">
         <div class="advise">
-            <h3>Ajouter des livres que vous avez lu ! </br>
-                Et decouvrez ensuite vos recommandations de lectures personnalisées</h3>
+            <h3>Ajouter des livres que vous avez lu !<br>
+            En utilisant la recherche par Auteur ou Titre</h3>
         </div>
-
         <div class="personalPage">
-            <h3>Ignorez cette étape et accéder à VOTRE ACCUEIL</h3>
+            <a href="{{ path('myBooks') }}">
+                <h3>ACCEDEZ À VOTRE TABLEAU DE BORD</h3>
+            </a>
         </div>
-
     </div>
 
     <div class="bottomFirstCnx">
@@ -29,7 +29,7 @@
                     <p class="author-bk-firstName">{{ book.author.name }}</p>
                     <p>{{ book.year |date("Y") }}</p>
                     <p class="synopsis-bk">{{ book.synopsis }}</p>
-
+                    <button class="detailBookModal">Fiche lecture</button>
                     <button class="btnModal">J'ai lu ce livre</button>
                 </div>
             {% endfor %}
@@ -59,8 +59,8 @@
     {#lorsque le formulaire sera submitt, cela nous dirigera vers la route cofon_status_reading, j'utilise la méthode POST#}
         <form action="{{ path('cofon_status_reading') }}" method="POST" class="status">
             <div class="modal-header">
-                <h2>Ce livre va être ajouté dans votre espace, vous pouvez rajouter des informations</h2>
-                <span id="close">&times;</span>
+                <h2>Ce livre va être ajouté dans votre espace</h2>
+                <span class="close">&times;</span>
             </div>
             <div class="modal-body">
                 <div class="bookInfo">
@@ -88,6 +88,35 @@
     </div>
 </div>
 
+
+<!-- The Modal for Detail of Book -->
+<div id="modalForDetail" class="modal">
+
+    <!-- Modal content -->
+    <div class="modal-content">
+        {#je créais un formulaire pour récupérer toutes les informations qui serviront à créer une ligne dans Reading#}
+        {#lorsque le formulaire sera submitt, cela nous dirigera vers la route cofon_status_reading, j'utilise la méthode POST#}
+        <form action="{{ path('cofon_status_reading') }}" method="POST" class="status">
+            <div class="modal-header">
+                <h2>A PROPOS</h2>
+                <span class="close">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="bookInfo">
+                    <div class="bookMain">
+                        <p>Titre : <span class="title-js"></span></p>
+                        <p>Auteur : <span class="author-js-firstName"></span></p>
+                        <p><span class="author-js-lastName"></span></p>
+                        <img class="img-js" src="" id="imgModal" alt="Photo de la couverture du livre">
+                    </div>
+                    <div class="bookResume">
+                        <p>Résumé : <span class="synopsis-js"></span></p>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
 
 {% endblock %}
 
@@ -135,10 +164,67 @@
             })
 
         // on lui dit qu'au clic sur le bouton avec l'id close, il doit masquer tout ce qui est dans l'id myModal
-            $('#close').on('click', function (e) {
+            $('.close').on('click', function (e) {
                 e.preventDefault()
 
                 $('#myModal').hide()
+            })
+        });
+
+    </script>
+
+
+
+{# NOUVELLE MODAL POUR LE DETAIL DU LIVRE #}
+
+
+
+    <script>
+
+        // on déclenche la fonction lorsque le doument est pret, donc que tout a chargé
+        $( document ).ready(function() {
+
+            $(document).mouseup(function(e)
+            {
+                // création d'une variable qui indique la zone de délimitation pour le clic
+                var container = $('#modalForDetail');
+
+                // on indique que s'il l'on est hors de cette délimitation
+                // alors on cache le contenu de cette délimitation
+                if (container.is(e.target))
+                {
+                    container.hide();
+                }
+            });
+            // on lui dit qu'au clic sur le bouton avec la classe btnModal, il doit récupérer les éléments de la classe title-bk
+            //     depuis le parent de btnModal donc de la div à laquelle il appartient, et l'on stocke les infos dans la variable title
+            $('.detailBookModal').on('click', function (e) {
+                e.preventDefault()
+
+                var title = $(this).parent().find('.title-bk').html()
+                var authorFirtsName = $(this).parent().find('.author-bk-firstName').html()
+                var authorLastName = $(this).parent().find('.author-bk-lastName').html()
+                var synopsis = $(this).parent().find('.synopsis-bk').html()
+                var image = $(this).parent().find('.imgCover').attr('src')
+                var book_id = $(this).parent().data('id-book')
+                // console.log pour vérifier ce qui est transmis dans une variable (falcutatif)
+                console.log(title)
+                // on lui demande de donner ce qui est dans la variable title, à la class title-js depuis l'élément qui a l'id myModal
+                $('#modalForDetail').find('.title-js').html(title)
+                $('#modalForDetail').find('.author-js-firstName').html(authorFirtsName)
+                $('#modalForDetail').find('.author-js-lastName').html(authorLastName)
+                $('#modalForDetail').find('.synopsis-js').html(synopsis)
+                $('#modalForDetail').find('.img-js').attr('src', image)
+                $('#modalForDetail').find('#submit').val(book_id)
+                // et on lui demande de l'afficher
+                $('#modalForDetail').show()
+            })
+
+            // on lui dit qu'au clic sur le bouton avec l'id close, il doit masquer tout ce qui est dans l'id myModal
+            $('.close').on('click', function (e) {
+                e.preventDefault()
+
+                $('#modalForDetail').hide()
             })
         });
 

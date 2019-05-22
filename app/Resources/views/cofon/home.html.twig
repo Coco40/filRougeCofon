@@ -23,12 +23,30 @@
             <h3>Les + lus</h3>
         </div>
         <div class="propoLivres">
-            <p>Livre1</p>
-            <p>Livre2</p>
-            <p>Livre3</p>
-            <p>Livre4</p>
-            <p>Livre5</p>
-            <p>Livre6</p>
+            <div class="bookPropo">
+                <p>{{ maxBook1.title }}</p>
+                <img src="{{ asset('assets/imgcover/' ~ maxBook1.cover) }}" class="imgPropo">
+            </div>
+            <div class="bookPropo">
+                <p>{{ maxBook2.title }}</p>
+                <img src="{{ asset('assets/imgcover/' ~ maxBook2.cover) }}" class="imgPropo">
+            </div>
+            <div class="bookPropo">
+                <p>{{ maxBook3.title }}</p>
+                <img src="{{ asset('assets/imgcover/' ~ maxBook3.cover) }}" class="imgPropo">
+            </div>
+            <div class="bookPropo">
+                <p>{{ maxBook4.title }}</p>
+                <img src="{{ asset('assets/imgcover/' ~ maxBook4.cover) }}" class="imgPropo">
+            </div>
+            <div class="bookPropo">
+                <p>{{ maxBook5.title }}</p>
+                <img src="{{ asset('assets/imgcover/' ~ maxBook5.cover) }}" class="imgPropo">
+            </div>
+            <div class="bookPropo">
+                <p>{{ maxBook6.title }}</p>
+                <img src="{{ asset('assets/imgcover/' ~ maxBook6.cover) }}" class="imgPropo">
+            </div>
         </div>
 
 

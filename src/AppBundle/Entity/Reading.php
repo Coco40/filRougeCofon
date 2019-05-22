@@ -12,7 +12,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\ReadingRepository")
  * @ORM\Table(name="reading")
  */
 
@@ -57,6 +57,8 @@ class Reading
     public function __construct()
     {
         $this->reading = new ArrayCollection();
+        $this->users = new ArrayCollection();
+        $this->book = new ArrayCollection();
         $this->dateComment = new \DateTime();
     }
 

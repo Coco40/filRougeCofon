@@ -4,15 +4,23 @@
 
 {% block main %}
 
-<main>
-    <div class="user">
-        <p class="pseudo">Tableau de Bord</p>
-            <li>Tous mes livres lus</li>
-            <li>Tous mes livres en cours de lecture</li>
-            <li>Tous mes livres à lire</li>
-    </div>
+    <main>
+        <div class="user">
+            <a href="{{ path('myBooks') }}">
+                <p class="pseudo">Tableau de Bord</p>
+            </a>
+            <a href="{{ path('myBooksAsRead') }}">
+                <p>Tous mes livres lus </p>
+            </a>
+            <a href="{{ path('myBooksReading') }}">
+                <p>Tous mes livres en cours de lecture</p>
+            </a>
+            <a href="{{ path('myBooksToRead') }}">
+                <p>Tous mes livres à lire</p>
+            </a>
+        </div>
 
-</main>
+    </main>
 
     <div class="globalView">
         <div class="read">
