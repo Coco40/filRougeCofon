@@ -30,11 +30,13 @@
                         <div class="oneImg">
                             <img src="{{ asset('assets/imgcover/' ~ reading.book.cover) }}" data-image="{{ reading.book.cover }}" class="imgCover" alt="Photo de la couverture du livre">
                         </div>
+
         {% endfor %}
         </div>
 
-        <div class="inProgress">Dernier livre en cours de lecture :
+        <div class="inProgress">
             {% for reading in lastReadingUser %}
+                    <p>Dernier livre en cours de lecture :</p>
                     <p>{{ reading.book.title }}</p>
                     <div class="oneImg">
                         <img src="{{ asset('assets/imgcover/' ~ reading.book.cover) }}" data-image="{{ reading.book.cover }}" class="imgCover" alt="Photo de la couverture du livre">

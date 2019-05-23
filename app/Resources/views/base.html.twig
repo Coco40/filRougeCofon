@@ -30,7 +30,10 @@
             <img src="{{ asset('assets/images/logofilrouge.png') }}" alt="logo" class="logo">
         </div>
         <div class="search col-md-4">
-            <input placeholder="Rechercher" class="look">
+            <form class="form-inline">
+                <input class="form-control" type="search" placeholder="Rechercher" aria-label="Search">
+                <button class="btn btn-outline-dark" type="submit">Rechercher</button>
+            </form>
         </div>
         <div class="button col-md-6">
             <a href="{{ path('cofon') }}" class="home">Accueil</a>

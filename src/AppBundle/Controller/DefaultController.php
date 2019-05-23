@@ -165,7 +165,7 @@ class DefaultController extends Controller
 
 //        return new Response('livre enregistré ');
 
-        return $this->redirectToRoute('myBooks');
+        return $this->redirectToRoute('personal');
 
 
     }
@@ -328,7 +328,7 @@ class DefaultController extends Controller
     }
 
 
-//*****   ROUTE MES LIVRES A LIVRE POUR UN UTILISATEUR CONNECTE  *****//
+//*****   ROUTE MES LIVRES A LIRE POUR UN UTILISATEUR CONNECTE  *****//
 
     /**
      * @Route("/cofon/myBooksToRead", name="myBooksToRead")
@@ -353,6 +353,47 @@ class DefaultController extends Controller
             ]);
     }
 
+//*****   ROUTE POUR SUPPRIMER UN LIVRE POUR UN UTILISATEUR CONNECTE  *****//
+
+    /**
+     * @Route("/cofon/myBooksAsRead/{id}", name="readingDelete")
+     */
+    public function bookDeleteAction($id)
+    {
+
+        $deleteReading = $this->getDoctrine()
+            ->getRepository(Reading::class)
+            ->find($id);
+
+//        dump($deleteReading); die;
+
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->remove($deleteReading);
+        $entityManager->flush();
+
+        return $this->render('cofon/book_delete.html.twig');
+    }
+
+//*****   ROUTE POUR FAIRE UNE RECHERCHE PAR NOM D'AUTEUR  *****//
+    /**
+     * Je crée une route pour faire une recherche sur le nom d'un auteur avec la wild Card name
+     * @Route("/author_search/{name}", name="authorSearch")
+     */
+//    Je crée l'action authorSearchByName avec la variable $name qui récupère l'information de la wildCard
+    public function authorSearchByName($name)
+    {
+//        je récupère Doctrine avec la méthode getDoctrine, puis je récupère le repository avec la méthode get Repository
+//        Je lui donne le chemin pour l'entity author via la methode class
+//        Je le stocke dans la variable $nameAuthor
+        $nameAuthor = $this->getDoctrine()
+            ->getRepository(Author::class);
+
+//        J'utilise la méthode authorSearchByName créé depuis le repository author avec $name récupéré de la wildCard
+        $result = $nameAuthor->authorSearchByName($name);
+
+        dump($result); die;
+
+    }
 
 //*****   ROUTE POUR LES MENTIONS LEGALES  *****//
 
