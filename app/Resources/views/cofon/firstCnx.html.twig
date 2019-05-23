@@ -37,7 +37,17 @@
 
         <div class="search">
             <div class="personalSearch">
-                <input placeholder="Rechercher" class="look">
+                {{ form_start(searchForm) }}
+                <div class="formSearch">
+                    <div>
+                        {{ form_errors(searchForm.search) }}
+                        {{ form_widget(searchForm.search, {'attr': {'class': 'form-control', 'placeholder': 'Rechercher un livre' }}) }}
+                    </div>
+                    <div>
+                        {{ form_widget(searchForm.submit, {'attr': {'class': 'btn btn-primary'}}) }}
+                    </div>
+                </div>
+                {{ form_end(searchForm) }}
             </div>
             <div class="category">
                 {% for category in viewAllCategory %}

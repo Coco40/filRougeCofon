@@ -30,10 +30,17 @@
             <img src="{{ asset('assets/images/logofilrouge.png') }}" alt="logo" class="logo">
         </div>
         <div class="search col-md-4">
-            <form class="form-inline">
-                <input class="form-control" type="search" placeholder="Rechercher" aria-label="Search">
-                <button class="btn btn-outline-dark" type="submit">Rechercher</button>
-            </form>
+            {#{{ form_start(SearchType) }}#}
+            {#<div class="formSearch">#}
+                {#<div>#}
+                    {#{{ form_errors(searchForm.search) }}#}
+                    {#{{ form_widget(searchForm.search, {'attr': {'class': 'form-control', 'placeholder': 'Rechercher'}}) }}#}
+                {#</div>#}
+                {#<div>#}
+                    {#{{ form_widget(searchForm.submit, {'attr': {'class': 'btn btn-primary' }}) }}#}
+                {#</div>#}
+            {#</div>#}
+            {#{{ form_end(searchForm) }}#}
         </div>
         <div class="button col-md-6">
             <a href="{{ path('cofon') }}" class="home">Accueil</a>

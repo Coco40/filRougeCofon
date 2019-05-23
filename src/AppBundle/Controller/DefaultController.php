@@ -10,6 +10,7 @@ use AppBundle\Entity\StatusType;
 use AppBundle\Form\AuthorType;
 use AppBundle\Form\BookFormType;
 use AppBundle\Form\ContactType;
+use AppBundle\Form\SearchType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -108,8 +109,33 @@ class DefaultController extends Controller
 
 //        dump($allBooks, $allReading); die;
 
+        $searchForm = $this->createForm(SearchType::class);
+        $searchFormViews = $searchForm->createView();
+
+        $searchForm->handleRequest($request);
+
+        if ($searchForm->isSubmitted() && $searchForm->isValid())
+        {
+            $search = $searchForm->getData();
+
+            $bookRepository = $this->getDoctrine()->getRepository(Book::class);
+            $bookSearch = $bookRepository->findBy(['title' => $search]);
+
+            return $this->render('cofon/firstCnx.html.twig',
+                [
+                    'searchForm' => $searchFormViews,
+                    'viewAllCategory' => $viewAllCategory,
+                    'allBooks' => $bookSearch,
+                    'allAuthor' => $allAuthors,
+                    'allStatus' => StatusType::READ_STATUS,
+                ]
+            );
+
+        }
+
         return $this->render('cofon/firstCnx.html.twig',
             [
+                'searchForm' => $searchFormViews,
                 'viewAllCategory' => $viewAllCategory,
                 'allBooks' => $allBooks,
                 'allAuthor' => $allAuthors,
@@ -375,25 +401,26 @@ class DefaultController extends Controller
     }
 
 //*****   ROUTE POUR FAIRE UNE RECHERCHE PAR NOM D'AUTEUR  *****//
+
     /**
-     * Je crée une route pour faire une recherche sur le nom d'un auteur avec la wild Card name
-     * @Route("/author_search/{name}", name="authorSearch")
+     * @Route("/cofon/search", name="search")
      */
-//    Je crée l'action authorSearchByName avec la variable $name qui récupère l'information de la wildCard
-    public function authorSearchByName($name)
+    public function searchBy(Request $request)
     {
-//        je récupère Doctrine avec la méthode getDoctrine, puis je récupère le repository avec la méthode get Repository
-//        Je lui donne le chemin pour l'entity author via la methode class
-//        Je le stocke dans la variable $nameAuthor
-        $nameAuthor = $this->getDoctrine()
-            ->getRepository(Author::class);
+        $name = $request->request->get('submit');
+        $search = $this->getDoctrine()
+            ->getRepository(Author::class)
+            ->findBy($name);
+        $searchForm = $this->createForm(SearchType::class);
+        $searchFormViews = $searchForm->createView();
 
-//        J'utilise la méthode authorSearchByName créé depuis le repository author avec $name récupéré de la wildCard
-        $result = $nameAuthor->authorSearchByName($name);
+        if ($searchForm->isSubmitted() && $searchForm->isValid()) {
+            $search = $searchForm->getData();
 
-        dump($result); die;
+            dump($search);
 
-    }
+        }
+        }
 
 //*****   ROUTE POUR LES MENTIONS LEGALES  *****//
 

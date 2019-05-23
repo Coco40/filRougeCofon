@@ -2,25 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bb33d37c-2099-4295-a5ed-2c14b8cd7cbd" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/Resources/views/cofon/book_delete.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/AppBundle/Repository/AuthorRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/AppBundle/Form/SearchType.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Resources/views/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/app/Resources/views/base.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Resources/views/cofon/firstCnx.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/app/Resources/views/cofon/firstCnx.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Resources/views/cofon/myBooks.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/app/Resources/views/cofon/myBooks.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Resources/views/cofon/myBooksAsRead.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/app/Resources/views/cofon/myBooksAsRead.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Resources/views/cofon/myBooksReading.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/app/Resources/views/cofon/myBooksReading.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Resources/views/cofon/myBooksToRead.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/app/Resources/views/cofon/myBooksToRead.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/AppBundle/Controller/DefaultController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppBundle/Controller/DefaultController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/assets/Desktop/HTML_CSS/Projet/contact.css" beforeDir="false" afterPath="$PROJECT_DIR$/web/assets/Desktop/HTML_CSS/Projet/contact.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/assets/Desktop/HTML_CSS/Projet/contact.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/assets/Desktop/HTML_CSS/Projet/contact.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/assets/Desktop/HTML_CSS/Projet/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/assets/Desktop/HTML_CSS/Projet/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/assets/Desktop/HTML_CSS/Projet/portfolio.css" beforeDir="false" afterPath="$PROJECT_DIR$/web/assets/Desktop/HTML_CSS/Projet/portfolio.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/assets/Desktop/HTML_CSS/Projet/portfolio.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/assets/Desktop/HTML_CSS/Projet/portfolio.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/assets/Desktop/HTML_CSS/Projet/single.css" beforeDir="false" afterPath="$PROJECT_DIR$/web/assets/Desktop/HTML_CSS/Projet/single.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/assets/Desktop/HTML_CSS/Projet/single.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/assets/Desktop/HTML_CSS/Projet/single.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/assets/Desktop/HTML_CSS/Projet/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/web/assets/Desktop/HTML_CSS/Projet/style.css" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -36,45 +22,49 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/DefaultController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="370">
-              <caret line="379" column="57" selection-start-line="379" selection-start-column="45" selection-end-line="379" selection-end-column="57" />
+            <state relative-caret-position="566">
+              <caret line="131" column="14" selection-start-line="131" selection-start-column="14" selection-end-line="131" selection-end-column="14" />
               <folding>
                 <element signature="e#40#68#0#PHP" expanded="true" />
                 <element signature="e#632#654#1#PHP" expanded="true" />
                 <element signature="e#803#824#1#PHP" expanded="true" />
-                <element signature="e#2642#2668#0#PHP" expanded="true" />
-                <element signature="e#5263#5291#0#PHP" expanded="true" />
-                <element signature="e#5664#5690#0#PHP" expanded="true" />
-                <element signature="e#6095#6121#0#PHP" expanded="true" />
-                <element signature="e#7081#7106#0#PHP" expanded="true" />
-                <element signature="e#6330#6361#0#PHP" expanded="true" />
-                <element signature="e#7018#7050#0#PHP" expanded="true" />
-                <element signature="e#7596#7627#0#PHP" expanded="true" />
-                <element signature="e#10160#10189#1#PHP" expanded="true" />
-                <element signature="e#10536#10569#1#PHP" expanded="true" />
-                <element signature="e#11725#11750#0#PHP" expanded="true" />
-                <element signature="e#13330#13359#0#PHP" expanded="true" />
-                <element signature="e#14510#14543#0#PHP" expanded="true" />
-                <element signature="e#16490#16521#0#PHP" expanded="true" />
+                <element signature="e#3698#3724#0#PHP" expanded="true" />
+                <element signature="e#3688#3714#0#PHP" expanded="true" />
+                <element signature="e#5733#5761#0#PHP" expanded="true" />
+                <element signature="e#6134#6160#0#PHP" expanded="true" />
+                <element signature="e#6564#6590#0#PHP" expanded="true" />
+                <element signature="e#7855#7880#0#PHP" expanded="true" />
+                <element signature="e#8678#8709#0#PHP" expanded="true" />
+                <element signature="e#9335#9367#0#PHP" expanded="true" />
+                <element signature="e#9991#10022#0#PHP" expanded="true" />
+                <element signature="e#10647#10676#1#PHP" expanded="true" />
+                <element signature="e#11520#11553#1#PHP" expanded="true" />
+                <element signature="e#12709#12734#0#PHP" expanded="true" />
+                <element signature="e#14314#14343#0#PHP" expanded="true" />
+                <element signature="e#15494#15527#0#PHP" expanded="true" />
+                <element signature="e#17474#17505#0#PHP" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/AppBundle/Form/SearchType.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="285">
+              <caret line="24" column="51" lean-forward="true" selection-start-line="24" selection-start-column="51" selection-end-line="24" selection-end-column="51" />
+              <folding>
+                <element signature="e#128#168#0#PHP" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/AppBundle/Repository/AuthorRepository.php">
+        <entry file="file://$PROJECT_DIR$/app/Resources/views/cofon/firstCnx.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="300">
-              <caret line="25" selection-start-line="25" selection-end-line="25" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/Resources/views/base.html.twig">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="35" column="19" lean-forward="true" selection-start-line="35" selection-start-column="19" selection-end-line="35" selection-end-column="19" />
+            <state relative-caret-position="460">
+              <caret line="47" column="26" selection-start-line="47" selection-start-column="26" selection-end-line="47" selection-end-column="26" />
             </state>
           </provider>
         </entry>
@@ -116,7 +106,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/web/assets/js/main.js" />
         <option value="$PROJECT_DIR$/src/AppBundle/Entity/Status.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Entity/BookType.php" />
         <option value="$PROJECT_DIR$/app/Resources/views/cofon/allStatus.html.twig" />
@@ -163,10 +152,11 @@
         <option value="$PROJECT_DIR$/app/Resources/views/cofon/myBooksToRead.html.twig" />
         <option value="$PROJECT_DIR$/app/Resources/views/cofon/myBooksReading.html.twig" />
         <option value="$PROJECT_DIR$/app/Resources/views/cofon/myBooks.html.twig" />
-        <option value="$PROJECT_DIR$/app/Resources/views/cofon/firstCnx.html.twig" />
         <option value="$PROJECT_DIR$/src/AppBundle/Repository/AuthorRepository.php" />
-        <option value="$PROJECT_DIR$/src/AppBundle/Controller/DefaultController.php" />
         <option value="$PROJECT_DIR$/app/Resources/views/base.html.twig" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Form/SearchType.php" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Controller/DefaultController.php" />
+        <option value="$PROJECT_DIR$/app/Resources/views/cofon/firstCnx.html.twig" />
       </list>
     </option>
   </component>
@@ -320,20 +310,6 @@
               <item name="web" type="462c0819:PsiDirectoryNode" />
               <item name="assets" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="filrougecofon" type="b2602c69:ProjectViewProjectNode" />
-              <item name="filrougecofon" type="462c0819:PsiDirectoryNode" />
-              <item name="web" type="462c0819:PsiDirectoryNode" />
-              <item name="assets" type="462c0819:PsiDirectoryNode" />
-              <item name="css" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="filrougecofon" type="b2602c69:ProjectViewProjectNode" />
-              <item name="filrougecofon" type="462c0819:PsiDirectoryNode" />
-              <item name="web" type="462c0819:PsiDirectoryNode" />
-              <item name="assets" type="462c0819:PsiDirectoryNode" />
-              <item name="imgcover" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
@@ -390,12 +366,12 @@
       <workItem from="1555492434031" duration="1482000" />
       <workItem from="1556099666744" duration="87633000" />
       <workItem from="1557490484373" duration="2015000" />
-      <workItem from="1557493136582" duration="131219000" />
+      <workItem from="1557493136582" duration="135122000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="239417000" />
+    <option name="totallyTimeSpent" value="243320000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
@@ -447,13 +423,6 @@
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/web/assets/js/v.inscript.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" column="5" selection-start-line="3" selection-start-column="5" selection-end-line="3" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Resources/views/cofon/form_reading_status.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="30">
@@ -713,16 +682,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/Book.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="769">
-          <caret line="70" column="18" selection-start-line="70" selection-start-column="18" selection-end-line="70" selection-end-column="18" />
-          <folding>
-            <element signature="e#122#154#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Repository/ReadingRepository.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="465">
@@ -800,50 +759,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/DefaultController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="370">
-          <caret line="379" column="57" selection-start-line="379" selection-start-column="45" selection-end-line="379" selection-end-column="57" />
-          <folding>
-            <element signature="e#40#68#0#PHP" expanded="true" />
-            <element signature="e#632#654#1#PHP" expanded="true" />
-            <element signature="e#803#824#1#PHP" expanded="true" />
-            <element signature="e#2642#2668#0#PHP" expanded="true" />
-            <element signature="e#5263#5291#0#PHP" expanded="true" />
-            <element signature="e#5664#5690#0#PHP" expanded="true" />
-            <element signature="e#6095#6121#0#PHP" expanded="true" />
-            <element signature="e#7081#7106#0#PHP" expanded="true" />
-            <element signature="e#6330#6361#0#PHP" expanded="true" />
-            <element signature="e#7018#7050#0#PHP" expanded="true" />
-            <element signature="e#7596#7627#0#PHP" expanded="true" />
-            <element signature="e#10160#10189#1#PHP" expanded="true" />
-            <element signature="e#10536#10569#1#PHP" expanded="true" />
-            <element signature="e#11725#11750#0#PHP" expanded="true" />
-            <element signature="e#13330#13359#0#PHP" expanded="true" />
-            <element signature="e#14510#14543#0#PHP" expanded="true" />
-            <element signature="e#16490#16521#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/cofon/firstCnx.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="480">
-          <caret line="32" column="61" lean-forward="true" selection-start-line="32" selection-start-column="61" selection-end-line="32" selection-end-column="61" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Resources/views/cofon/home.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="300">
           <caret line="20" column="30" lean-forward="true" selection-start-line="20" selection-start-column="30" selection-end-line="20" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Repository/AuthorRepository.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="25" selection-start-line="25" selection-end-line="25" />
         </state>
       </provider>
     </entry>
@@ -854,10 +773,71 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Repository/AuthorRepository.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="25" selection-start-line="25" selection-end-line="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/Book.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="184">
+          <caret line="31" column="16" selection-start-line="31" selection-start-column="16" selection-end-line="31" selection-end-column="16" />
+          <folding>
+            <element signature="e#122#154#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/Resources/views/base.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="35" column="19" lean-forward="true" selection-start-line="35" selection-start-column="19" selection-end-line="35" selection-end-column="19" />
+        <state relative-caret-position="406">
+          <caret line="41" column="22" lean-forward="true" selection-start-line="41" selection-start-column="22" selection-end-line="41" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/DefaultController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="566">
+          <caret line="131" column="14" selection-start-line="131" selection-start-column="14" selection-end-line="131" selection-end-column="14" />
+          <folding>
+            <element signature="e#40#68#0#PHP" expanded="true" />
+            <element signature="e#632#654#1#PHP" expanded="true" />
+            <element signature="e#803#824#1#PHP" expanded="true" />
+            <element signature="e#3698#3724#0#PHP" expanded="true" />
+            <element signature="e#3688#3714#0#PHP" expanded="true" />
+            <element signature="e#5733#5761#0#PHP" expanded="true" />
+            <element signature="e#6134#6160#0#PHP" expanded="true" />
+            <element signature="e#6564#6590#0#PHP" expanded="true" />
+            <element signature="e#7855#7880#0#PHP" expanded="true" />
+            <element signature="e#8678#8709#0#PHP" expanded="true" />
+            <element signature="e#9335#9367#0#PHP" expanded="true" />
+            <element signature="e#9991#10022#0#PHP" expanded="true" />
+            <element signature="e#10647#10676#1#PHP" expanded="true" />
+            <element signature="e#11520#11553#1#PHP" expanded="true" />
+            <element signature="e#12709#12734#0#PHP" expanded="true" />
+            <element signature="e#14314#14343#0#PHP" expanded="true" />
+            <element signature="e#15494#15527#0#PHP" expanded="true" />
+            <element signature="e#17474#17505#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/cofon/firstCnx.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="460">
+          <caret line="47" column="26" selection-start-line="47" selection-start-column="26" selection-end-line="47" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Form/SearchType.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="24" column="51" lean-forward="true" selection-start-line="24" selection-start-column="51" selection-end-line="24" selection-end-column="51" />
+          <folding>
+            <element signature="e#128#168#0#PHP" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
