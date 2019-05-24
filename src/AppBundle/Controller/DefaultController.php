@@ -198,26 +198,6 @@ class DefaultController extends Controller
 
 
 
-//*****   ROUTE POUR TOUS LES COMMENTAIRES NOTES (READING)  *****//
-    /**
-     * @Route("/cofon/reading", name="reading")
-     */
-    public function cofonReading()
-    {
-        $allReading = $this->getDoctrine()
-            ->getRepository(Reading::class)
-            ->findAll();
-
-//        dump($allReading); die;
-
-        return $this->render('cofon/allReading.html.twig',
-        [
-            'allReading' => $allReading,
-        ]
-             );
-    }
-
-
 //*****   ROUTE POUR UN LIVRE   *****//
     /**
      * @Route("/cofon/book/{id}", name="oneBook")
@@ -517,6 +497,15 @@ class DefaultController extends Controller
            'id' => $id,
         ]
             );
+    }
+
+
+    /**
+     * @Route("/register/confirmed", name="confirmed")
+     */
+    public function cofonConfirmed()
+    {
+        return $this ->redirectToRoute('personal');
     }
 
 //*****   ROUTE POUR RAJOUTER UN AUTEUR  *****//
