@@ -76,14 +76,7 @@ class DefaultController extends Controller
         );
     }
 
-    /**
-     * @Route("/cofon/connexion", name="cofonCnx")
-     */
-    public function cofonConnexion()
-    {
-        return $this->render('cofon/cnx.html.twig');
 
-    }
 
 //*****   ROUTE POUR LA PAGE LORSQUE L'ON VIENT DE SE CONNECTER SUR SON ESPACE PERSONNEL (MES LVRES) *****//
     /**
@@ -438,7 +431,7 @@ class DefaultController extends Controller
 
                     // Everything OK, redirect to wherever you want ! :
 
-                    return $this->redirectToRoute('redirect_to_somewhere_now');
+                    return $this->redirectToRoute('personal');
                 }else{
                     // An error ocurred, handle
                     var_dump("Errooooor :(");
@@ -452,26 +445,36 @@ class DefaultController extends Controller
     }
 
     private function sendEmail($data){
-        $myappContactMail = 'mycontactmail@mymail.com';
-        $myappContactPassword = 'yourmailpassword';
+        $myappContactMail = 'corinnefontagne@yahoo.fr';
+        $myappContactPassword = 'Coco';
 
         // In this case we'll use the ZOHO mail services.
         // If your service is another, then read the following article to know which smpt code to use and which port
         // http://ourcodeworld.com/articles/read/14/swiftmailer-send-mails-from-php-easily-and-effortlessly
-        $transport = \Swift_SmtpTransport::newInstance('smtp.zoho.com', 465,'ssl')
+        $transport = \Swift_SmtpTransport::newInstance('mail.yahoo.fr', 465,'ssl')
             ->setUsername($myappContactMail)
             ->setPassword($myappContactPassword);
 
         $mailer = \Swift_Mailer::newInstance($transport);
 
-        $message = \Swift_Message::newInstance("Our Code World Contact Form ". $data["subject"])
-            ->setFrom(array($myappContactMail => "Message by ".$data["name"]))
-            ->setTo(array(
-                $myappContactMail => $myappContactMail
-            ))
-            ->setBody($data["message"]."<br>ContactMail :".$data["email"]);
+        $message = \Swift_Message::newInstance()
+            ->setSubject($data['subject'])  //objet du mail
+            ->setFrom(array($email => $nom))  //nom de l'expéditeur et normalement le mail saisie
+            ->setReplyTo($email)  // répondre à la personne qui envoie avec le mail saisie car sans le cela si on fait répondre y a rien
+            ->setTo($myappContactMail) //mail qui reçoit le message
+            ->setBody("<h1>$msg,<br/> Envoyé par : $email</h1>", 'text/html');
 
-        return $mailer->send($message);
+
+        $this->get('mailer')->send($message);
+
+//        $message = \Swift_Message::newInstance("Our Code World Contact Form ". $data["subject"])
+//            ->setFrom(array($myappContactMail => "Message by ".$data["name"]))
+//            ->setTo(array(
+//                $myappContactMail => $myappContactMail
+//            ))
+//            ->setBody($data["message"]."<br>ContactMail :".$data["email"]);
+
+//        return $mailer->send($message);
     }
 
 

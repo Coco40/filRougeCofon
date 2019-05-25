@@ -43,9 +43,21 @@
             {#{{ form_end(searchForm) }}#}
         </div>
         <div class="button col-md-6">
+            {% if app.user is not null %}
             <a href="{{ path('cofon') }}" class="home">Accueil</a>
+            {% else %}
+            <a href="{{ path('fos_user_registration_register') }}" class="home">Accueil</a>
+            {% endif %}
+            {% if app.user is not null %}
             <a href="{{ path('myBooks') }}" class="books">Mes livres</a>
+            {% else %}
+            <a href="{{ path('fos_user_registration_register') }}" class="books">Mes livres</a>
+            {% endif %}
+            {% if app.user is not null %}
             <a href="{{ path('personal') }}" class="addBooks">Ajouter des livres</a>
+            {% else %}
+            <a href="{{ path('fos_user_registration_register') }}" class="addBooks">Ajouter des livres</a>
+            {% endif %}
             {% if app.user is not null %}
                 <a href="{{ path('fos_user_security_logout') }}" class="connection">{{ app.user.username }}</a>
             {% else %}
