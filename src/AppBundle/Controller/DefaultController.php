@@ -264,7 +264,6 @@ class DefaultController extends Controller
                 0
             );
 
-//        dump($lastASReadUser); die;
 
         return $this->render('cofon/myBooks.html.twig',
             [
@@ -417,7 +416,6 @@ class DefaultController extends Controller
         // And give the proper parameters
         $form = $this->createForm(ContactType::class,null,array(
             // To set the action use $this->generateUrl('route_identifier')
-            'action' => $this->generateUrl('myapplication_contact'),
             'method' => 'POST'
         ));
 
@@ -445,36 +443,28 @@ class DefaultController extends Controller
     }
 
     private function sendEmail($data){
-        $myappContactMail = 'corinnefontagne@yahoo.fr';
-        $myappContactPassword = 'Coco';
+        $myappContactMail = 'corinnefontagnedev40@gmail.com';
+        $myappContactPassword = 'coco2323&4040';
 
         // In this case we'll use the ZOHO mail services.
         // If your service is another, then read the following article to know which smpt code to use and which port
         // http://ourcodeworld.com/articles/read/14/swiftmailer-send-mails-from-php-easily-and-effortlessly
-        $transport = \Swift_SmtpTransport::newInstance('mail.yahoo.fr', 465,'ssl')
+        $transport = \Swift_SmtpTransport::newInstance('smtp.gmail.com', 465,'ssl')
             ->setUsername($myappContactMail)
             ->setPassword($myappContactPassword);
 
         $mailer = \Swift_Mailer::newInstance($transport);
 
-        $message = \Swift_Message::newInstance()
-            ->setSubject($data['subject'])  //objet du mail
-            ->setFrom(array($email => $nom))  //nom de l'expéditeur et normalement le mail saisie
-            ->setReplyTo($email)  // répondre à la personne qui envoie avec le mail saisie car sans le cela si on fait répondre y a rien
-            ->setTo($myappContactMail) //mail qui reçoit le message
-            ->setBody("<h1>$msg,<br/> Envoyé par : $email</h1>", 'text/html');
 
+        $message = \Swift_Message::newInstance("Our Code World Contact Form ". $data["subject"])
+            ->setFrom(array($myappContactMail => "Message by ".$data["name"]))
+            ->setTo(array(
+                $myappContactMail => $myappContactMail
+            ))
+//            ->setBody($data["message"]."<br>ContactMail :".$data["email"])
+        ->setBody("Expéditeur : ".$data["email"]."\n"."Message : ".$data["message"]);
 
-        $this->get('mailer')->send($message);
-
-//        $message = \Swift_Message::newInstance("Our Code World Contact Form ". $data["subject"])
-//            ->setFrom(array($myappContactMail => "Message by ".$data["name"]))
-//            ->setTo(array(
-//                $myappContactMail => $myappContactMail
-//            ))
-//            ->setBody($data["message"]."<br>ContactMail :".$data["email"]);
-
-//        return $mailer->send($message);
+        return $mailer->send($message);
     }
 
 
@@ -482,7 +472,7 @@ class DefaultController extends Controller
     /**
      * @Route("/cofon/category/{id}", name="category")
      */
-    public function cofonCategory($id)
+    public function cofonCategory(Request $request, $id)
     {
         $booksByCategory = $this->getDoctrine()
             ->getRepository(Book::class)
@@ -492,14 +482,46 @@ class DefaultController extends Controller
             ->getRepository(BookType::class)
             ->findAll();
 
+        $searchForm = $this->createForm(SearchType::class);
+        $searchFormViews = $searchForm->createView();
+
+        $searchForm->handleRequest($request);
+
+        if ($searchForm->isSubmitted() && $searchForm->isValid())
+        {
+            $search = $searchForm->getData();
+
+            $bookRepository = $this->getDoctrine()->getRepository(Book::class);
+            $bookSearch = $bookRepository->findBy(['title' => $search]);
+
+            return $this->render('cofon/oneCategory.html.twig',
+                [
+                    'searchForm' => $searchFormViews,
+                    'viewAllCategory' => $viewAllCategory,
+                    'booksByCategory' => $booksByCategory,
+                    'id' => $id,
+                ]
+            );
+
+        }
 
         return $this->render('cofon/oneCategory.html.twig',
-       [
-           'viewAllCategory' => $viewAllCategory,
-           'booksByCategory' => $booksByCategory,
-           'id' => $id,
-        ]
-            );
+            [
+                'searchForm' => $searchFormViews,
+                'viewAllCategory' => $viewAllCategory,
+                'booksByCategory' => $booksByCategory,
+                'id' => $id,
+//                'allReading' => $allReading,
+            ]
+        );
+
+//        return $this->render('cofon/oneCategory.html.twig',
+//       [
+//           'viewAllCategory' => $viewAllCategory,
+//           'booksByCategory' => $booksByCategory,
+//           'id' => $id,
+//        ]
+//            );
     }
 
 
@@ -563,7 +585,6 @@ class DefaultController extends Controller
 
 
         if ($bookForm->isSubmitted() && $bookForm->isValid()){
-
 //            je récupère l'image uploader par l'utilisateur
             $image = $book->getCover();
 //             je génère un nom unique suivi de l'extension
@@ -578,12 +599,11 @@ class DefaultController extends Controller
                 );
 //                si y'a une erreur dans l'upload, j'affiche l'erreur
             } catch (FileException $e) {
-//                 ... handle exception if something happens during file upload
+//                Je gère une exception s'il se passe quelque chose pendant le téléchargement
                 throw new \Exception($e->getMessage());
             }
-//            je remet dans mon entite (qui sera sauvegardée en BDD le nom de l'image
+//            je remet dans mon entite qui sera sauvegardée en BDD le nom de l'image
             $book->setCover($imageName);
-//            $book = $bookForm->getData();
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($book);
             $entityManager->flush();

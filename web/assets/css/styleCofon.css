@@ -447,6 +447,9 @@ input[type="password"] {
 
 .allRead{
     width: 25%;
+    height: 100%;
+    margin-top: auto;
+    margin-bottom: auto;
     float: left;
     text-align: center;
 }
@@ -513,9 +516,6 @@ input[type="password"] {
     margin-bottom: 5%;
 }
 
-.a:active{
-    color: red;
-}
 
 
 

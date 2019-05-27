@@ -5,14 +5,14 @@
 
     <div class="firstCnx">
         <div class="advise">
-            <h3>Ajouter des livres que vous avez lu ! </br>
-                Et decouvrez ensuite vos recommandations de lectures personnalisées</h3>
+            <h3>Ajouter des livres que vous avez lu !<br>
+                En utilisant la recherche par Auteur ou Titre</h3>
         </div>
-
         <div class="personalPage">
-            <h3>Ignorez cette étape et accéder à VOTRE ACCUEIL</h3>
+            <a href="{{ path('myBooks') }}">
+                <h3>ACCEDEZ À VOTRE TABLEAU DE BORD</h3>
+            </a>
         </div>
-
     </div>
 
     <div class="booksByCategory">
@@ -31,7 +31,17 @@
 
     <div class="search">
         <div class="personalSearch">
-            <input placeholder="Rechercher" class="look">
+            {{ form_start(searchForm) }}
+            <div class="formSearch">
+                <div>
+                    {{ form_errors(searchForm.search) }}
+                    {{ form_widget(searchForm.search, {'attr': {'class': 'form-control', 'placeholder': 'Rechercher un livre' }}) }}
+                </div>
+                <div>
+                    {{ form_widget(searchForm.submit, {'attr': {'class': 'btn btn-primary'}}) }}
+                </div>
+            </div>
+            {{ form_end(searchForm) }}
         </div>
         <div class="category">
             {% for category in viewAllCategory %}
