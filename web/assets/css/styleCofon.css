@@ -11,33 +11,54 @@ body{
     font-family: monospace;
 }
 
-.brand{
-
-}
-
 .button{
-    display: contents;
     text-decoration: none;
     color: white;
     font-size: 15px;
+    display: flex;
+    justify-content: space-around;
 }
 
 
-
 .logo{
-    width: 40%;
+    width: 30%;
     display: flex;
     margin-left: auto;
     margin-right: auto;
 }
 
-.search{
-    width: 40%;
-    float: left;
-}
-
 .look{
     width: 75%;
+}
+
+#menuDeroulant li {
+    /* on place les liens du menu horizontalement */
+    display: inline-block;
+}
+
+#menuDeroulant ul li {
+    /* on enlève ce comportement pour les liens du sous menu */
+    display: inherit;
+}
+
+#menuDeroulant a {
+    text-decoration: none;
+    display: block;
+    color:linen;
+    font-family: fantasy;
+    font-size: 130%;
+}
+#menuDeroulant ul {
+    position: absolute;
+    /* on cache les sous menus complètement sur la gauche */
+    left: -999em;
+    text-align: left;
+    z-index: 1000;
+}
+#menuDeroulant li:hover ul {
+    /* Au survol des li du menu on replace les sous menus */
+    left: auto;
+    padding-top: 0.5%;
 }
 
 /*ENDED Form for header*/
@@ -99,6 +120,7 @@ body{
 .propoLivres{
     display: flex;
     justify-content: space-around;
+    font-family: monospace;
 }
 
 .bookPropo{
@@ -246,6 +268,9 @@ input[type="password"] {
 .search{
     width: 20%;
     float: left;
+    position: fixed;
+    right: 0;
+    padding-top: 1%;
 }
 
 .detailBook{
@@ -279,6 +304,7 @@ input[type="password"] {
 
 .category{
     margin-bottom: 2%;
+    font-family: monospace;
 }
 
 
@@ -515,7 +541,6 @@ input[type="password"] {
     text-align: center;
     margin-bottom: 5%;
 }
-
 
 
 

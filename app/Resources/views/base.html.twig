@@ -26,44 +26,47 @@
 {% block header %}
 
     <nav class="navbar">
-        <div class="brand col-md-2">
-            <img src="{{ asset('assets/images/logofilrouge.png') }}" alt="logo" class="logo">
+        <div class="brand col-md-3">
+            <img src="{{ asset('assets/images/logofilrouge4.png') }}" alt="logo" class="logo">
         </div>
-        <div class="search col-md-4">
-            {#{{ form_start(SearchType) }}#}
-            {#<div class="formSearch">#}
-                {#<div>#}
-                    {#{{ form_errors(searchForm.search) }}#}
-                    {#{{ form_widget(searchForm.search, {'attr': {'class': 'form-control', 'placeholder': 'Rechercher'}}) }}#}
-                {#</div>#}
-                {#<div>#}
-                    {#{{ form_widget(searchForm.submit, {'attr': {'class': 'btn btn-primary' }}) }}#}
-                {#</div>#}
-            {#</div>#}
-            {#{{ form_end(searchForm) }}#}
-        </div>
-        <div class="button col-md-6">
-            {% if app.user is not null %}
-            <a href="{{ path('cofon') }}" class="home">Accueil</a>
-            {% else %}
-            <a href="{{ path('fos_user_registration_register') }}" class="home">Accueil</a>
-            {% endif %}
-            {% if app.user is not null %}
-            <a href="{{ path('myBooks') }}" class="books">Mes livres</a>
-            {% else %}
-            <a href="{{ path('fos_user_registration_register') }}" class="books">Mes livres</a>
-            {% endif %}
-            {% if app.user is not null %}
-            <a href="{{ path('personal') }}" class="addBooks">Ajouter des livres</a>
-            {% else %}
-            <a href="{{ path('fos_user_registration_register') }}" class="addBooks">Ajouter des livres</a>
-            {% endif %}
-            {% if app.user is not null %}
-                <a href="{{ path('fos_user_security_logout') }}" class="connection">{{ app.user.username }}</a>
-            {% else %}
-                <a href="{{ path('fos_user_security_login') }}" class="connection">Connexion</a>
-            {% endif %}
-        </div>
+        <ul class="button col-md-9">
+
+            <li>
+                {% if app.user is not null %}
+                <a href="{{ path('cofon') }}" class="home">Accueil</a>
+                {% else %}
+                <a href="{{ path('fos_user_registration_register') }}" class="home">Accueil</a>
+                {% endif %}
+            </li>
+
+            <li>
+                {% if app.user is not null %}
+                <a href="{{ path('myBooks') }}" class="books">Mes livres</a>
+                {% else %}
+                <a href="{{ path('fos_user_registration_register') }}" class="books">Mes livres</a>
+                {% endif %}
+            </li>
+            <li>
+                {% if app.user is not null %}
+                <a href="{{ path('personal') }}" class="addBooks">Ajouter des livres</a>
+                {% else %}
+                <a href="{{ path('fos_user_registration_register') }}" class="addBooks">Ajouter des livres</a>
+                {% endif %}
+            </li>
+            <ul id="menuDeroulant">
+                <li>
+                    {% if app.user is not null %}
+                    <a href="" class="userName">{{ app.user.username }}</a>
+                        <ul>
+                            <li><a href="{{ path('fos_user_security_logout') }}" class="connection">déconnexion</a></li>
+                        </ul>
+                </li>
+                    {% else %}
+                        <a href="{{ path('fos_user_security_login') }}" class="connection">Connexion</a>
+                    {% endif %}
+
+            </ul>
+        </ul>
 
     </nav>
 

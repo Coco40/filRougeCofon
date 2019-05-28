@@ -86,11 +86,13 @@ class DefaultController extends Controller
     {
         $viewAllCategory = $this->getDoctrine()
             ->getRepository(BookType::class)
-            ->findAll();
+            ->findBy(array(), array('bookType' => 'asc'));
+//            ->findAll();
 
         $allBooks = $this->getDoctrine()
             ->getRepository(Book::class)
-            ->findAll();
+            ->findBy(array(), array('title' => 'asc'));
+//            ->findAll();
 
         $allAuthors = $this->getDoctrine()
             ->getRepository(Author::class)
@@ -480,7 +482,8 @@ class DefaultController extends Controller
 
         $viewAllCategory = $this->getDoctrine()
             ->getRepository(BookType::class)
-            ->findAll();
+            ->findBy(array(), array('bookType' => 'asc'));
+//            ->findAll();
 
         $searchForm = $this->createForm(SearchType::class);
         $searchFormViews = $searchForm->createView();
