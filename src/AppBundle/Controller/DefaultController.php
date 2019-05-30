@@ -38,39 +38,11 @@ class DefaultController extends Controller
 
         $maxReading = $this->getDoctrine()
             ->getRepository(Reading::class)
-            ->searchMaxReading(
-                [],
-                [],
-                6,
-                0
-            );
-
-        $idLivreMax1 = $maxReading[0][1];
-        $idLivreMax2 = $maxReading[1][1];
-        $idLivreMax3 = $maxReading[2][1];
-        $idLivreMax4 = $maxReading[3][1];
-        $idLivreMax5 = $maxReading[4][1];
-        $idLivreMax6 = $maxReading[5][1];
-
-        $bookRepository = $this->getDoctrine()->getRepository(Book::class);
-
-        $maxBook1 = $bookRepository->find($idLivreMax1);
-        $maxBook2 = $bookRepository->find($idLivreMax2);
-        $maxBook3 = $bookRepository->find($idLivreMax3);
-        $maxBook4 = $bookRepository->find($idLivreMax4);
-        $maxBook5 = $bookRepository->find($idLivreMax5);
-        $maxBook6 = $bookRepository->find($idLivreMax6);
-
+            ->searchMaxReading(6);
 
         return $this->render('cofon/home.html.twig',
             [
-                'maxBook1' => $maxBook1,
-                'maxBook2' => $maxBook2,
-                'maxBook3' => $maxBook3,
-                'maxBook4' => $maxBook4,
-                'maxBook5' => $maxBook5,
-                'maxBook6' => $maxBook6,
-//                'maxReadind' => $maxReading,
+                'maxReading' => $maxReading,
                 'allReading' => $allReading,
             ]
         );
@@ -78,7 +50,7 @@ class DefaultController extends Controller
 
 
 
-//*****   ROUTE POUR LA PAGE LORSQUE L'ON VIENT DE SE CONNECTER SUR SON ESPACE PERSONNEL (MES LVRES) *****//
+//*****   ROUTE POUR LA PAGE LORSQUE L'ON VIENT DE SE CONNECTER SUR SON ESPACE PERSONNEL (MES LIVRES) *****//
     /**
      * @Route("/cofon/personal", name="personal")
      */
@@ -97,12 +69,6 @@ class DefaultController extends Controller
         $allAuthors = $this->getDoctrine()
             ->getRepository(Author::class)
             ->findAll();
-
-//        $allReading = $this->getDoctrine()
-//            ->getRepository(Reading::class)
-//            ->findAll();
-
-//        dump($allBooks, $allReading); die;
 
         $searchForm = $this->createForm(SearchType::class);
         $searchFormViews = $searchForm->createView();
@@ -140,6 +106,7 @@ class DefaultController extends Controller
         );
     }
 
+//*****   ROUTE POUR ENVOYER LE STATUS DU LIVRE DEPUIS LA MODAL *****//
 
     /**
      * @Route("/cofon/status/reading", name="cofon_status_reading")
@@ -394,7 +361,7 @@ class DefaultController extends Controller
             dump($search);
 
         }
-        }
+    }
 
 //*****   ROUTE POUR LES MENTIONS LEGALES  *****//
 
@@ -448,9 +415,7 @@ class DefaultController extends Controller
         $myappContactMail = 'corinnefontagnedev40@gmail.com';
         $myappContactPassword = 'coco2323&4040';
 
-        // In this case we'll use the ZOHO mail services.
-        // If your service is another, then read the following article to know which smpt code to use and which port
-        // http://ourcodeworld.com/articles/read/14/swiftmailer-send-mails-from-php-easily-and-effortlessly
+
         $transport = \Swift_SmtpTransport::newInstance('smtp.gmail.com', 465,'ssl')
             ->setUsername($myappContactMail)
             ->setPassword($myappContactPassword);
@@ -483,7 +448,11 @@ class DefaultController extends Controller
         $viewAllCategory = $this->getDoctrine()
             ->getRepository(BookType::class)
             ->findBy(array(), array('bookType' => 'asc'));
-//            ->findAll();
+
+
+        $category = $this->getDoctrine()
+            ->getRepository(BookType::class)
+            ->find($id);
 
         $searchForm = $this->createForm(SearchType::class);
         $searchFormViews = $searchForm->createView();
@@ -502,6 +471,7 @@ class DefaultController extends Controller
                     'searchForm' => $searchFormViews,
                     'viewAllCategory' => $viewAllCategory,
                     'booksByCategory' => $booksByCategory,
+                    'category' => $category,
                     'id' => $id,
                 ]
             );
@@ -513,6 +483,7 @@ class DefaultController extends Controller
                 'searchForm' => $searchFormViews,
                 'viewAllCategory' => $viewAllCategory,
                 'booksByCategory' => $booksByCategory,
+                'category' => $category,
                 'id' => $id,
 //                'allReading' => $allReading,
             ]
@@ -527,6 +498,8 @@ class DefaultController extends Controller
 //            );
     }
 
+
+//*****   ROUTE POUR RENVOYER UN UTILISATEUR QUI VIENT DE S'INSCRIRE  *****//
 
     /**
      * @Route("/register/confirmed", name="confirmed")

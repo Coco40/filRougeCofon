@@ -31,4 +31,16 @@ class BookRepository extends \Doctrine\ORM\EntityRepository
 
 }
 
+    public function findByWord($title)
+    {
+        $query = $this->getEntityManager()
+            ->createQuery(
+                'SELECT b, t FROM AppBundle:Book b
+                JOIN b.SearchType s
+                WHERE b.title = %title%'
+            ) ->setParameter('title', $title);
+
+        return $query->getResult();
+    }
+
 }

@@ -3,54 +3,34 @@
 
 
 {% block main %}
-    <article class="central">
+    <div class="central">
         <div class="inscription col-md-6 container">
             <div class="slogan">
                 <h2>Enregistrez vos livres sur Cofon</h2>
                 <h3>& partagez vos lectures avec la communauté</h3>
             </div>
             <div>
-                 <a href="{{ path('fos_user_registration_register') }}" class="inscrip"><button>Inscrivez-vous</button></a>
+                 <a href="{{ path('fos_user_registration_register') }}" class="inscrip"><button class="buttonInscrip">Inscrivez-vous</button></a>
             </div>
         </div>
         <div class="list col-md-6 container">
             <h1 class="bookType">roman policier fantastique biographique thriller amour science-fiction philosophie</h1>
         </div>
-    </article>
+    </div>
 
     <div class="propositions">
         <div class="plusLus">
             <h3>Livres les + lus par nos utilisateurs</h3>
         </div>
         <div class="propoLivres">
+            {% for read in maxReading %}
             <div class="bookPropo">
-                <p>{{ maxBook1.title }}</p>
-                <img src="{{ asset('assets/imgcover/' ~ maxBook1.cover) }}" class="imgPropo">
+                <p>{{ read.title }}</p>
+                <img src="{{ asset('assets/imgcover/' ~ read.cover) }}" class="imgPropo">
+                <p>lu par {{ read.count }} utilisateurs</p>
             </div>
-            <div class="bookPropo">
-                <p>{{ maxBook2.title }}</p>
-                <img src="{{ asset('assets/imgcover/' ~ maxBook2.cover) }}" class="imgPropo">
-            </div>
-            <div class="bookPropo">
-                <p>{{ maxBook3.title }}</p>
-                <img src="{{ asset('assets/imgcover/' ~ maxBook3.cover) }}" class="imgPropo">
-            </div>
-            <div class="bookPropo">
-                <p>{{ maxBook4.title }}</p>
-                <img src="{{ asset('assets/imgcover/' ~ maxBook4.cover) }}" class="imgPropo">
-            </div>
-            <div class="bookPropo">
-                <p>{{ maxBook5.title }}</p>
-                <img src="{{ asset('assets/imgcover/' ~ maxBook5.cover) }}" class="imgPropo">
-            </div>
-            <div class="bookPropo">
-                <p>{{ maxBook6.title }}</p>
-                <img src="{{ asset('assets/imgcover/' ~ maxBook6.cover) }}" class="imgPropo">
-            </div>
+            {% endfor %}
         </div>
-
-
-
     </div>
 
 

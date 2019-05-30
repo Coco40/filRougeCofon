@@ -9,9 +9,6 @@
 namespace AppBundle\Repository;
 
 
-use AppBundle\Entity\Reading;
-use Symfony\Component\Validator\Constraints\Count;
-
 class ReadingRepository extends \Doctrine\ORM\EntityRepository
 {
     public function searchReadingByUser($user)
@@ -26,21 +23,19 @@ class ReadingRepository extends \Doctrine\ORM\EntityRepository
 
     }
 
-    public function searchMaxReading()
+    public function searchMaxReading($limit)
     {
         $qb = $this->createQueryBuilder('r');
 
-        $qb->select('IDENTITY(r.book)')
-            ->addSelect('COUNT(r.users)')
+        $qb->select('b.title, b.cover, COUNT(r.users) AS count')
+            ->innerJoin('r.book', 'b')
             ->where('r.statusRead = 1')
             ->groupBy('r.book')
-            ->orderBy('COUNT(r.users)', 'DESC');
+            ->orderBy('COUNT(r.users)', 'DESC')
+            ->setMaxResults($limit);
 
-        $query = $qb->getQuery();
 
-        $result = $query->getResult();
-
-        return $result;
+        return $qb->getQuery()->getResult();
 
 
 //        SELECT book_id, COUNT(user_id)

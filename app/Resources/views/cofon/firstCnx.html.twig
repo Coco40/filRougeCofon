@@ -206,8 +206,8 @@
                     container.hide();
                 }
             });
-            // on lui dit qu'au clic sur le bouton avec la classe btnModal, il doit récupérer les éléments de la classe title-bk
-            //     depuis le parent de btnModal donc de la div à laquelle il appartient, et l'on stocke les infos dans la variable title
+            // on lui dit qu'au clic sur le bouton avec la classe detailBookModal, il doit récupérer les éléments de la classe title-bk
+            //     depuis le parent de detailBookModal donc de la div à laquelle il appartient, et l'on stocke les infos dans la variable title
             $('.detailBookModal').on('click', function (e) {
                 e.preventDefault()
 
@@ -219,7 +219,7 @@
                 var book_id = $(this).parent().data('id-book')
                 // console.log pour vérifier ce qui est transmis dans une variable (falcutatif)
                 console.log(title)
-                // on lui demande de donner ce qui est dans la variable title, à la class title-js depuis l'élément qui a l'id myModal
+                // on lui demande de donner ce qui est dans la variable title, à la class title-js depuis l'élément qui a l'id modalForDetail
                 $('#modalForDetail').find('.title-js').html(title)
                 $('#modalForDetail').find('.author-js-firstName').html(authorFirtsName)
                 $('#modalForDetail').find('.author-js-lastName').html(authorLastName)
