@@ -49,7 +49,6 @@ class DefaultController extends Controller
     }
 
 
-
 //*****   ROUTE POUR LA PAGE LORSQUE L'ON VIENT DE SE CONNECTER SUR SON ESPACE PERSONNEL (MES LIVRES) *****//
     /**
      * @Route("/cofon/personal", name="personal")
@@ -489,112 +488,9 @@ class DefaultController extends Controller
             ]
         );
 
-//        return $this->render('cofon/oneCategory.html.twig',
-//       [
-//           'viewAllCategory' => $viewAllCategory,
-//           'booksByCategory' => $booksByCategory,
-//           'id' => $id,
-//        ]
-//            );
     }
 
 
-//*****   ROUTE POUR RENVOYER UN UTILISATEUR QUI VIENT DE S'INSCRIRE  *****//
-
-    /**
-     * @Route("/register/confirmed", name="confirmed")
-     */
-    public function cofonConfirmed()
-    {
-        return $this ->redirectToRoute('personal');
-    }
-
-//*****   ROUTE POUR RAJOUTER UN AUTEUR  *****//
-    /**
-     * @Route("/admin/addAuthor", name="addAuthor")
-     */
-    public function formAddAuthor(Request $request)
-    {
-        $author = new Author();
-
-//        méthode createForm pour prendre les informations de notre entity Author
-        $authorform = $this->createForm(AuthorType::class, $author);
-
-//        j'utilise la méthode creatView pour faire le gabarit du formulaire HTML
-        $formAddAuthor = $authorform->createView();
-
-        $authorform->handleRequest($request);
-
-//        dump('coucou'); die;
-
-        if ($authorform->isSubmitted() && $authorform->isValid()){
-
-            $author = $authorform->getData();
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($author);
-            $entityManager->flush();
-
-            var_dump('auteur enregistré');
-        }
-
-//      je renvoi dans le fichier formulaire les éléments ainsi
-        return $this->render('cofon/form_add_author.html.twig',
-            [
-                'formAddAuthor' => $formAddAuthor
-            ]
-        );
-    }
-
-//*****   ROUTE POUR RAJOUTER UN LIVRE *****//
-    /**
-     * @Route("/admin/addBook", name="addBook")
-     */
-    public function formAddBook(Request $request)
-    {
-        $book = new Book();
-        $bookForm = $this->createForm(BookFormType::class, $book);
-        $formAddBook = $bookForm->createView();
-        $bookForm->handleRequest($request);
-        $allAuthors = $this->getDoctrine()
-            ->getRepository(Author::class)
-            ->findAll();
-
-
-        if ($bookForm->isSubmitted() && $bookForm->isValid()){
-//            je récupère l'image uploader par l'utilisateur
-            $image = $book->getCover();
-//             je génère un nom unique suivi de l'extension
-            $imageName = md5(uniqid()).'.'.$image->guessExtension();
-//            je deplace mon image dans un dossier en lui donnant le nom unique que j'ai créé
-            try {
-                $image->move(
-//                    Autre méthode
-//                    $request->getUriForPath('web/upload/images/book')
-                    $this->getParameter('upload_images_book'),
-                    $imageName
-                );
-//                si y'a une erreur dans l'upload, j'affiche l'erreur
-            } catch (FileException $e) {
-//                Je gère une exception s'il se passe quelque chose pendant le téléchargement
-                throw new \Exception($e->getMessage());
-            }
-//            je remet dans mon entite qui sera sauvegardée en BDD le nom de l'image
-            $book->setCover($imageName);
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($book);
-            $entityManager->flush();
-
-            var_dump('livre enregistré');
-        }
-
-//      je renvoi dans le fichier formulaire les éléments ainsi
-        return $this->render('cofon/form_add_book.html.twig',
-            [
-                'formAddBook' => $formAddBook,
-                'allAuthors' => $allAuthors
-            ]
-        );
-    }
 
 
 }

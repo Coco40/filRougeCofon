@@ -27,19 +27,19 @@
     </main>
 
     <div class="globalView">
-            {% for reading in allASReadUser %}
-        <div class="allRead">
-            <p>{{ reading.book.title }}</p>
-            <p>Date de lecture : {{ reading.dateComment.date|date("d/m/Y") }}</p>
-            <div class="oneImg">
-                <img src="{{ asset('assets/imgcover/' ~ reading.book.cover) }}" data-image="{{ reading.book.cover }}" class="imgCover" alt="Photo de la couverture du livre">
+        {% for reading in allASReadUser %}
+            <div class="allRead">
+                <p>{{ reading.book.title }}</p>
+                <p>Date de lecture : {{ reading.dateComment.date|date("d/m/Y") }}</p>
+                <div class="oneImg">
+                    <img src="{{ asset('assets/imgcover/' ~ reading.book.cover) }}"
+                         data-image="{{ reading.book.cover }}" class="imgCover" alt="Photo de la couverture du livre">
+                </div>
+                <a href="{{ path('readingDelete',{'id':reading.id}) }}">
+                    <button class="delete">Supprimer</button>
+                </a>
             </div>
-            <a href="{{ path('readingDelete',{'id':reading.id}) }}">
-                <button class="delete">Supprimer</button>
-            </a>
-        </div>
-            {% endfor %}
-
+        {% endfor %}
 
 
     </div>

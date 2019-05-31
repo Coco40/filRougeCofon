@@ -28,33 +28,36 @@
 
     <div class="globalView">
         <div class="read">
-        {% for reading in lastASReadUser %}
-                    <p>Dernier livre lu :</p>
-                    <p>{{ reading.book.title }}</p>
-                        <div class="oneImg">
-                            <img src="{{ asset('assets/imgcover/' ~ reading.book.cover) }}" data-image="{{ reading.book.cover }}" class="imgCover" alt="Photo de la couverture du livre">
-                        </div>
+            {% for reading in lastASReadUser %}
+                <p>Dernier livre lu :</p>
+                <p>{{ reading.book.title }}</p>
+                <div class="oneImg">
+                    <img src="{{ asset('assets/imgcover/' ~ reading.book.cover) }}"
+                         data-image="{{ reading.book.cover }}" class="imgCover" alt="Photo de la couverture du livre">
+                </div>
 
-        {% endfor %}
+            {% endfor %}
         </div>
 
         <div class="inProgress">
             {% for reading in lastReadingUser %}
-                    <p>Dernier livre en cours de lecture :</p>
-                    <p>{{ reading.book.title }}</p>
-                    <div class="oneImg">
-                        <img src="{{ asset('assets/imgcover/' ~ reading.book.cover) }}" data-image="{{ reading.book.cover }}" class="imgCover" alt="Photo de la couverture du livre">
-                    </div>
+                <p>Dernier livre en cours de lecture :</p>
+                <p>{{ reading.book.title }}</p>
+                <div class="oneImg">
+                    <img src="{{ asset('assets/imgcover/' ~ reading.book.cover) }}"
+                         data-image="{{ reading.book.cover }}" class="imgCover" alt="Photo de la couverture du livre">
+                </div>
             {% endfor %}
         </div>
 
         <div class="toRead">
             {% for reading in lastToReadUser %}
-                    <p>Dernier livre à lire :</p>
-                    <p>{{ reading.book.title }}</p>
-                    <div class="oneImg">
-                        <img src="{{ asset('assets/imgcover/' ~ reading.book.cover) }}" data-image="{{ reading.book.cover }}" class="imgCover" alt="Photo de la couverture du livre">
-                    </div>
+                <p>Dernier livre à lire :</p>
+                <p>{{ reading.book.title }}</p>
+                <div class="oneImg">
+                    <img src="{{ asset('assets/imgcover/' ~ reading.book.cover) }}"
+                         data-image="{{ reading.book.cover }}" class="imgCover" alt="Photo de la couverture du livre">
+                </div>
             {% endfor %}
         </div>
 

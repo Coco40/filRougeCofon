@@ -8,18 +8,16 @@
     <title>Document</title>
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+          integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
 
     {#<!--Reset style CSS--!>#}
-    <link rel="stylesheet" href="{{ asset('assets/css/reset.css')}}">
+    <link rel="stylesheet" href="{{ asset('assets/css/reset.css') }}">
 
     {#<!--  style css -->#}
-    <link rel="stylesheet" href="{{ asset('assets/css/styleCofon.css')}}">
-    <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.7.0/css/all.css' integrity='sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ' crossorigin='anonymous'>
-
-
-
-
+    <link rel="stylesheet" href="{{ asset('assets/css/styleCofon.css') }}">
+    <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.7.0/css/all.css'
+          integrity='sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ' crossorigin='anonymous'>
 
 
 </head>
@@ -35,37 +33,37 @@
 
             <li>
                 {% if app.user is not null %}
-                <a href="{{ path('cofon') }}" class="home">Accueil</a>
+                    <a href="{{ path('cofon') }}" class="home">Accueil</a>
                 {% else %}
-                <a href="{{ path('fos_user_registration_register') }}" class="home">Accueil</a>
+                    <a href="{{ path('fos_user_registration_register') }}" class="home">Accueil</a>
                 {% endif %}
             </li>
 
             <li>
                 {% if app.user is not null %}
-                <a href="{{ path('myBooks') }}" class="books">Mes livres</a>
+                    <a href="{{ path('myBooks') }}" class="books">Mes livres</a>
                 {% else %}
-                <a href="{{ path('fos_user_registration_register') }}" class="books">Mes livres</a>
+                    <a href="{{ path('fos_user_registration_register') }}" class="books">Mes livres</a>
                 {% endif %}
             </li>
             <li>
                 {% if app.user is not null %}
-                <a href="{{ path('personal') }}" class="addBooks">Ajouter des livres</a>
+                    <a href="{{ path('personal') }}" class="addBooks">Ajouter des livres</a>
                 {% else %}
-                <a href="{{ path('fos_user_registration_register') }}" class="addBooks">Ajouter des livres</a>
+                    <a href="{{ path('fos_user_registration_register') }}" class="addBooks">Ajouter des livres</a>
                 {% endif %}
             </li>
             <ul id="menuDeroulant">
                 <li>
                     {% if app.user is not null %}
                     <a href="" class="userName">{{ app.user.username }}</a>
-                        <ul>
-                            <li><a href="{{ path('fos_user_security_logout') }}" class="connection">déconnexion</a></li>
-                        </ul>
+                    <ul>
+                        <li><a href="{{ path('fos_user_security_logout') }}" class="connection">déconnexion</a></li>
+                    </ul>
                 </li>
-                    {% else %}
-                        <a href="{{ path('fos_user_security_login') }}" class="connection">Connexion</a>
-                    {% endif %}
+                {% else %}
+                    <a href="{{ path('fos_user_security_login') }}" class="connection">Connexion</a>
+                {% endif %}
 
             </ul>
         </ul>
@@ -84,11 +82,11 @@
 {% block footer %}
     <div class="footer">
         {#<div class="icones text-center center-block">#}
-            {#<p>Suivez-nous sur :#}
-                {#<a href=""><i class="fab fa-facebook"></i></a>#}
-                {#<a href=""><i class="fab fa-twitter-square"></i></a>#}
-                {#<a href=""><i class="fab fa-instagram"></i></a>#}
-            {#</p>#}
+        {#<p>Suivez-nous sur :#}
+        {#<a href=""><i class="fab fa-facebook"></i></a>#}
+        {#<a href=""><i class="fab fa-twitter-square"></i></a>#}
+        {#<a href=""><i class="fab fa-instagram"></i></a>#}
+        {#</p>#}
         {#</div>#}
         <div class="info">
             <p><a href="{{ path('mentionsLegales') }}">Mentions Légales</a> | </p>
@@ -98,8 +96,12 @@
 {% endblock %}
 
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
 
 {% block script %}
 {% endblock %}

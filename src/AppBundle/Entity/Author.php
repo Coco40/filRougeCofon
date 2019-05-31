@@ -62,7 +62,6 @@ class Author
     }
 
 
-
     /**
      * Get id.
      *

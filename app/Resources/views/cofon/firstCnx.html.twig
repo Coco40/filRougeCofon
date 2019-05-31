@@ -6,7 +6,7 @@
     <div class="firstCnx">
         <div class="advise">
             <h3>Ajouter des livres que vous avez lu !<br>
-            En utilisant la recherche par Auteur ou Titre</h3>
+                En utilisant la recherche par Auteur ou Titre</h3>
         </div>
         <div class="personalPage">
             <a href="{{ path('myBooks') }}">
@@ -18,11 +18,12 @@
     <div class="bottomFirstCnx">
         <div class="exampleBook">
             {% for book in allBooks %}
-        {#je rajoute un data pour récupérer l'id du livre qui me servira pour l'envoi en BDD des lectures#}
+                {#je rajoute un data pour récupérer l'id du livre qui me servira pour l'envoi en BDD des lectures#}
                 <div class="detailBook" data-id-book="{{ book.id }}">
                     <a href="{{ path('oneBook',{'id':book.id}) }}"></a>
                     <div class="oneImg">
-                        <img src="{{ asset('assets/imgcover/' ~ book.cover) }}" data-image="{{ book.cover }}" class="imgCover" alt="Photo de la couverture du livre">
+                        <img src="{{ asset('assets/imgcover/' ~ book.cover) }}" data-image="{{ book.cover }}"
+                             class="imgCover" alt="Photo de la couverture du livre">
                     </div>
 
                     <p class="title-bk">{{ book.title }}</p>
@@ -51,7 +52,8 @@
             </div>
             <div class="category">
                 {% for category in viewAllCategory %}
-                <a href="{{ path('category',{'id':category.id}) }}" class="category">{{ category.bookType }}</a></br>
+                    <a href="{{ path('category',{'id':category.id}) }}"
+                       class="category">{{ category.bookType }}</a></br>
                 {% endfor %}
             </div>
         </div>
@@ -60,73 +62,74 @@
 
 
 
-<!-- The Modal -->
-<div id="myModal" class="modal">
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
 
-    <!-- Modal content -->
-    <div class="modal-content">
-    {#je créais un formulaire pour récupérer toutes les informations qui serviront à créer une ligne dans Reading#}
-    {#lorsque le formulaire sera submitt, cela nous dirigera vers la route cofon_status_reading, j'utilise la méthode POST#}
-        <form action="{{ path('cofon_status_reading') }}" method="POST" class="status">
-            <div class="modal-header">
-                <h2>Ce livre va être ajouté dans votre espace</h2>
-                <span class="close">&times;</span>
-            </div>
-            <div class="modal-body">
-                <div class="bookInfo">
-                    <div class="bookMain">
-                        <p>Titre : <span class="title-js"></span></p>
-                        <p>Auteur : <span class="author-js-firstName"></span></p>
-                        <p><span class="author-js-lastName"></span></p>
-                        <img class="img-js" src="" id="imgModal" alt="Photo de la couverture du livre">
-                    </div>
-                    <div class="bookResume">
-                        <p>Résumé : <span class="synopsis-js"></span></p>
-                    </div>
+        <!-- Modal content -->
+        <div class="modal-content">
+            {#je créais un formulaire pour récupérer toutes les informations qui serviront à créer une ligne dans Reading#}
+            {#lorsque le formulaire sera submitt, cela nous dirigera vers la route cofon_status_reading, j'utilise la méthode POST#}
+            <form action="{{ path('cofon_status_reading') }}" method="POST" class="status">
+                <div class="modal-header">
+                    <h2>Ce livre va être ajouté dans votre espace</h2>
+                    <span class="close">&times;</span>
+                </div>
+                <div class="modal-body">
+                    <div class="bookInfo">
+                        <div class="bookMain">
+                            <p>Titre : <span class="title-js"></span></p>
+                            <p>Auteur : <span class="author-js-firstName"></span></p>
+                            <p><span class="author-js-lastName"></span></p>
+                            <img class="img-js" src="" id="imgModal" alt="Photo de la couverture du livre">
+                        </div>
+                        <div class="bookResume">
+                            <p>Résumé : <span class="synopsis-js"></span></p>
+                        </div>
                         {% for key, status in allStatus %}
-                            <input type="radio" name="statusChoice" class="btnStatus" required value="{{ key }}"><label>{{ status }}</label>
+                            <input type="radio" name="statusChoice" class="btnStatus" required value="{{ key }}">
+                            <label>{{ status }}</label>
                         {% endfor %}
 
-                    <div class="note">
+                        <div class="note">
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="modal-footer">
-                <button id="submit" type="submit" name="submit" value="">AJOUTER</button>
-            </div>
-        </form>
+                <div class="modal-footer">
+                    <button id="submit" type="submit" name="submit" value="">AJOUTER</button>
+                </div>
+            </form>
+        </div>
     </div>
-</div>
 
 
-<!-- The Modal for Detail of Book -->
-<div id="modalForDetail" class="modal">
+    <!-- The Modal for Detail of Book -->
+    <div id="modalForDetail" class="modal">
 
-    <!-- Modal content -->
-    <div class="modal-content">
-        {#je créais un formulaire pour récupérer toutes les informations qui serviront à créer une ligne dans Reading#}
-        {#lorsque le formulaire sera submitt, cela nous dirigera vers la route cofon_status_reading, j'utilise la méthode POST#}
-        <form action="{{ path('cofon_status_reading') }}" method="POST" class="status">
-            <div class="modal-header">
-                <h2>A PROPOS</h2>
-                <span class="close">&times;</span>
-            </div>
-            <div class="modal-body">
-                <div class="bookInfo">
-                    <div class="bookMain">
-                        <p>Titre : <span class="title-js"></span></p>
-                        <p>Auteur : <span class="author-js-firstName"></span></p>
-                        <p><span class="author-js-lastName"></span></p>
-                        <img class="img-js" src="" id="imgModal" alt="Photo de la couverture du livre">
-                    </div>
-                    <div class="bookResume">
-                        <p>Résumé : <span class="synopsis-js"></span></p>
+        <!-- Modal content -->
+        <div class="modal-content">
+            {#je créais un formulaire pour récupérer toutes les informations qui serviront à créer une ligne dans Reading#}
+            {#lorsque le formulaire sera submitt, cela nous dirigera vers la route cofon_status_reading, j'utilise la méthode POST#}
+            <form action="{{ path('cofon_status_reading') }}" method="POST" class="status">
+                <div class="modal-header">
+                    <h2>A PROPOS</h2>
+                    <span class="close">&times;</span>
+                </div>
+                <div class="modal-body">
+                    <div class="bookInfo">
+                        <div class="bookMain">
+                            <p>Titre : <span class="title-js"></span></p>
+                            <p>Auteur : <span class="author-js-firstName"></span></p>
+                            <p><span class="author-js-lastName"></span></p>
+                            <img class="img-js" src="" id="imgModal" alt="Photo de la couverture du livre">
+                        </div>
+                        <div class="bookResume">
+                            <p>Résumé : <span class="synopsis-js"></span></p>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </form>
+            </form>
+        </div>
     </div>
-</div>
 
 {% endblock %}
 
@@ -135,22 +138,20 @@
     <script>
 
         // on déclenche la fonction lorsque le doument est pret, donc que tout a chargé
-        $( document ).ready(function() {
+        $(document).ready(function () {
 
-            $(document).mouseup(function(e)
-            {
+            $(document).mouseup(function (e) {
                 // création d'une variable qui indique la zone de délimitation pour le clic
                 var container = $('#myModal');
 
                 // on indique que s'il l'on est hors de cette délimitation
                 // alors on cache le contenu de cette délimitation
-                if (container.is(e.target))
-                {
+                if (container.is(e.target)) {
                     container.hide();
                 }
             });
-        // on lui dit qu'au clic sur le bouton avec la classe btnModal, il doit récupérer les éléments de la classe title-bk
-        //     depuis le parent de btnModal donc de la div à laquelle il appartient, et l'on stocke les infos dans la variable title
+            // on lui dit qu'au clic sur le bouton avec la classe btnModal, il doit récupérer les éléments de la classe title-bk
+            //     depuis le parent de btnModal donc de la div à laquelle il appartient, et l'on stocke les infos dans la variable title
             $('.btnModal').on('click', function (e) {
                 e.preventDefault()
 
@@ -160,20 +161,20 @@
                 var synopsis = $(this).parent().find('.synopsis-bk').html()
                 var image = $(this).parent().find('.imgCover').attr('src')
                 var book_id = $(this).parent().data('id-book')
-        // console.log pour vérifier ce qui est transmis dans une variable (falcutatif)
+                // console.log pour vérifier ce qui est transmis dans une variable (falcutatif)
                 console.log(title)
-        // on lui demande de donner ce qui est dans la variable title, à la class title-js depuis l'élément qui a l'id myModal
+                // on lui demande de donner ce qui est dans la variable title, à la class title-js depuis l'élément qui a l'id myModal
                 $('#myModal').find('.title-js').html(title)
                 $('#myModal').find('.author-js-firstName').html(authorFirtsName)
                 $('#myModal').find('.author-js-lastName').html(authorLastName)
                 $('#myModal').find('.synopsis-js').html(synopsis)
                 $('#myModal').find('.img-js').attr('src', image)
                 $('#myModal').find('#submit').val(book_id)
-        // et on lui demande de l'afficher
+                // et on lui demande de l'afficher
                 $('#myModal').show()
             })
 
-        // on lui dit qu'au clic sur le bouton avec l'id close, il doit masquer tout ce qui est dans l'id myModal
+            // on lui dit qu'au clic sur le bouton avec l'id close, il doit masquer tout ce qui est dans l'id myModal
             $('.close').on('click', function (e) {
                 e.preventDefault()
 
@@ -185,24 +186,22 @@
 
 
 
-{# NOUVELLE MODAL POUR LE DETAIL DU LIVRE #}
+    {# NOUVELLE MODAL POUR LE DETAIL DU LIVRE #}
 
 
 
     <script>
 
         // on déclenche la fonction lorsque le doument est pret, donc que tout a chargé
-        $( document ).ready(function() {
+        $(document).ready(function () {
 
-            $(document).mouseup(function(e)
-            {
+            $(document).mouseup(function (e) {
                 // création d'une variable qui indique la zone de délimitation pour le clic
                 var container = $('#modalForDetail');
 
                 // on indique que s'il l'on est hors de cette délimitation
                 // alors on cache le contenu de cette délimitation
-                if (container.is(e.target))
-                {
+                if (container.is(e.target)) {
                     container.hide();
                 }
             });

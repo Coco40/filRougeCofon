@@ -22,7 +22,8 @@
         {% for book in booksByCategory %}
             <div class="booksCategory">
                 <div class="oneImg">
-                    <img src="{{ asset('assets/imgcover/' ~ book.cover) }}" data-image="{{ book.cover }}" class="imgCover" alt="Photo de la couverture du livre">
+                    <img src="{{ asset('assets/imgcover/' ~ book.cover) }}" data-image="{{ book.cover }}"
+                         class="imgCover" alt="Photo de la couverture du livre">
                 </div>
 
                 <p class="title-bk">{{ book.title }}</p>

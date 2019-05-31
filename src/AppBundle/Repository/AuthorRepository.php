@@ -22,6 +22,7 @@ class AuthorRepository extends EntityRepository
         $query = $qb->select('a') //je prend tous les éléments de la table(entity) 'a' (donc Author)
         ->where('a.name = :name') //je sélectionne la colonne name de la table Author qui sera égale au paramètre name
         ->setParameter('name', $name) //je lui dire de remplacer name par $name (bindparam)
+        ->orderBy('a.name', 'ASC' )
         ->getQuery();
 
         $name = $query->getArrayResult();
