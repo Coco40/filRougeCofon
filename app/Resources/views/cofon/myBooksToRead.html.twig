@@ -38,6 +38,8 @@
                 <a href="{{ path('readingDelete',{'id':reading.id}) }}">
                     <button class="delete">Supprimer</button>
                 </a>
+                {% else %}
+                    <img src="{{ asset('assets/imgcover/livre_vide.png') }}" alt="">
             </div>
         {% endfor %}
 

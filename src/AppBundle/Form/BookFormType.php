@@ -4,6 +4,7 @@ namespace AppBundle\Form;
 
 use AppBundle\Entity\Author;
 use AppBundle\Entity\BookType;
+use Doctrine\ORM\EntityRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
@@ -40,6 +41,9 @@ class BookFormType extends AbstractType
 
             ->add('type', EntityType::class, [
                 'class' => BookType::class,
+                'query_builder' => function (EntityRepository $er) {
+                    return $er->createQueryBuilder('t')
+                        ->orderBy('t.bookType', 'ASC');},
                 'choice_label' => 'bookType'
             ])
             ->add('submit', SubmitType::class, [
@@ -47,6 +51,9 @@ class BookFormType extends AbstractType
             ])
             ->add('author', EntityType::class, array(
                     'class' => Author::class,
+                'query_builder' => function (EntityRepository $er) {
+                    return $er->createQueryBuilder('a')
+                        ->orderBy('a.name', 'ASC');},
                     'choice_label' => 'name',
                 )
 
