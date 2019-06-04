@@ -4,6 +4,28 @@
 
 {% block main %}
 
+    <main>
+        <div class="user">
+            <div class="dashboard">
+                <a href="{{ path('myBooks') }}">
+                    <p class="myDashboard">Tableau de Bord</p>
+                </a>
+            </div>
+            <div class="dashboardDetail">
+                <a href="{{ path('myBooksAsRead') }}">
+                    <p class="allMyBooksAsRead">Tous mes livres lus </p>
+                </a>
+                <a href="{{ path('myBooksReading') }}">
+                    <p class="allMyBooksReading">Tous mes livres en cours de lecture</p>
+                </a>
+                <a href="{{ path('myBooksToRead') }}">
+                    <p class="allMyBookksToRead">Tous mes livres à lire</p>
+                </a>
+            </div>
+        </div>
+
+    </main>
+
 <p>le livre a été supprimé</p>
 
 {% endblock %}

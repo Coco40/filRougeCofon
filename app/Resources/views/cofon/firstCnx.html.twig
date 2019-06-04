@@ -67,7 +67,7 @@
 
         <!-- Modal content -->
         <div class="modal-content">
-            {#je créais un formulaire pour récupérer toutes les informations qui serviront à créer une ligne dans Reading#}
+            {#je crée un formulaire pour récupérer toutes les informations qui serviront à créer une ligne dans Reading#}
             {#lorsque le formulaire sera submitt, cela nous dirigera vers la route cofon_status_reading, j'utilise la méthode POST#}
             <form action="{{ path('cofon_status_reading') }}" method="POST" class="status">
                 <div class="modal-header">
@@ -77,15 +77,20 @@
                 <div class="modal-body">
                     <div class="bookInfo">
                         <div class="bookMain">
+                            {#je rajoute des class dans des span afin de rester in line dans mes balises p et d'intégrer
+                            dans ma modal les éléments que j'aurais récupéré de mon html #}
                             <p>Titre : <span class="title-js"></span></p>
                             <p>Auteur : <span class="author-js-firstName"></span></p>
-                            <p><span class="author-js-lastName"></span></p>
                             <img class="img-js" src="" id="imgModal" alt="Photo de la couverture du livre">
                         </div>
                         <div class="bookResume">
                             <p>Résumé : <span class="synopsis-js"></span></p>
                         </div>
+                        {#je créé une boucle pour avoir tous mes types de statut via des bouton radio#}
                         {% for key, status in allStatus %}
+                            {#allStatus est récupéré sur cette vue, elle contient => StatusType::READ_STATUS#}
+                            {#key donne l'index, les statuts ont été mis en variable constante php sous forme de tableau#}
+                            {#ce tableau a été mis dans l'entity StatusType#}
                             <input type="radio" name="statusChoice" class="btnStatus" required value="{{ key }}">
                             <label>{{ status }}</label>
                         {% endfor %}
@@ -119,7 +124,6 @@
                         <div class="bookMain">
                             <p>Titre : <span class="title-js"></span></p>
                             <p>Auteur : <span class="author-js-firstName"></span></p>
-                            <p><span class="author-js-lastName"></span></p>
                             <img class="img-js" src="" id="imgModal" alt="Photo de la couverture du livre">
                         </div>
                         <div class="bookResume">
@@ -151,24 +155,28 @@
                 }
             });
             // on lui dit qu'au clic sur le bouton avec la classe btnModal, il doit récupérer les éléments de la classe title-bk
-            //     depuis le parent de btnModal donc de la div à laquelle il appartient, et l'on stocke les infos dans la variable title
+            //     depuis le parent de btnModal donc de la div à laquelle il appartient, et l'on stocke les infos dans la
+            //     variable title
             $('.btnModal').on('click', function (e) {
                 e.preventDefault()
 
+                // je lui demande de récupérer tout ce qu'il y a dans le html de la balise qui contient la class title-bk
+                // et de le garder dans la variable title
                 var title = $(this).parent().find('.title-bk').html()
                 var authorFirtsName = $(this).parent().find('.author-bk-firstName').html()
-                var authorLastName = $(this).parent().find('.author-bk-lastName').html()
                 var synopsis = $(this).parent().find('.synopsis-bk').html()
                 var image = $(this).parent().find('.imgCover').attr('src')
+                {#// je lui demande de prendre ce qu'il y a dans la data-id-book donc {{ book.id }}#}
                 var book_id = $(this).parent().data('id-book')
                 // console.log pour vérifier ce qui est transmis dans une variable (falcutatif)
                 console.log(title)
-                // on lui demande de donner ce qui est dans la variable title, à la class title-js depuis l'élément qui a l'id myModal
+                // depuis l'élément qui a l'id myModal, je lui demande d trouver la class title-js et d'y intégrer en html ce qui
+                // est dans la variable title
                 $('#myModal').find('.title-js').html(title)
                 $('#myModal').find('.author-js-firstName').html(authorFirtsName)
-                $('#myModal').find('.author-js-lastName').html(authorLastName)
                 $('#myModal').find('.synopsis-js').html(synopsis)
                 $('#myModal').find('.img-js').attr('src', image)
+                // je lui demande de stocker la valeur du book_id au moment du click sur submit
                 $('#myModal').find('#submit').val(book_id)
                 // et on lui demande de l'afficher
                 $('#myModal').show()

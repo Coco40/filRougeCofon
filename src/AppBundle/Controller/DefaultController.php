@@ -27,14 +27,6 @@ class DefaultController extends Controller
      */
     public function cofonAction()
     {
-        $allReading = $this->getDoctrine()
-            ->getRepository(Reading::class)
-            ->findBy(
-                array('statusRead' => '1'),
-                array('dateComment' => 'desc'),
-                6,
-                0
-            );
 
         $maxReading = $this->getDoctrine()
             ->getRepository(Reading::class)
@@ -43,7 +35,6 @@ class DefaultController extends Controller
         return $this->render('cofon/home.html.twig',
             [
                 'maxReading' => $maxReading,
-                'allReading' => $allReading,
             ]
         );
     }
@@ -112,31 +103,39 @@ class DefaultController extends Controller
      */
     public function cofonStatusReadingAction(Request $request)
     {
-
+//        je récupère dans la variable bookId, l'id du livre transmis au moment du submit
         $bookId = $request->request->get('submit');
 
+//        je lui demande de trouver le user via la méthode GetUser
         $user = $this->getUser();
+//        je lui demande de trouver l'Id du user via la méthode GetId, je le stocke dans $userId
         $userId = $user->getId();
 
+//        je lui demande de récupérer l'entity Reading via la méthode GetRepository que je stocke dans $readingRepository
         $readingRepository = $this->getDoctrine()->getRepository(Reading::class);
+//        je lui demande de trouver une ligne qui a l'id du book de ma modal et l'id du user qui a cliqué et que je stocke
+//        dans ma variable $reading
         $reading = $readingRepository->findBy(['book' => $bookId, 'users' => $userId]);
 
+//        Si je ne trouve pas de ligne correspondante, je crée une nouvelle ligne
         if(empty($reading))
         {
             $reading = new Reading();
 
         }
+//        sinon je prend la ligne correspondante et je l'update
         else{
             $reading = $reading['0'];
         }
 
-
+//        je récupère l'index du statut (récupéré de key dans la modal)
         $statusChoice = $request->request->get('statusChoice');
 
         $bookRepository = $this->getDoctrine()->getRepository(Book::class);
         $book = $bookRepository->find($bookId);
 
         $statusRepository = $this->getDoctrine()->getRepository(StatusType::class);
+//        je lui demande de récupérer l'id du status via l'index
         $status = $statusRepository->find($statusChoice);
 
 //        dump($status);die;

@@ -37,13 +37,5 @@ class ReadingRepository extends \Doctrine\ORM\EntityRepository
 
         return $qb->getQuery()->getResult();
 
-
-//        SELECT book_id, COUNT(user_id)
-//                FROM reading
-//                WHERE status_read_id = 1
-//                GROUP BY book_id
-//                ORDER BY COUNT(user_id) DESC);
-
-
     }
 }

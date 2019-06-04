@@ -2,12 +2,10 @@ body{
     background-color: linen;
 }
 
-/* BEGGINNING Form for header*/
+/* BEGINNING Form for header*/
 .navbar{
     width: 100%;
     background-color: teal;
-    /*padding-bottom: 1%;*/
-    /*padding-top: 1%;*/
     font-family: monospace;
 }
 
@@ -18,7 +16,6 @@ body{
     display: flex;
     justify-content: space-around;
 }
-
 
 .logo{
     width: 30%;
@@ -485,10 +482,11 @@ input[type="password"] {
     width: 25%;
     height: 100%;
     margin-top: auto;
-    margin-bottom: auto;
+    margin-bottom: 1%;
     float: left;
     text-align: center;
 }
+
 
 /* BEGGINNING for ONE CATEGORIE*/
 
