@@ -2,16 +2,14 @@ body{
     background-color: linen;
 }
 
-/* BEGINNING Form for header*/
+/* BEGINNING for header*/
 .navbar{
-    width: 100%;
     background-color: teal;
     font-family: monospace;
 }
 
 .button{
     text-decoration: none;
-    color: white;
     font-size: 15px;
     display: flex;
     justify-content: space-around;
@@ -24,41 +22,27 @@ body{
     margin-right: auto;
 }
 
-.look{
-    width: 75%;
-}
-
-#menuDeroulant li {
-    /* on place les liens du menu horizontalement */
-    display: inline-block;
-}
-
-#menuDeroulant ul li {
-    /* on enlève ce comportement pour les liens du sous menu */
-    display: inherit;
-}
-
-#menuDeroulant a {
+#menuDeroulant a{
     text-decoration: none;
     display: block;
     color:linen;
     font-family: fantasy;
     font-size: 130%;
 }
-#menuDeroulant ul {
+#menuDeroulant ul{
     position: absolute;
     /* on cache les sous menus complètement sur la gauche */
     left: -999em;
     text-align: left;
     z-index: 1000;
 }
-#menuDeroulant li:hover ul {
+#menuDeroulant li:hover ul{
     /* Au survol des li du menu on replace les sous menus */
     left: auto;
     padding-top: 0.5%;
 }
 
-/*ENDED Form for header*/
+/*ENDED for header*/
 
 
 /* BEGGINNING Form for home*/
@@ -87,13 +71,17 @@ body{
 .buttonInscrip{
     background-color: teal;
     color: white;
+    margin-top: 1%;
 }
 
 .slogan{
-    width: 100%;
-    height: 50%;
+    width: 75%;
     font-size: x-large;
     padding-bottom: 1%;
+    background-color: rgba(255,255,255,0.5);
+    padding: 2% 0;
+    display: block;
+    margin: 0 auto;
 }
 
 .list{

@@ -38,7 +38,6 @@ class adminBookController extends Controller
         $bookForm->handleRequest($request);
         $allAuthors = $this->getDoctrine()
             ->getRepository(Author::class)
-//            ->findAll();
         ->findBy(array(), array('name' => 'asc'));
 
 //        dump($allAuthors); die;

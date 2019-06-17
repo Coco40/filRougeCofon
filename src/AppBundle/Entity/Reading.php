@@ -26,7 +26,6 @@ class Reading
      */
     private $id;
 
-
     /**
      * @ORM\Column(type="datetime", nullable=true)
      */
@@ -48,11 +47,6 @@ class Reading
      */
     private $statusRead;
 
-//    /**
-//     * @ORM\OneToOne(targetEntity="StatusType")
-//     */
-//    private $statusReading;
-
 
     public function __construct()
     {
@@ -61,8 +55,6 @@ class Reading
         $this->book = new ArrayCollection();
         $this->dateComment = new \DateTime();
     }
-
-
 
 
     /**

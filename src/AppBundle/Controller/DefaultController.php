@@ -105,7 +105,6 @@ class DefaultController extends Controller
     {
 //        je récupère dans la variable bookId, l'id du livre transmis au moment du submit
         $bookId = $request->request->get('submit');
-
 //        je lui demande de trouver le user via la méthode GetUser
         $user = $this->getUser();
 //        je lui demande de trouver l'Id du user via la méthode GetId, je le stocke dans $userId
@@ -121,13 +120,11 @@ class DefaultController extends Controller
         if(empty($reading))
         {
             $reading = new Reading();
-
         }
 //        sinon je prend la ligne correspondante et je l'update
         else{
             $reading = $reading['0'];
         }
-
 //        je récupère l'index du statut (récupéré de key dans la modal)
         $statusChoice = $request->request->get('statusChoice');
 
@@ -138,8 +135,6 @@ class DefaultController extends Controller
 //        je lui demande de récupérer l'id du status via l'index
         $status = $statusRepository->find($statusChoice);
 
-//        dump($status);die;
-
         $reading->setUsers($user);
         $reading->setStatusRead($status);
         $reading->setBook($book);
@@ -148,12 +143,7 @@ class DefaultController extends Controller
         $entityManager->persist($reading);
         $entityManager->flush();
 
-
-//        return new Response('livre enregistré ');
-
         return $this->redirectToRoute('personal');
-
-
     }
 
 
@@ -260,8 +250,6 @@ class DefaultController extends Controller
                 array('dateComment' => 'desc')
             );
 
-//        dump($allASReadUser);die;
-
         return $this->render('cofon/myBooksAsRead.html.twig',
             [
                 'allASReadUser' => $allASReadUser,
@@ -329,8 +317,6 @@ class DefaultController extends Controller
         $deleteReading = $this->getDoctrine()
             ->getRepository(Reading::class)
             ->find($id);
-
-//        dump($deleteReading); die;
 
         $entityManager = $this->getDoctrine()->getManager();
         $entityManager->remove($deleteReading);

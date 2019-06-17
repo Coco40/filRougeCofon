@@ -5,7 +5,7 @@
 
     <div class="firstCnx">
         <div class="advise">
-            <h3>Ajouter des livres que vous avez lu !<br>
+            <h3>Ajoutez des livres que vous avez lu !<br>
                 En utilisant la recherche par Auteur ou Titre</h3>
         </div>
         <div class="personalPage">
@@ -77,8 +77,8 @@
                 <div class="modal-body">
                     <div class="bookInfo">
                         <div class="bookMain">
-                            {#je rajoute des class dans des span afin de rester in line dans mes balises p et d'intégrer
-                            dans ma modal les éléments que j'aurais récupéré de mon html #}
+                            {#je rajoute des class dans des span afin de rester in line dans mes balises p et d'intégrer#}
+                            {#dans ma modal les éléments que j'aurais récupéré de mon html #}
                             <p>Titre : <span class="title-js"></span></p>
                             <p>Auteur : <span class="author-js-firstName"></span></p>
                             <img class="img-js" src="" id="imgModal" alt="Photo de la couverture du livre">
@@ -94,9 +94,6 @@
                             <input type="radio" name="statusChoice" class="btnStatus" required value="{{ key }}">
                             <label>{{ status }}</label>
                         {% endfor %}
-
-                        <div class="note">
-                        </div>
                     </div>
                 </div>
                 <div class="modal-footer">
